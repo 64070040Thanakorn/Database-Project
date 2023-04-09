@@ -15,13 +15,13 @@
             <p class="mb-3 font-normal text-sm text-gray-700">ผู้เชี่ยวชาญด้านประดิษฐ์ระเบิดขวด, ได้รับดีกรีจากสถาบัน
                 Hogwarts
                 ในด้านเวทมนต์ศาสตร์ 2077</p>
-            <div class="flex justify-between mx-4">
+            <div class="flex justify-between mx-2">
                 <a href="#"
-                    class="inline-flex items-center justify-center w-28 px-3 py-2 text-normal font-normal text-center text-green-600 bg-transparent hover:text-green-800">
+                    class="inline-flex items-center justify-center w-28 px-3 py-2 text-sm font-normal text-center text-green-600 bg-transparent hover:text-green-800">
                     แก้ไขคอร์ส
                 </a>
                 <a href="#"
-                    class="inline-flex items-center justify-center w-28 px-3 py-2 text-normal font-normal text-center text-red-700 bg-transparent hover:text-red-800">
+                    class="inline-flex items-center justify-center w-28 px-3 py-2 text-sm font-normal text-center text-red-700 bg-transparent hover:text-red-800">
                     ลบคอร์ส
                 </a>
             </div>
