@@ -16,8 +16,8 @@ specifiers:
   eslint-plugin-vue: ^8.2.0
   flowbite: ^1.6.4
   flowbite-datepicker: ^1.2.2
-  "free-regular-svg-icons\Lpnpm": "link:@fortawesome/free-regular-svg-icons\Lpnpm"
-  "free-solid-svg-icons\Lpnpm": "link:@fortawesome/free-solid-svg-icons\Lpnpm"
+  free-regular-svg-iconspnpm: link:@fortawesome/free-regular-svg-iconspnpm
+  free-solid-svg-iconspnpm: link:@fortawesome/free-solid-svg-iconspnpm
   i: ^0.3.7
   nuxt: ^2.16.3
   postcss: ^8.4.4
@@ -37,8 +37,8 @@ dependencies:
   core-js: 3.30.0
   flowbite: 1.6.4
   flowbite-datepicker: 1.2.2
-  "free-regular-svg-icons\Lpnpm": "link:@fortawesome/free-regular-svg-icons\Lpnpm"
-  "free-solid-svg-icons\Lpnpm": "link:@fortawesome/free-solid-svg-icons\Lpnpm"
+  free-regular-svg-iconspnpm: link:@fortawesome/free-regular-svg-iconspnpm
+  free-solid-svg-iconspnpm: link:@fortawesome/free-solid-svg-iconspnpm
   i: 0.3.7
   nuxt: 2.16.3_vue@2.7.14
   vue: 2.7.14
