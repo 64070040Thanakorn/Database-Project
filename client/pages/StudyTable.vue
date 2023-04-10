@@ -3,152 +3,12 @@
         <caption class="flex justify-center p-5 font-normal text-center text-5xl mt-8 text-gray-900 bg-white">
             ตารางเรียน
         </caption>
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg mx-24 my-24 h-96">
-            <table class="w-full text-sm text-left text-gray-500 h-full">
-                <thead class="text-xs text-center text-gray-700 uppercase h-12 bg-gray-50">
-                    <tr>
-                        <th scope="col" class="px-6 py-3">
-                            SUN
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            MON
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            TUE
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            WED
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            THU
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            FRI
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            SAT
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="bg-white border-b text-center dark:bg-gray-800 dark:border-gray-700">
-
-                        <td class="px-6 py-4">
-                            Silver
-                        </td>
-                        <td class="px-6 py-4">
-                            Silver
-                        </td>
-                        <td class="px-6 py-4">
-                            Laptop
-                        </td>
-                        <td class="px-6 py-4">
-                            $2999
-                        </td>
-                        <td class="px-6 py-4">
-                            $2999
-                        </td>
-                        <td class="px-6 py-4">
-                            $2999
-                        </td>
-                        <td class="px-6 py-4">
-                            $2999
-                        </td>
-                    </tr>
-                    <tr class="bg-white border-b text-center dark:bg-gray-800 dark:border-gray-700">
-                        <td class="px-6 py-4">
-                            White
-                        </td>
-                        <td class="px-6 py-4">
-                            White
-                        </td>
-                        <td class="px-6 py-4">
-                            Laptop PC
-                        </td>
-                        <td class="px-6 py-4">
-                            $1999
-                        </td>
-                        <td class="px-6 py-4">
-                            $1999
-                        </td>
-                        <td class="px-6 py-4">
-                            $1999
-                        </td>
-                        <td class="px-6 py-4">
-                            $1999
-                        </td>
-                    </tr>
-                    <tr class="bg-white border-b text-center dark:bg-gray-800">
-                        <td class="px-6 py-4">
-                            Black
-                        </td>
-                        <td class="px-6 py-4">
-                            Black
-                        </td>
-                        <td class="px-6 py-4">
-                            Accessories
-                        </td>
-                        <td class="px-6 py-4">
-                            $99
-                        </td>
-                        <td class="px-6 py-4">
-                            $99
-                        </td>
-                        <td class="px-6 py-4">
-                            $99
-                        </td>
-                        <td class="px-6 py-4">
-                            $99
-                        </td>
-                    </tr>
-                    <tr class="bg-white border-b text-center dark:bg-gray-800">
-                        <td class="px-6 py-4">
-                            Black
-                        </td>
-                        <td class="px-6 py-4">
-                            Black
-                        </td>
-                        <td class="px-6 py-4">
-                            Accessories
-                        </td>
-                        <td class="px-6 py-4">
-                            $99
-                        </td>
-                        <td class="px-6 py-4">
-                            $99
-                        </td>
-                        <td class="px-6 py-4">
-                            $99
-                        </td>
-                        <td class="px-6 py-4">
-                            $99
-                        </td>
-                    </tr>
-                    <tr class="bg-white border-b text-center dark:bg-gray-800">
-                        <td class="px-6 py-4">
-                            Black
-                        </td>
-                        <td class="px-6 py-4">
-                            Black
-                        </td>
-                        <td class="px-6 py-4">
-                            Accessories
-                        </td>
-                        <td class="px-6 py-4">
-                            $99
-                        </td>
-                        <td class="px-6 py-4">
-                            $99
-                        </td>
-                        <td class="px-6 py-4">
-                            $99
-                        </td>
-                        <td class="px-6 py-4">
-                            $99
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg mx-24 my-24">
+            <FullCalendar :options="calendarOptions" class="bg-white">
+                <template v-slot:eventContent='arg'>
+                    <b>{{ arg.event.title }}</b>
+                </template>
+            </FullCalendar>
         </div>
         <Footer></Footer>
     </div>
@@ -156,8 +16,47 @@
   
 <script>
 import 'flowbite';
+import FullCalendar from '@fullcalendar/vue'
+import dayGridPlugin from '@fullcalendar/daygrid'
+import interactionPlugin from '@fullcalendar/interaction'
+import bootstrap5Plugin from '@fullcalendar/bootstrap5';
+
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap-icons/font/bootstrap-icons.css'; // needs additional webpack config!
+
+
 export default {
+    components: {
+        FullCalendar
+    },
     name: 'StudyTable',
+    data() {
+        return {
+            calendarOptions: {
+                plugins: [dayGridPlugin, interactionPlugin, bootstrap5Plugin],
+                initialView: 'dayGridMonth',
+                events: [
+                    { title: 'event 1', date: '2023-04-10' },
+                    { title: 'event 2', date: '2023-04-02' }
+                ],
+                themeSystem: 'bootstrap5',
+                locale: 'th',
+                buttonText: {
+                    today: 'กลับไปที่วันนี้'
+                }
+            }
+        }
+    },
 }
 </script>
-  
+
+<style>
+.fc .fc-header-toolbar {
+    display: flex;
+    padding: 2.5% 3%;
+}
+
+.fc-day-today {
+    background-color: rgb(216, 233, 253) !important;
+}
+</style>
