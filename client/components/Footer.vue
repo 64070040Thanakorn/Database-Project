@@ -117,3 +117,8 @@
         </div>
     </footer>
 </template>
+<script>
+export default {
+    components: true
+}
+</script>
