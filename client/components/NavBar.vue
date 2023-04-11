@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <nav class="w-full h-20 bg-white items-center flex justify-between px-12">
         <div class="flex items-center p-3 ml-10">
             <img src="https://www.coliseugeek.com.br/wp-content/uploads/2023/01/3e3d2-clickwallpapers-madara-uchiha-img3-scaled.jpg" class="h-14 w-14 rounded-full" >
@@ -29,7 +28,7 @@
 
 <script>
 export default {
-    name:"NavBar"
+    name:"NavBar",
 }
 </script>
 

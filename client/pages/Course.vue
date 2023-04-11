@@ -1,6 +1,6 @@
 <template>
   <section>
-    <NavBar/>
+  <NavBar/>
     <div class="absolute z-[-1] w-full h-[510px] flex">
       <img src="..\assets\example_img.png" class="w-full h-auto relative" alt="" />
     </div>
