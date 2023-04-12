@@ -3,7 +3,6 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import express from 'express';
 import UersRoute from './routes/UsersRoute.js';
-import auth from './routes/auth.js';
 
 dotenv.config();
 
@@ -18,7 +17,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.raw());
 
 app.use("/api",
- router.use("/auth", auth),
  router.use("/user", UersRoute),
 );
 
