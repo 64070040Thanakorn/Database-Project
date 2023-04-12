@@ -12,10 +12,9 @@ datasource db {
 
 model User{
   id String @id @default(uuid())
-  firstName String 
+  firstName String
   lastName String
-  userName String
   password String 
-  email String
-  image String
+  email String @unique
+  image String?
 }

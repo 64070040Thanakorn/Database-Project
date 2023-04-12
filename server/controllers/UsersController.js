@@ -1,9 +1,7 @@
-import { PrismaClient } from "@prisma/client" 
-import bcrypt from 'bcrypt'
+import { PrismaClient } from "@prisma/client";
+import bcrypt from 'bcrypt';
 
 const prisma = new PrismaClient();
-
-
 
 // Get all users
 
@@ -17,9 +15,6 @@ export const GetUsers = async (req, res) =>{
     }
 
 }
-
-
-
 
 // get someone user
 export const GetUserById = async (req, res) =>{
