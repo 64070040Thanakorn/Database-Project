@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -10,11 +7,92 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User{
-  id String @id @default(uuid())
-  firstName String
-  lastName String
-  password String 
+model Users {
+  id Int @id @default(autoincrement())
+  first_name String
+  last_name String
+  username String
+  password String
   email String @unique
   image String?
+  role Role @default(Student)
+
+  students Students[]
+  professors Professors[]
+  comment Comments[]
+}
+
+enum Role {
+  Student
+  Professor
+  Admin
+}
+
+model Students{
+  id String @id @default(uuid())
+  user_id Int
+  job String?
+  
+  user Users  @relation(fields: [user_id], references: [id])
+  rating Rating[]
+  enroll Enroll[] @relation("StudentEnrollments")
+}
+
+model Professors{
+  id String @id @default(uuid())
+  user_id Int
+  info String?
+
+  user Users  @relation(fields: [user_id], references: [id])
+  professor_course ProfessorCourse[] @relation("ProfessorCourses")
+}
+
+model Course {
+  id          Int @id @default(autoincrement())
+  title       String
+  description String
+  course_img  String
+
+  comments    Comments[]
+  ratings     Rating[]
+  professors  ProfessorCourse[] @relation("CourseProfessors")
+  enrolled    Enroll[] @relation("CourseEnrollments")
+}
+
+model Comments {
+  comment_id Int @id @default(autoincrement())
+  content   String
+  user_id Int
+  courseId  Int
+
+  user Users @relation(fields: [user_id], references: [id])
+  course Course @relation(fields: [courseId], references: [id])
+}
+
+model Rating {
+  id        Int      @id @default(autoincrement())
+  score     Float
+  student_id String
+  courseId  Int
+
+  student   Students  @relation(fields: [student_id], references: [id])
+  course    Course   @relation(fields: [courseId], references: [id])
+}
+
+model ProfessorCourse {
+  id          Int       @id @default(autoincrement())
+  professor_id String
+  courseId    Int
+
+  professor   Professors @relation(fields: [professor_id], references: [id], name: "ProfessorCourses")
+  course      Course    @relation(fields: [courseId], references: [id], name: "CourseProfessors")
+}
+
+model Enroll {
+  id        Int     @id @default(autoincrement())
+  student_id String
+  courseId  Int
+
+  student   Students @relation(fields: [student_id], references: [id], name: "StudentEnrollments")
+  course    Course  @relation(fields: [courseId], references: [id], name: "CourseEnrollments")
 }
