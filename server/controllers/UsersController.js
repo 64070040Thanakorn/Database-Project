@@ -8,7 +8,7 @@ const prisma = new PrismaClient();
 export const GetUsers = async (req, res) =>{
     try{
 
-        const response = await prisma.user.findMany()
+        const response = await prisma.users.findMany()
         res.status(200).json(response)
     }catch(err) {
         res.status(500).json({message: err.message})
@@ -21,9 +21,9 @@ export const GetUserById = async (req, res) =>{
     
     try{
 
-        const response = await prisma.user.findUnique({
+        const response = await prisma.users.findUnique({
             where:{
-                id: req.params.id
+                id: Number(req.params.id)
             }
         })
         res.status(200).json(response)
@@ -47,20 +47,18 @@ export const GetUserById = async (req, res) =>{
 // }
 
 export const createUser = async (req, res) =>{
-   
-    const {firstName,lastName,userName,password,email,image} = req.body;
+    const {first_name,last_name,username,password,email,image} = req.body;
     const hash = await bcrypt.hash(password ,13);
     try{
 
-        const user = await prisma.user.create({
+        const user = await prisma.users.create({
             data:{
-                firstName: firstName,
-                lastName: lastName,
-                userName:userName,
+                first_name: first_name,
+                last_name: last_name,
+                username:username,
                 password: hash,
                 email:email,
                 image:image
-
             }
         })
         res.status(200).json(user)

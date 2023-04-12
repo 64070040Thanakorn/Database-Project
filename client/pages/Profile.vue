@@ -1,6 +1,6 @@
 <template>
   <div>
-    <NavBar />
+   
 
     <div class="grid grid-cols-3 container mx-20 gap-5 mt-14">
         
@@ -9,17 +9,17 @@
 
             <div class="mt-2">
                 <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900">ชื่อ*</label>
-                <input type="text" id="first_name" class="bg-gray-50 border border-black text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="ชื่อ" required>
+                <input type="text" class="bg-gray-50 border border-black text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="ชื่อ" required>
             </div>
 
             <div class="mt-2">
                 <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900">วันเกิด*</label>
-                <input type="date" id="first_name" class="bg-gray-50 border border-black text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="ชื่อ" required>
+                <input type="date" class="bg-gray-50 border border-black text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="ชื่อ" required>
             </div>
 
             <div class="mt-2">
                 <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900">อีเมล*</label>
-                <input type="email" id="first_name" class="bg-gray-50 border border-black text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="อีเมล" required>
+                <input type="email" class="bg-gray-50 border border-black text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="อีเมล" required>
             </div>
 
         </div>
@@ -29,7 +29,7 @@
 
             <div class="mt-2">
                 <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900">นามสกุล*</label>
-                <input type="text" id="first_name" class="bg-gray-50 border border-black text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="นามสกุล" required>
+                <input type="text" class="bg-gray-50 border border-black text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="นามสกุล" required>
             </div>
 
             <!-- dropdraw -->
