@@ -3,8 +3,9 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+  provider          = "mysql"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
 model Users {
@@ -32,10 +33,10 @@ model Students {
   user_id String  @unique
   job     String?
 
-  user            Users             @relation(fields: [user_id], references: [id])
-  enroll          StudentsEnroll[]  @relation("StudentEnrollments")
-  professor_raing ProfessorRating[]
-  course_rating   CourseRating[]
+  user             Users             @relation(fields: [user_id], references: [id])
+  enroll           StudentsEnroll[]  @relation("StudentEnrollments")
+  professor_rating ProfessorRating[]
+  course_rating    CourseRating[]
 }
 
 model Professors {
@@ -44,7 +45,7 @@ model Professors {
   info             String?
   user             Users             @relation(fields: [user_id], references: [id])
   course           Course[]
-  professor_raing  ProfessorRating[]
+  professor_rating ProfessorRating[]
   professor_course ProfessorCourse[] @relation("ProfessorCourses")
 }
 
