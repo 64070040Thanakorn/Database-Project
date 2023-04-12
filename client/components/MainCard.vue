@@ -1,6 +1,6 @@
 <template>
   <div class="w-[280px] h-[380px] shadow-lg shadow-black-500/50 rounded-[15px] flex flex-col">
-    <div class="basis-5/12 rounded-t-[15px] bg-black"></div>
+    <img src="../assets/example_img.png" class="basis-5/12 rounded-t-[15px]" alt="course_img">
     <div class="basis-7/12 p-4 gap-y-1 flex flex-col">
       <p class="text-xl">คณิตศาสตร์ PAT 1 ง่ายๆ</p>
       <div class="flex justify-between items-center">

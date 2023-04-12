@@ -1,7 +1,7 @@
 <template>
   <section>
     <div class="absolute z-[-1] w-full h-[510px] flex">
-      <img src="..\assets\example_img.png" class="w-full h-auto relative" alt="" />
+      <img src="..\assets\example_img.png" class="w-full h-auto relative object-cover" alt="" />
     </div>
 
     <div class="px-72 pt-20 pb-20">
