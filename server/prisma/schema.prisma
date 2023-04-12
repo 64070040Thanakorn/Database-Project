@@ -16,7 +16,6 @@ model Users {
   email String @unique
   image String?
   role Role @default(Student)
-
   students Students[]
   professors Professors[]
   comment Comments[]
