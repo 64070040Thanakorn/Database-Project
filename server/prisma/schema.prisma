@@ -29,69 +29,88 @@ enum Role {
 
 model Students{
   id String @id @default(uuid())
-  user_id Int
+  user_id Int @unique
   job String?
   
   user Users  @relation(fields: [user_id], references: [id])
-  rating Rating[]
-  enroll Enroll[] @relation("StudentEnrollments")
+  enroll StudentsEnroll[] @relation("StudentEnrollments")
+  professor_raing ProfessorRating[]
+  course_rating CourseRating[]
+
 }
 
 model Professors{
   id String @id @default(uuid())
-  user_id Int
+  user_id Int @unique
   info String?
 
   user Users  @relation(fields: [user_id], references: [id])
+  course Course[]
+  professor_raing ProfessorRating[]
   professor_course ProfessorCourse[] @relation("ProfessorCourses")
 }
 
 model Course {
   id          Int @id @default(autoincrement())
+  professor_id String @unique
   title       String
-  description String
-  course_img  String
+  thunbnail  String?
+  description String?
+  create_date DateTime
+  start_date DateTime
+  end_date DateTime
+  status Boolean
 
+  professor Professors @relation(fields: [professor_id], references: [id])
+  professors_course  ProfessorCourse[] @relation("CourseProfessors")
+  enrolled    StudentsEnroll[] @relation("CourseEnrollments")
+
+  course_rating CourseRating[]
   comments    Comments[]
-  ratings     Rating[]
-  professors  ProfessorCourse[] @relation("CourseProfessors")
-  enrolled    Enroll[] @relation("CourseEnrollments")
 }
 
 model Comments {
   comment_id Int @id @default(autoincrement())
   content   String
-  user_id Int
-  courseId  Int
+  user_id Int @unique
+  course_id  Int @unique
 
   user Users @relation(fields: [user_id], references: [id])
-  course Course @relation(fields: [courseId], references: [id])
+  course Course @relation(fields: [course_id], references: [id])
 }
 
-model Rating {
+model ProfessorRating {
   id        Int      @id @default(autoincrement())
-  score     Float
-  student_id String
-  courseId  Int
+  professor_id String @unique
+  student_id String @unique
+  rating Int
+
+  professor Professors @relation(fields: [professor_id], references: [id])
+  student   Students  @relation(fields: [student_id], references: [id])
+}
+
+model CourseRating {
+  id        Int      @id @default(autoincrement())
+  course_id Int @unique
+  student_id String @unique
 
   student   Students  @relation(fields: [student_id], references: [id])
-  course    Course   @relation(fields: [courseId], references: [id])
+  course    Course   @relation(fields: [course_id], references: [id])
 }
 
 model ProfessorCourse {
-  id          Int       @id @default(autoincrement())
-  professor_id String
-  courseId    Int
+  professor_id String @unique
+  course_id    Int @unique
 
   professor   Professors @relation(fields: [professor_id], references: [id], name: "ProfessorCourses")
-  course      Course    @relation(fields: [courseId], references: [id], name: "CourseProfessors")
+  course      Course    @relation(fields: [course_id], references: [id], name: "CourseProfessors")
 }
 
-model Enroll {
-  id        Int     @id @default(autoincrement())
-  student_id String
-  courseId  Int
+model StudentsEnroll {
+  student_id String @unique
+  course_id  Int @unique
+  enroll_date DateTime
 
   student   Students @relation(fields: [student_id], references: [id], name: "StudentEnrollments")
-  course    Course  @relation(fields: [courseId], references: [id], name: "CourseEnrollments")
+  course    Course  @relation(fields: [course_id], references: [id], name: "CourseEnrollments")
 }

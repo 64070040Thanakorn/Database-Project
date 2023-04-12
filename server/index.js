@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import express from 'express';
 import UersRoute from './routes/UsersRoute.js';
+import course from './routes/course.js';
 
 dotenv.config();
 
@@ -18,6 +19,7 @@ app.use(bodyParser.raw());
 
 app.use("/api",
  router.use("/user", UersRoute),
+ router.use("/course", course)
 );
 
 app.listen(process.env.APP_PORT, () => {
