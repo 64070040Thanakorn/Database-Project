@@ -1,10 +1,20 @@
-import express from 'express';
-import { getCourse, createCourse } from '../controllers/CourseController.js';
+import express from "express";
+import { getCourse, createCourse } from "../controllers/CourseController.js";
 
 const router = express.Router();
+// function authenticateToken(req, res, next) {
+//   const authHeader = req.headers["authorization"];
+//   const token = authHeader && authHeader.split(" ")[1];
+//   if (token == null) return res.sendStatus(401);
 
-router.get('/', getCourse)
+//   jwt.verify(token, "fewZaandtheGang", (err, user) => {
+//     if (err) return res.sendStatus(403);
+//     req.user = user;
+//     next();
+//   });
+// }
+router.get("/", getCourse);
 
-router.post('/createCourse', createCourse)
+router.post("/createCourse", createCourse);
 
 export default router;

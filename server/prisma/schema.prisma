@@ -27,7 +27,7 @@ model Students {
   user_id         String           @unique
   job             String?
   course_rating   CourseRating?
-  professor_raing ProfessorRating?
+  professor_rating ProfessorRating?
   user            Users            @relation(fields: [user_id], references: [id], onDelete: Cascade)
   enroll          StudentsEnroll?  @relation("StudentEnrollments")
 }
@@ -38,7 +38,7 @@ model Professors {
   info             String?
   course           Course?
   professor_course ProfessorCourse? @relation("ProfessorCourses")
-  professor_raing  ProfessorRating?
+  professor_rating  ProfessorRating?
   user             Users            @relation(fields: [user_id], references: [id], onDelete: Cascade)
 }
 
@@ -46,6 +46,9 @@ model Course {
   id                String           @id @default(uuid())
   title             String
   description       String?
+  price             Int
+  level             String
+  received          String
   create_date       DateTime
   end_date          DateTime
   professor_id      String           @unique

@@ -26,14 +26,11 @@
           <div class="w-full h-full rounded grid grid-cols-2">
             <div class="m-2 p-5 rounded pb-20 pt-10" style="background: #fcfcfc">
               <div>
-                <label
-                  for="title"
-                  class="block mb-2 text-sm font-medium text-gray-900"
+                <label for="title" class="block mb-2 text-sm font-medium text-gray-900"
                   >ชื่อคอร์ส</label
                 >
                 <input
                   id="title"
-                  v-model="title"
                   type="text"
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   placeholder="ชื่อคอร์ส"
@@ -43,14 +40,11 @@
 
               <div class="grid gap-6 mb-6 md:grid-cols-2 mt-2">
                 <div>
-                  <label
-                    for="price"
-                    class="block mb-2 text-sm font-medium text-gray-900"
+                  <label for="price" class="block mb-2 text-sm font-medium text-gray-900"
                     >ราคาคอร์ส</label
                   >
                   <input
                     id="price"
-                    v-model="price"
                     type="number"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                     placeholder="ราคาคอร์ส"
@@ -59,17 +53,19 @@
                 </div>
                 <div>
                   <label
-                    for="last_name"
+                    for="receive"
                     class="block mb-2 text-sm font-medium text-gray-900"
-                    >เวลาเรียน(ชัวโมง)</label
+                    >สิ่งที่ได้รับ</label
                   >
-                  <input
-                    type="text"
-                    id="last_name"
+                  <select
+                    id="receive"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                    placeholder="เวลาเรียน"
-                    required
-                  />
+                  >
+                    <option selected>เลือกสิ่งที่ได้รับ</option>
+                    <option value="ประกาศนียบัตร">ประกาศนียบัตร</option>
+                    <option value="แบบทดสอบ">แบบทดสอบ</option>
+                    <option value="มีไฟล์ให้ดาวน์โหลด">มีไฟล์ให้ดาวน์โหลด</option>
+                  </select>
                 </div>
 
                 <!-- dropdraw -->
@@ -85,22 +81,34 @@
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   >
                     <option selected>เลือกระดับความสามารถ</option>
-                    <option value="US">เริ่มต้น</option>
-                    <option value="CA">ง่าย</option>
-                    <option value="FR">ปานกลาง</option>
-                    <option value="DE">ยาก</option>
+                    <option value="ระดับเริ่มต้น">ระดับเริ่มต้น</option>
+                    <option value="ระดับปานกลาง">ระดับปานกลาง</option>
+                    <option value="ระดับสูง">ระดับสูง</option>
                   </select>
                 </div>
 
                 <div>
                   <label
-                    for="last_name"
+                    for="start_date"
                     class="block mb-2 text-sm font-medium text-gray-900"
-                    >ระยะเวลาคอร์ส</label
+                    >เวลาเริ่มคอร์ส</label
                   >
                   <input
+                    id="start_date"
                     type="date"
-                    id="last_name"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    required
+                  />
+                </div>
+                <div>
+                  <label
+                    for="end_date"
+                    class="block mb-2 text-sm font-medium text-gray-900"
+                    >เวลาจบคอร์ส</label
+                  >
+                  <input
+                    id="end_date"
+                    type="date"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                     required
                   />
@@ -135,9 +143,10 @@
                 >รูปคอร์ส</label
               >
               <input
-                class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none"
                 id="file_input"
+                class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none"
                 type="file"
+                @change="handleFileUpload"
               />
             </div>
           </div>
@@ -173,22 +182,51 @@ import axios from "axios";
 export default {
   data() {
     return {
-      title: null,
-      thumbnail: null,
-      price: null,
-      description: null,
-      create_date: null,
-      start_date: null,
-      end_date: null,
-      status: null,
+      title: "title",
+      description: "description",
+      price: 123,
+      level: "level",
+      received: "received",
+      create_date: "2022-04-22 10:34:23.55",
+      start_date: "2022-04-22 10:34:23.55",
+      end_date: "2022-04-22 10:34:23.55",
+      thumbnail: "thumbnail",
     };
   },
   methods: {
+    handleFileUpload(event) {
+      const file = event.target.files[0];
+      console.log(file);
+    },
     createCourse() {
-      axios.post("http://localhost:5000/api/course/createCourse");
+      //   this.create_date = new Date();
+      axios
+        .post(
+          "http://localhost:5000/api/course/createcourse",
+          {
+            title: this.title,
+            description: this.description,
+            price: this.price,
+            level: this.level,
+            receive: this.receive,
+            create_date: this.create_date,
+            start_date: this.start_date,
+            end_date: this.end_date,
+            thumbnail: this.thumbnail,
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        )
+        .then((respones) => {
+          console.log(respones);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
 };
 </script>
-
-<style></style>
