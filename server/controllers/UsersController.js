@@ -85,7 +85,7 @@ export const GetUserById = async (req, res) => {
 
 // create User 
 // postman => {
-//   firstName String 
+//   firstName String
 //   lastName String
 //   userName String
 // password String
@@ -94,31 +94,59 @@ export const GetUserById = async (req, res) => {
 // }
 
 export const createUser = async (req, res) => {
-    const { first_name, last_name, username, password, email, image, role } = req.body;
-    const hash = await bcrypt.hash(password, 13);
-    try {
-
-        const user = await prisma.users.create({
-            data: {
-                first_name: first_name,
-                last_name: last_name,
-                username: username,
-                password: hash,
-                email: email,
-                image: image,
-                role: role
-            }
-        })
-        res.status(200).json(user)
-
-    } catch (err) {
-        res.status(400).json({ message: err.message })
+  const { first_name, last_name, username, password, email, image, role } = req.body;
+  const hash = await bcrypt.hash(password, 13);
+  try {
+    if (role === "Professor") {
+      const user = await prisma.users.create({
+        data: {
+          first_name: first_name,
+          last_name: last_name,
+          username: username,
+          password: hash,
+          email: email,
+          image: image,
+          role: role,
+          professors: {
+            create: {
+              info: null,
+            },
+          },
+        },
+        include: {
+          professors: true,
+        },
+      });
+      res.status(200).json(user);
+    } else if (role === "Student") {
+      const user = await prisma.users.create({
+        data: {
+          first_name: first_name,
+          last_name: last_name,
+          username: username,
+          password: hash,
+          email: email,
+          image: image,
+          role: role,
+          students: {
+            create: {
+              job: null,
+            },
+          },
+        },
+        include: {
+          students: true,
+        },
+      });
+      res.status(200).json(user);
     }
-
-
-}
-
-
+    else {
+        throw new Error("Invalid role")
+    }
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+};
 
 // update someone user
 export const updateUser = async (req, res) => {
@@ -149,6 +177,26 @@ export const updateUser = async (req, res) => {
 }
 
 
+    const hash = await bcrypt.hash(password, 13);
+    const user = await prisma.users.update({
+      where: {
+        email: email,
+      },
+      data: {
+        first_name: first_name,
+        last_name: last_name,
+        username: username,
+        password: hash,
+        email: email,
+        image: image,
+        role: role,
+      },
+    });
+    res.status(200).json(user);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+};
 
 // delete user
 export const deleteUser = async (req, res) => {
