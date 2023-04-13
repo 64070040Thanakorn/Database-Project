@@ -1,7 +1,7 @@
 <template>
   <section>
     <div class="absolute z-[-1] w-full h-[510px] flex">
-      <img src="..\assets\example_img.png" class="w-full h-auto relative object-cover" alt="" />
+      <img src="../assets/example_img.png" class="w-full h-auto relative object-cover" alt="" />
     </div>
 
     <div class="px-72 pt-20 pb-20">
@@ -60,7 +60,7 @@
         <div class="bg-white py-8 border-2 border-black flex justify-around">
             <div class="flex items-center space-x-2">
                 <div>
-                    <img src="..\assets\icon\level.png" alt="">
+                    <img src="../assets/icon/level.png" alt="">
                 </div>
                 <div>
                     <p class="text-sm font-light">ระดับความสามารถ</p>
@@ -69,7 +69,7 @@
             </div>
             <div class="flex items-center space-x-2">
                 <div>
-                    <img src="..\assets\icon\certificate.png" alt="">
+                    <img src="../assets/icon/certificate.png" alt="">
                 </div>
                 <div>
                     <p class="text-sm font-light">ระยะเวลา</p>
@@ -78,7 +78,7 @@
             </div>
             <div class="flex items-center space-x-2">
                 <div>
-                    <img src="..\assets\icon\recieve.png" alt="">
+                    <img src="../assets/icon/recieve.png" alt="">
                 </div>
                 <div>
                     <p class="text-sm font-light">สิ่งที่ได้รับ</p>
@@ -87,7 +87,7 @@
             </div>
             <div class="flex items-center space-x-2">
                 <div>
-                    <img src="..\assets\icon\rule.png" alt="">
+                    <img src="../assets/icon/rule.png" alt="">
                 </div>
                 <div>
                     <p class="text-sm font-light">ข้อกำหนดเบื้องต้น</p>
@@ -111,29 +111,7 @@
               </div>
             </div>
             <p class="py-4">
-              คำอธิบายคอร์สออนไลน์<br />
-              เพราะ PAT 1 ยาก เราจึงต้องเตรียมตัวก่อนสอบจริง คะแนน PAT 1 100 คะแนน
-              ก็ทำให้คะแนนรวมของเราเลือกคณะได้มากมาย <br />
-              แค่เรารู้เนื้อหาที่จะออกสอบ ก็สามารถกำหนดคะแนนตัวเองได้แล้ว
-              คอร์สนี้แบ่งเนื้อหาออกเป็น 4 กลุ่ม เรียงตามความน่าจะเก็บ ดังนี้ <br />
-              1. ง่าย/ออกเยอะ<br />
-              2. ง่าย/ออกน้อย<br />
-              3. ยาก/ออกเยอะ<br />
-              4. ยาก/ออกน้อย<br />
-              <br />
-              ประโยชน์ที่ผู้เรียนจะได้รับ<br />
-              1. สรุปเนื้อหาคณิตศาสตร์ระดับ ม.4 ม.5 ม.6 ที่ออกข้อสอบ PAT 1<br />
-              2. วิเคราะห์ข้อสอบและแนะนำวิธีทำข้อสอบ PAT 1<br />
-              3. สอนเทคนิคการทำข้อสอบ PAT 1 เพื่อให้ได้คะแนนสูงสุด<br />
-              <br />
-              ใครควรเรียนคอร์สออนไลน์นี้<br />
-              1. นักเรียนที่กำลังศึกษาอยู่ในระดับชั้น ม.4 ม.5 ม.6<br />
-              2. นักเรียนที่เตรียมสอบเข้ามหาวิทยาลัย<br />
-              3. นิสิต นักศึกษา ที่ต้องการสอบเข้ามหาวิทยาลัยใหม่<br />
-              <br />
-              ผู้เรียนต้องมีความรู้อะไรมาก่อน<br />
-              ไม่จำเป็นต้องมีความรู้พื้นฐานมาก่อน เพราะคอร์สนี้จะสอนเทคนิคพิชิตคะแนน PAT 1
-              อ่อนแค่ไหนก็เรียนได้
+              <Review></Review>
             </p>
           </div>
 
@@ -143,16 +121,16 @@
             </p>
             <div class="flex py-4">
                 <div class="basis-2/6 ">
-                    <img src="..\assets\person.png" alt="">
+                    <img src="../assets/person.png" alt="">
                 </div>
                 <div class="basis-4/6 pr-2 space-y-1">
                     <p class="">ศาสตราจารย์ ธนกร ศรีวรรณวิทย์</p>
                     <div class="flex items-center space-x-2">
-                        <img src="..\assets\icon\star.png" alt="">
+                        <img src="../assets/icon/star.png" alt="">
                         <p class="text-sm">4.8 คะแนนเฉลี่ย</p>
                     </div>
                     <div class="flex items-center space-x-3">
-                        <img src="..\assets\icon\verified.png" class="ml-[0.125rem]" alt="">
+                        <img src="../assets/icon/verified.png" class="ml-[0.125rem]" alt="">
                         <p class="text-sm"> Verified</p>
                     </div>
                 </div>
