@@ -110,7 +110,7 @@
                 <p>เอกสารประกอบ</p>
               </div>
             </div>
-            <p class="py-4">
+            <p class="py-4 mr-16">
               <Review></Review>
             </p>
           </div>
