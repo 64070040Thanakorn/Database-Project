@@ -4,19 +4,39 @@ import {
   GetUsers,
   createUser,
   deleteUser,
+  AuthMe,
+  AuthLogin,
   updateUser
 } from '../controllers/UsersController.js';
 
- const router = express.Router();
+import jwt from 'jsonwebtoken'
 
-router.get('/users',GetUsers)
+function authenticateToken(req, res, next) {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
+  if (token == null) return res.sendStatus(401);
 
-router.get('/users/:id',GetUserById)
+  jwt.verify(token, "fewZaandtheGang", (err, user) => {
+    if (err) return res.sendStatus(403);
+    req.user = user;
+    next();
+  });
+}
 
-router.post('/users',createUser)
+const router = express.Router();
 
-router.patch('/users/:id',updateUser)
+router.get('/users', GetUsers)
 
-router.delete('/users/:id',deleteUser)
+router.get('/users/:id', GetUserById)
 
- export default router;
+router.post('/users', createUser)
+
+router.post('/login', AuthLogin)
+
+router.get('/me', authenticateToken, AuthMe)
+
+router.patch('/users/:id', updateUser)
+
+router.delete('/users/:id', deleteUser)
+
+export default router;
