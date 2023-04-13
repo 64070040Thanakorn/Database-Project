@@ -69,8 +69,8 @@ model Course {
 model Comments {
   comment_id String @id @default(uuid())
   content    String
-  user_id    String @unique
-  course_id  String @unique
+  user_id    String 
+  course_id  String 
   user       Users  @relation(fields: [user_id], references: [id])
   course     Course @relation(fields: [course_id], references: [id])
 }

@@ -75,6 +75,7 @@
 
           <div class="flex items-center mb-4">
             <input
+            v-model="role"
               id="default-radio-1"
               type="radio"
               value="Professor"
@@ -89,6 +90,7 @@
           </div>
           <div class="flex items-center">
             <input
+            v-model="role"
               id="default-radio-2"
               type="radio"
               value="Student"
@@ -137,7 +139,9 @@ export default {
   },
   methods: {
     submit() {
-     
+      
+      
+      console.log(this.role);
       axios
         .post('http://localhost:5000/api/user/users', { first_name: this.first_name, last_name: this.last_name, email: this.email, username: this.username, password: this.password, image: this.imag, role: this.role }, {
           headers: {

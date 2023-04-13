@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import express from 'express';
 import UersRoute from './routes/UsersRoute.js';
 import course from './routes/course.js';
+import CommentRoute from './routes/CommentsRoute.js';
 
 dotenv.config();
 
@@ -19,7 +20,8 @@ app.use(bodyParser.raw());
 
 app.use("/api",
  router.use("/user", UersRoute),
- router.use("/course", course)
+ router.use("/course", course),
+ router.use("/comment", CommentRoute)
 );
 
 app.listen(process.env.APP_PORT, () => {

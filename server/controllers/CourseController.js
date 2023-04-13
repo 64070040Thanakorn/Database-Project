@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 
 export const getCourse = async (req, res) =>{
   try{
-    const asdasdasd = await prisma.users.findMany()
+    const asdasdasd = await prisma.course.findMany()
     
     res.status(200).json(asdasdasd)
   } catch (err) {

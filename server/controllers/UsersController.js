@@ -23,7 +23,7 @@ export const GetUserById = async (req, res) =>{
 
         const response = await prisma.users.findUnique({
             where:{
-                id: Number(req.params.id)
+                id: req.params.id
             }
         })
         res.status(200).json(response)
@@ -47,7 +47,7 @@ export const GetUserById = async (req, res) =>{
 // }
 
 export const createUser = async (req, res) =>{
-    const {first_name,last_name,username,password,email,image} = req.body;
+    const {first_name,last_name,username,password,email,image,role} = req.body;
     const hash = await bcrypt.hash(password ,13);
     try{
 
@@ -58,7 +58,8 @@ export const createUser = async (req, res) =>{
                 username:username,
                 password: hash,
                 email:email,
-                image:image
+                image:image,
+                role:role
             }
         })
         res.status(200).json(user)
@@ -73,15 +74,47 @@ export const createUser = async (req, res) =>{
 
 
 // update someone user
-export const updateUser = (req, res) =>{
+export const updateUser = async (req, res) =>{
+    try{
+        const {first_name,last_name,username,password,email,image,role} = req.body;
+        
+        const hash = await bcrypt.hash(password ,13);
+        const user = await prisma.users.update({
+            where:{
+                email:email
+            },
+            data:{
+                first_name: first_name,
+                last_name: last_name,
+                username:username,
+                password: hash,
+                email:email,
+                image:image,
+                role: role 
+            }
+        })
+        res.status(200).json(user)
 
+    }catch(err) {
+        res.status(400).json({message: err.message})
+    }
     
 }
 
 
 
 // delete user
-export const deleteUser = (req, res) =>{
+export const deleteUser = async (req, res) =>{
+    try{
+        const user = await prisma.users.delete({
+            where:{
+                id: req.params.id
+            }
+        })
+        res.status(200).json(user)
 
+    }catch(err) {
+        res.status(400).json({message: err.message})
+    }
     
 }
