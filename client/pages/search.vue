@@ -1,6 +1,8 @@
 <script>
+import axios from 'axios';
+
 export default {
-  name: 'Search',
+  name: "Search",
   data() {
     return {
       isActiveCate: true,
@@ -22,14 +24,24 @@ export default {
       recCer: null,
       recTest: null,
       recFile: null,
-      items: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21],
+      test: null,
+      items: null,
     };
   },
+
   computed: {
     pageAmount() {
-      return Math.ceil(this.items.length / 9);
+      // return Math.ceil(this.items.length / 9);
+      return 10;
     },
   },
+  created(){
+        axios.get('http://localhost:5000/api/course/').then((response) =>{
+            this.items = response.data
+        }).catch((err) => {
+          console.log(err)
+        })
+    },
   methods: {
     clearFilter() {
       this.beginner = null;
@@ -380,8 +392,8 @@ export default {
         <p class="font-light">จำนวน 30 ผลลัพธ์</p>
         <hr class="border-[1.2px] mt-1 mb-4" />
         <div class="grid grid-cols-3 gap-4 justify-items-center">
-          <div v-for="(item, index) in items.slice(0, 9)" :key="index">
-            <mainCard/>
+          <div v-for="(item, index) in items" :key="index">
+            <mainCard />
           </div>
         </div>
         <div class="flex justify-center gap-4 my-12">
@@ -391,7 +403,7 @@ export default {
         </div>
       </div>
     </div>
-    <Footer/>
+    <Footer />
   </section>
 </template>
 <style>

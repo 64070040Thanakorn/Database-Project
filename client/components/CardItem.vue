@@ -1,13 +1,13 @@
 <template>
     <div class="max-w-sm bg-white border border-gray-200 rounded-3xl shadow">
         <a href="#">
-            <img class="rounded-t-lg h-[250px] w-[350px]"
+            <img class="rounded-t-lg h-[250px] w-[350px] object-cover"
                 src="https://scontent.fbkk8-2.fna.fbcdn.net/v/t1.15752-9/337518384_536926975283149_4316394894937360078_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=ae9488&_nc_ohc=RYCoqaICfZgAX9ZFWVU&_nc_ht=scontent.fbkk8-2.fna&oh=03_AdSM33hjyOJESvLeYCpPZkQF5tKW-j7FMq0pzpEz7eJD5A&oe=645839C9"
                 alt="" />
         </a>
         <div class="p-5">
             <a href="#">
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Noteworthy technology
                     acquisitions 2021</h5>
             </a>
             <hr class="h-[2px] my-4 bg-gray-800">

@@ -66,6 +66,13 @@ export default {
             emailUser:''
         }
     },
+    created(){
+        axios.get('http://localhost:5000/api/user/users').then((response) =>{
+            this.data = response.data
+        }).catch((err) => {
+          console.log(err)
+        })
+    },
     methods:{
         deleteUser(id ,emails){
             console.log('aaaa');
@@ -80,13 +87,7 @@ export default {
         })
         }
     },
-    created(){
-        axios.get('http://localhost:5000/api/user/users').then((response) =>{
-            this.data = response.data
-        }).catch((err) => {
-          console.log(err)
-        })
-    }
+    
 }
 </script>
 
