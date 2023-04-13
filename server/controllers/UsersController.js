@@ -176,28 +176,6 @@ export const updateUser = async (req, res) => {
 
 }
 
-
-    const hash = await bcrypt.hash(password, 13);
-    const user = await prisma.users.update({
-      where: {
-        email: email,
-      },
-      data: {
-        first_name: first_name,
-        last_name: last_name,
-        username: username,
-        password: hash,
-        email: email,
-        image: image,
-        role: role,
-      },
-    });
-    res.status(200).json(user);
-  } catch (err) {
-    res.status(400).json({ message: err.message });
-  }
-};
-
 // delete user
 export const deleteUser = async (req, res) => {
     try {
