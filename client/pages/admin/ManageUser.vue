@@ -47,53 +47,51 @@
     </div>
   </div>
 </template>
-
-<script>
+  
+  <script>
 import axios from 'axios'
 export default {
   name: 'ManageUser',
 
-  async asyncData({ $auth }) {
+  async asyncData({ $auth, $axios }) {
     try {
       await $auth.fetchUser()
-    } catch (error) {
-      console.error(error)
-    }
+      const result = await $axios.get('http://localhost:5000/api/user/users')
+      return { data: result.data }
+    } catch (error) {}
   },
-
   data() {
     return {
       data: '',
       emailUser: '',
     }
   },
-
   methods: {
-    deleteUser(id, emails) {
-      console.log('aaaa')
+    async fetchData() {
+      try {
+        const result = await axios.get('http://localhost:5000/api/user/users')
+        this.data = result.data
+      } catch (error) {}
+    },
+
+    async deleteUser(id, emails) {
       this.emailUser = emails
-      axios
-        .delete(`http://localhost:5000/api/user/users/${id}`)
-        .then((respones) => {
-          console.log(respones)
-        })
-        .catch((err) => {
-          console.log(err)
-        })
+      await axios.delete(`http://localhost:5000/api/user/users/${id}`)
+      await this.fetchData()
     },
   },
-  created() {
-    axios
-      .get('http://localhost:5000/api/user/users')
-      .then((response) => {
-        this.data = response.data
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-  },
+  //   created() {
+  //     axios
+  //       .get('http://localhost:5000/api/user/users')
+  //       .then((response) => {
+  //         this.data = response.data
+  //       })
+  //       .catch((err) => {
+  //         console.log(err)
+  //       })
+  //   },
 }
 </script>
-
-<style>
+  
+  <style>
 </style>

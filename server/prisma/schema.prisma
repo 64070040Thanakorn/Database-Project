@@ -53,7 +53,7 @@ model Course {
   status            Boolean
   thumbnail         String?
   comments          Comments?
-  professor         Professors       @relation(fields: [professor_id], references: [id])
+  professor         Professors       @relation(fields: [professor_id], references: [id], onDelete: Cascade)
   course_rating     CourseRating?
   professors_course ProfessorCourse? @relation("CourseProfessors")
   enrolled          StudentsEnroll?  @relation("CourseEnrollments")
@@ -64,7 +64,7 @@ model Comments {
   content    String
   user_id    String @unique
   course_id  String @unique
-  course     Course @relation(fields: [course_id], references: [id])
+  course     Course @relation(fields: [course_id], references: [id], onDelete: Cascade)
   user       Users  @relation(fields: [user_id], references: [id], onDelete: Cascade)
 }
 
@@ -73,31 +73,31 @@ model ProfessorRating {
   professor_id String     @unique
   student_id   String     @unique
   rating       Int
-  professor    Professors @relation(fields: [professor_id], references: [id])
-  student      Students   @relation(fields: [student_id], references: [id])
+  professor    Professors @relation(fields: [professor_id], references: [id], onDelete: Cascade)
+  student      Students   @relation(fields: [student_id], references: [id], onDelete: Cascade)
 }
 
 model CourseRating {
   id         String   @id @default(uuid())
   course_id  String   @unique
   student_id String   @unique
-  course     Course   @relation(fields: [course_id], references: [id])
-  student    Students @relation(fields: [student_id], references: [id])
+  course     Course   @relation(fields: [course_id], references: [id], onDelete: Cascade)
+  student    Students @relation(fields: [student_id], references: [id], onDelete: Cascade)
 }
 
 model ProfessorCourse {
   professor_id String     @unique
   course_id    String     @unique
-  course       Course     @relation("CourseProfessors", fields: [course_id], references: [id])
-  professor    Professors @relation("ProfessorCourses", fields: [professor_id], references: [id])
+  course       Course     @relation("CourseProfessors", fields: [course_id], references: [id], onDelete: Cascade)
+  professor    Professors @relation("ProfessorCourses", fields: [professor_id], references: [id], onDelete: Cascade)
 }
 
 model StudentsEnroll {
   student_id  String   @unique
   course_id   String   @unique
   enroll_date DateTime
-  course      Course   @relation("CourseEnrollments", fields: [course_id], references: [id])
-  student     Students @relation("StudentEnrollments", fields: [student_id], references: [id])
+  course      Course   @relation("CourseEnrollments", fields: [course_id], references: [id], onDelete: Cascade)
+  student     Students @relation("StudentEnrollments", fields: [student_id], references: [id], onDelete: Cascade)
 }
 
 enum Role {
