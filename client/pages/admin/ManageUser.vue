@@ -56,21 +56,21 @@
 </template>
 
 <script>
-
 import axios from 'axios'
 export default {
-    name:'ManageUser',
-    data(){
-        return {
-            data:'',
-            emailUser:''
-        }
-    },
-    methods:{
-        deleteUser(id ,emails){
-            console.log('aaaa');
-            this.emailUser = emails;
-            axios
+  name: 'ManageUser',
+  data() {
+    return {
+      data: '',
+      emailUser: '',
+    }
+  },
+
+  methods: {
+    deleteUser(id, emails) {
+      console.log('aaaa')
+      this.emailUser = emails
+      axios
         .delete(`http://localhost:5000/api/user/users/${id}`)
         .then((respones) => {
           console.log(respones)
@@ -78,18 +78,20 @@ export default {
         .catch((err) => {
           console.log(err)
         })
-        }
     },
-    created(){
-        axios.get('http://localhost:5000/api/user/users').then((response) =>{
-            this.data = response.data
-        }).catch((err) => {
-          console.log(err)
-        })
-    }
+  },
+  created() {
+    axios
+      .get('http://localhost:5000/api/user/users')
+      .then((response) => {
+        this.data = response.data
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  },
 }
 </script>
 
 <style>
-
 </style>

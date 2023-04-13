@@ -9,70 +9,63 @@ datasource db {
 }
 
 model Users {
-  id         String       @id @default(uuid())
+  id         String      @id @default(uuid())
   first_name String
   last_name  String
   username   String
   password   String
-  email      String       @unique
+  email      String      @unique
   image      String?
-  role       Role         @default(Student)
-  students   Students[]
-  professors Professors[]
-  comment    Comments[]
-}
-
-enum Role {
-  Student
-  Professor
-  Admin
+  role       Role        @default(Student)
+  comment    Comments?
+  professors Professors?
+  students   Students?
 }
 
 model Students {
-  id      String  @id @default(uuid())
-  user_id String  @unique
-  job     String?
-
-  user             Users             @relation(fields: [user_id], references: [id])
-  enroll           StudentsEnroll[]  @relation("StudentEnrollments")
-  professor_rating ProfessorRating[]
-  course_rating    CourseRating[]
+  id              String           @id @default(uuid())
+  user_id         String           @unique
+  job             String?
+  course_rating   CourseRating?
+  professor_raing ProfessorRating?
+  user            Users            @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  enroll          StudentsEnroll?  @relation("StudentEnrollments")
 }
 
 model Professors {
-  id               String            @id @default(uuid())
-  user_id          String            @unique
+  id               String           @id @default(uuid())
+  user_id          String           @unique
   info             String?
-  user             Users             @relation(fields: [user_id], references: [id])
-  course           Course[]
-  professor_rating ProfessorRating[]
-  professor_course ProfessorCourse[] @relation("ProfessorCourses")
+  course           Course?
+  professor_course ProfessorCourse? @relation("ProfessorCourses")
+  professor_raing  ProfessorRating?
+  user             Users            @relation(fields: [user_id], references: [id], onDelete: Cascade)
 }
 
 model Course {
-  id                String            @id @default(uuid())
-  professor_id      String            @unique
+  id                String           @id @default(uuid())
   title             String
-  thumbnail         String?
   description       String?
   create_date       DateTime
-  start_date        DateTime
   end_date          DateTime
+  professor_id      String           @unique
+  start_date        DateTime
   status            Boolean
-  professor         Professors        @relation(fields: [professor_id], references: [id])
-  professors_course ProfessorCourse[] @relation("CourseProfessors")
-  enrolled          StudentsEnroll[]  @relation("CourseEnrollments")
-  course_rating     CourseRating[]
-  comments          Comments[]
+  thumbnail         String?
+  comments          Comments?
+  professor         Professors       @relation(fields: [professor_id], references: [id])
+  course_rating     CourseRating?
+  professors_course ProfessorCourse? @relation("CourseProfessors")
+  enrolled          StudentsEnroll?  @relation("CourseEnrollments")
 }
 
 model Comments {
   comment_id String @id @default(uuid())
   content    String
-  user_id    String 
-  course_id  String 
-  user       Users  @relation(fields: [user_id], references: [id])
+  user_id    String @unique
+  course_id  String @unique
   course     Course @relation(fields: [course_id], references: [id])
+  user       Users  @relation(fields: [user_id], references: [id], onDelete: Cascade)
 }
 
 model ProfessorRating {
@@ -88,21 +81,27 @@ model CourseRating {
   id         String   @id @default(uuid())
   course_id  String   @unique
   student_id String   @unique
-  student    Students @relation(fields: [student_id], references: [id])
   course     Course   @relation(fields: [course_id], references: [id])
+  student    Students @relation(fields: [student_id], references: [id])
 }
 
 model ProfessorCourse {
   professor_id String     @unique
   course_id    String     @unique
-  professor    Professors @relation(fields: [professor_id], references: [id], name: "ProfessorCourses")
-  course       Course     @relation(fields: [course_id], references: [id], name: "CourseProfessors")
+  course       Course     @relation("CourseProfessors", fields: [course_id], references: [id])
+  professor    Professors @relation("ProfessorCourses", fields: [professor_id], references: [id])
 }
 
 model StudentsEnroll {
   student_id  String   @unique
   course_id   String   @unique
   enroll_date DateTime
-  student     Students @relation(fields: [student_id], references: [id], name: "StudentEnrollments")
-  course      Course   @relation(fields: [course_id], references: [id], name: "CourseEnrollments")
+  course      Course   @relation("CourseEnrollments", fields: [course_id], references: [id])
+  student     Students @relation("StudentEnrollments", fields: [student_id], references: [id])
+}
+
+enum Role {
+  Student
+  Professor
+  Admin
 }
