@@ -1,5 +1,5 @@
 <template>
-  <div>
+ <div>
     <h1 class="my-20 text-center">ManageUser</h1>
 
     <div
@@ -52,6 +52,7 @@
 import axios from 'axios'
 export default {
   name: 'ManageUser',
+
   async asyncData({ $auth, $axios }) {
     try {
       await $auth.fetchUser()
