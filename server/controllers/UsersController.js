@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 function generateToken(user) {
     const secret = 'fewZaandtheGang'
     const expiresIn = '7d'
-    return jwt.sign({ sub: user.id, email: user.email }, secret, { expiresIn })
+    return jwt.sign({ sub: user.user_id, email: user.email }, secret, { expiresIn })
 }
 
 export const GetUsers = async (req, res) => {
@@ -25,10 +25,10 @@ export const AuthMe = async (req, res) => {
         console.log(req.user)
         const user = await prisma.users.findUnique({
             where: {
-                id: sub,
+                user_id: sub,
             },
             select: {
-                id: true,
+                user_id: true,
                 email: true,
                 first_name: true,
                 last_name: true,

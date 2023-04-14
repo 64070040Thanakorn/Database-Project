@@ -1,10 +1,10 @@
 <template>
-  <div class="w-screen h-screen flex flex-col justify-between">
+  <div class="w-full h-[80vh] flex flex-col justify-between mt-20">
     <form class="flex justify-center items-center align-center" action="">
-      <div class="flex flex-col space-y-4 w-[15%]">
+      <div class="flex flex-col w-[15%]">
         <h1 class="text-4xl mb-4">สมัครสมาชิก ✌️</h1>
 
-        <form @submit.prevent="submit()">
+        <form class="space-y-4" @submit.prevent="submit()">
           <div>
             <p class="text-sm">ชื่อ</p>
             <input
@@ -119,7 +119,6 @@
         </form>
       </div>
     </form>
-    <Footer></Footer>
   </div>
 </template>
 <script>

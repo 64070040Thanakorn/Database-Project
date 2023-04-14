@@ -1,10 +1,10 @@
 <template>
-  <div class="w-screen h-screen flex flex-col justify-between">
+  <div class="w-full flex flex-col justify-between mt-56 mb-60">
     <div class="flex justify-center items-center align-center">
       <div class="flex flex-col space-y-4 w-[15%]">
         <h1 class="text-4xl">เข้าสู่ระบบ 👋</h1>
 
-        <form @submit.prevent="login">
+        <form class="space-y-4" @submit.prevent="login">
           <div>
             <p class="text-sm">email</p>
             <input
@@ -18,7 +18,7 @@
               class="border rounded-md py-1 px-1 w-full"
               v-model="password"
             />
-            <p class="text-sm">forget password?</p>
+            <p class="text-sm text-[#AAAAAA]">forget password?</p>
           </div>
           <div>
             <button
@@ -35,7 +35,6 @@
         </form>
       </div>
     </div>
-    <Footer></Footer>
   </div>
 </template>
 <script>

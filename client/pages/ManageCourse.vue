@@ -46,12 +46,11 @@
                 class="text-white bg-[#2B26D8] hover:bg-[#130ec7] focus:ring-4 focus:ring-blue-300 font-medium rounded-3xl text-sm px-5 py-3 mr-2 focus:outline-none">เพิ่มคอร์ส</button> -->
         </div>
         <hr class="h-[2px] my-8 bg-gray-800">
-        <div class="grid grid-cols-5 gap-10 mx-8 my-8">
+        <div class="grid grid-cols-5 gap-10 mx-32 mt-8 mb-32">
             <div v-for="value, index in 10" :key="index">
-                <CardItem></CardItem>
+                <CardItem/>
             </div>
         </div>
-        <Footer></Footer>
     </div>
 </template>
   
