@@ -64,6 +64,7 @@
             <div>
               <p class="text-sm">ยืนยันรหัสผ่าน</p>
               <input
+                v-model="checkPassword"
                 class="border rounded-md py-1 px-1 w-full"
                 type="password"
                 required
@@ -132,27 +133,33 @@ export default {
       email: '',
       username: '',
       password: '',
+      checkPassword: '',
       imag: 'https://cdn.myanimelist.net/images/characters/12/450359.jpg',
       role: '',
     }
   },
   methods: {
     submit() {
-      
-      
       console.log(this.role);
-      axios
+      if (this.password === this.checkPassword) {
+        axios
         .post('http://localhost:5000/api/user/users', { first_name: this.first_name, last_name: this.last_name, email: this.email, username: this.username, password: this.password, image: this.imag, role: this.role }, {
           headers: {
             'Content-Type': 'application/json',
           },
         })
         .then((respones) => {
+          this.$nuxt.$router.push('/auth/login')
           console.log(respones)
         })
         .catch((err) => {
+          alert("This email is already exists!")
           console.log(err)
         })
+      }
+      else {
+        alert("Your password must match!")
+      }
     },
   },
 }

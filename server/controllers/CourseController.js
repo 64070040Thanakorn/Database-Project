@@ -4,13 +4,34 @@ const prisma = new PrismaClient();
 
 export const getCourse = async (req, res) => {
   try {
-    const asdasdasd = await prisma.course.findMany();
+    const course = await prisma.course.findMany();
 
-    res.status(200).json(asdasdasd);
+    res.status(200).json(course);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 };
+
+// get Course by id
+
+export const getCourseById = async (req, res) => {
+  // const course_id = parseInt(req.query.id)
+
+  // if (req.method === 'GET') {
+  //   try {
+  //     const user = await prisma.course.findUnique({
+  //       where: { id: course_id }
+  //     })
+  //     res.status(200).json(user)
+  //   } catch (error) {
+  //     console.error(error)
+  //     res.status(500).json({ error: 'Internal server error' })
+  //   }
+  // } else {
+  //   res.status(405).json({ error: 'Method not allowed' })
+  // }
+}
+
 
 export const createCourse = async (req, res) => {
   const { title, description, price, level, received, thumbnail, start_date, end_date } = req.body;
