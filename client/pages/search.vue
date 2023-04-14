@@ -1,8 +1,11 @@
 <script>
-import axios from 'axios';
 
 export default {
   name: "Search",
+  async asyncData({$axios}) {
+    const data = await $axios.get('http://localhost:5000/api/course/')
+    return {items: data.data}
+  },
   data() {
     return {
       isActiveCate: true,
@@ -25,7 +28,6 @@ export default {
       recTest: null,
       recFile: null,
       test: null,
-      items: null,
     };
   },
 
@@ -35,13 +37,6 @@ export default {
       return 10;
     },
   },
-  created(){
-        axios.get('http://localhost:5000/api/course/').then((response) =>{
-            this.items = response.data
-        }).catch((err) => {
-          console.log(err)
-        })
-    },
   methods: {
     clearFilter() {
       this.beginner = null;
@@ -106,7 +101,6 @@ export default {
 
 <template>
   <section>
-    <!-- <div class="bg-[#F5F4F8] absolute w-full h-[520px] -z-10 rounded-br-[300px]"></div> -->
     <div class="px-52 bg-[#F5F4F8] py-20 space-y-10 rounded-br-[300px]">
       <div class="flex justify-between">
         <div class="space-y-4 justify-center flex flex-col basis-3/5">
@@ -285,53 +279,6 @@ export default {
               </div>
             </div>
 
-            <div class="flex flex-col gap-2 dropdown price-bottom level-bottom">
-              <hr class="border-[1.2px]" />
-              <button
-                type="button"
-                class="flex justify-between items-center"
-                @click="
-                  showHide(
-                    '.amount-icon',
-                    '.amount-content',
-                    '.amount-bottom',
-                    isActiveAmount,
-                    -60
-                  ),
-                    (isActiveAmount = !isActiveAmount)
-                "
-              >
-                <p class="text-lg font-normal">จำนวนคน</p>
-                <i class="pi pi-chevron-up amount-icon"></i>
-              </button>
-              <div class="amount-content">
-                <div class="ml-3 gap-2 flex flex-col">
-                  <div class="flex items-center gap-2">
-                    <input
-                      id="amountFull"
-                      v-model="amountFull"
-                      type="checkbox"
-                      name="amountFull"
-                      value="amountFull"
-                      class="p-2 border-2 border-black inline-block"
-                    />
-                    <label for="amountFull" class="font-light">เต็ม</label>
-                  </div>
-                  <div class="flex items-center gap-2">
-                    <input
-                      id="amountNotFull"
-                      v-model="amountNotFull"
-                      type="checkbox"
-                      name="amountNotFull"
-                      value="amountNotFull"
-                      class="p-2 border-2 border-black inline-block"
-                    />
-                    <label for="amountNotFull" class="font-light">ไม่เต็ม</label>
-                  </div>
-                </div>
-              </div>
-            </div>
-
             <div
               class="flex flex-col gap-2 dropdown amount-bottom price-bottom level-bottom"
             >
@@ -392,9 +339,9 @@ export default {
         <p class="font-light">จำนวน 30 ผลลัพธ์</p>
         <hr class="border-[1.2px] mt-1 mb-4" />
         <div class="grid grid-cols-3 gap-4 justify-items-center">
-          <div v-for="(item, index) in items" :key="index">
-            <mainCard />
-          </div>
+          <Nuxt-link v-for="(item, index) in items" :key="index" :to="{path: `course/${item.course_id}`}">
+            <MainCard :item="item"/>
+          </Nuxt-link>
         </div>
         <div class="flex justify-center gap-4 my-12">
           <div v-for="(value, index) in pageAmount" :key="index">

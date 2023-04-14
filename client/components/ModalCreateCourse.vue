@@ -184,7 +184,6 @@
 </template>
 
 <script>
-import axios from "axios";
 
 export default {
   data() {
@@ -205,7 +204,7 @@ export default {
       console.log(file);
     },
     createCourse() {
-      axios
+      this.$axios
         .post(
           "http://localhost:5000/api/course/createcourse",
           {

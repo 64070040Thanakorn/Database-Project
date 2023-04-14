@@ -1,9 +1,14 @@
 <script>
-import CourseDescription from "~/components/CourseDescription.vue";
 
 export default {
+  name: "Course",
+  async asyncData({$axios}) {
+    const data = await $axios.get('http://localhost:5000/api/course/')
+    return {items: data.data}
+  },
   data() {
     return {
+      
       showComponent: true,
     };
   },
@@ -12,7 +17,6 @@ export default {
       this.showComponent = !this.showComponent;
     },
   },
-  components: { CourseDescription },
 };
 </script>
 
@@ -183,8 +187,8 @@ export default {
     <div class="py-20 bg-[#FAFAFA] mb-8">
       <p class="flex justify-center text-[48px]">ต้องการอะไรอย่างอื่นอีกไหม?</p>
       <div class="flex gap-x-7 justify-center mt-8">
-        <div v-for="(item, index) in 3" :key="index">
-          <MainCard />
+        <div v-for="(item, index) in items" :key="index">
+          <MainCard :item="item"/>
         </div>
       </div>
     </div>
