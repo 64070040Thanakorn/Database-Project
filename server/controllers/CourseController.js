@@ -24,6 +24,13 @@ export const getCourse = async (req, res) => {
       const orderDir = randomf(["asc", "desc"]);
       course = await prisma.course.findMany({
         take: parseInt(req.params.type),
+        include: {
+          professor: {
+            include: {
+              user: true
+            }
+          },
+        },
         orderBy: { [orderBy]: orderDir },
       });
     }

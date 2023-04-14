@@ -3,7 +3,7 @@
 export default {
   name: "Search",
   async asyncData({$axios}) {
-    const data = await $axios.get('http://localhost:5000/api/course/')
+    const data = await $axios.get('http://localhost:5000/api/course/all')
     return {items: data.data}
   },
   data() {
