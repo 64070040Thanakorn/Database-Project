@@ -31,6 +31,7 @@
                 >
                 <input
                   id="title"
+                  v-model="title"
                   type="text"
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   placeholder="ชื่อคอร์ส"
@@ -45,6 +46,7 @@
                   >
                   <input
                     id="price"
+                    v-model="price"
                     type="number"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                     placeholder="ราคาคอร์ส"
@@ -53,12 +55,13 @@
                 </div>
                 <div>
                   <label
-                    for="receive"
+                    for="received"
                     class="block mb-2 text-sm font-medium text-gray-900"
                     >สิ่งที่ได้รับ</label
                   >
                   <select
-                    id="receive"
+                    id="received"
+                    v-model="received"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   >
                     <option selected>เลือกสิ่งที่ได้รับ</option>
@@ -72,12 +75,13 @@
 
                 <div>
                   <label
-                    for="countries"
+                    for="level"
                     class="block mb-2 text-sm font-medium text-gray-900"
                     >ระดับความสามารถ</label
                   >
                   <select
-                    id="countries"
+                    id="level"
+                    v-model="level"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   >
                     <option selected>เลือกระดับความสามารถ</option>
@@ -95,7 +99,8 @@
                   >
                   <input
                     id="start_date"
-                    type="date"
+                    v-model="start_date"
+                    type="datetime-local"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                     required
                   />
@@ -108,7 +113,8 @@
                   >
                   <input
                     id="end_date"
-                    type="date"
+                    v-model="end_date"
+                    type="datetime-local"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                     required
                   />
@@ -118,7 +124,8 @@
               <div>
                 <span>รายละเอียดคอร์ส</span>
                 <textarea
-                  id="message"
+                  id="description"
+                  v-model="description"
                   rows="4"
                   class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
                   placeholder="รายละเอียด..."
@@ -146,7 +153,7 @@
                 id="file_input"
                 class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none"
                 type="file"
-                @change="handleFileUpload"
+                @change="handleFileUpload()"
               />
             </div>
           </div>
@@ -182,14 +189,13 @@ import axios from "axios";
 export default {
   data() {
     return {
-      title: "title",
-      description: "description",
-      price: 123,
-      level: "level",
-      received: "received",
-      create_date: "2022-04-22 10:34:23.55",
-      start_date: "2022-04-22 10:34:23.55",
-      end_date: "2022-04-22 10:34:23.55",
+      title: null,
+      description: null,
+      price: null,
+      level: null,
+      received: null,
+      start_date: null,
+      end_date: null,
       thumbnail: "thumbnail",
     };
   },
@@ -199,17 +205,15 @@ export default {
       console.log(file);
     },
     createCourse() {
-      //   this.create_date = new Date();
       axios
         .post(
           "http://localhost:5000/api/course/createcourse",
           {
             title: this.title,
             description: this.description,
-            price: this.price,
+            price: Number(this.price),
             level: this.level,
-            receive: this.receive,
-            create_date: this.create_date,
+            received: this.received,
             start_date: this.start_date,
             end_date: this.end_date,
             thumbnail: this.thumbnail,

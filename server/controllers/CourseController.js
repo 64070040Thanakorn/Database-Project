@@ -13,10 +13,9 @@ export const getCourse = async (req, res) => {
 };
 
 export const createCourse = async (req, res) => {
-  const { title, description, price, level, received, thumbnail, create_date, start_date, end_date} = req.body;
-  // const professor_id = await prisma.professors.findUnique({where: {professor_id: req.user.sub}})
-  const professor_id = "ec645ea5-866d-44d2-abc1-0ddc9b7a92c4"
-  // console.log(professor_id);
+  const { title, description, price, level, received, thumbnail, start_date, end_date} = req.body;
+  // const professor_id = await prisma.professors.findUnique({where: {professor_id: req.users.sub}})
+  // const professor_id = "1986d5b6-3e25-4e93-bcaa-f739c4e246e1"
   try {
     const course = await prisma.course.create({
       data: {
@@ -26,7 +25,6 @@ export const createCourse = async (req, res) => {
         level: level,
         received: received,
         thumbnail: thumbnail,
-        create_date: new Date(create_date),
         start_date: new Date(start_date),
         end_date: new Date(end_date),
         status: false,

@@ -2,7 +2,7 @@
 
 export default {
     name: "CourseReview",
-    date() {
+    data() {
       return {
         items: [1, 2, 3],
         test: "test",
@@ -77,7 +77,7 @@ export default {
             <button class="w-full bg-[#7E82E6] hover:bg-[#6065E1] text-white text-lg p-1 rounded-[5px]">โพสต์</button>
           </div>
         </div>
-        <div v-for="(item, index) in 3" :key="index">
+        <div v-for="(item, index) in items" :key="index">
           <CourseComment/>
         </div>
       </div>
