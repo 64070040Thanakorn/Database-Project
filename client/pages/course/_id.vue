@@ -1,27 +1,49 @@
+<script>
+import CourseDescription from "~/components/CourseDescription.vue";
+
+export default {
+  data() {
+    return {
+      showComponent: true,
+    };
+  },
+  methods: {
+    toggleComponent() {
+      this.showComponent = !this.showComponent;
+    },
+  },
+  components: { CourseDescription },
+};
+</script>
+
 <template>
   <section>
     <div class="absolute z-[-1] w-full h-[510px] flex">
-      <img src="../../assets/example_img.png" class="w-full h-auto relative object-cover" alt="" />
+      <img
+        src="../../assets/example_img.png"
+        class="w-full h-auto relative object-cover"
+        alt=""
+      />
     </div>
 
     <div class="px-72 pt-20 pb-20">
       <div class="mx-12 space-y-10">
         <div class="bg-white px-12 py-5 h-[328px] space-y-3 pt-8 rounded-[5px]">
           <div class="flex space-x-2 text-[#717171]">
-            <img src="../../assets/icon/star-full.png" class="w-[20px] h-[20px]" alt="">
-            <img src="../../assets/icon/star-full.png" class="w-[20px] h-[20px]" alt="">
-            <img src="../../assets/icon/star-full.png" class="w-[20px] h-[20px]" alt="">
-            <img src="../../assets/icon/star-full.png" class="w-[20px] h-[20px]" alt="">
-            <img src="../../assets/icon/star-tran.png" class="w-[20px] h-[20px]" alt="">
+            <img src="../../assets/icon/star-full.png" class="w-[20px] h-[20px]" alt="" />
+            <img src="../../assets/icon/star-full.png" class="w-[20px] h-[20px]" alt="" />
+            <img src="../../assets/icon/star-full.png" class="w-[20px] h-[20px]" alt="" />
+            <img src="../../assets/icon/star-full.png" class="w-[20px] h-[20px]" alt="" />
+            <img src="../../assets/icon/star-tran.png" class="w-[20px] h-[20px]" alt="" />
             <p>4.4</p>
             <p>(54 คอมเมนต์)</p>
           </div>
           <h1 class="text-[36px]">คณิตศาสตร์ PAT 1 ง่ายๆ</h1>
           <p class="text-[14px] font-light text-gray-01 limit2Line">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique
-            gravida erat ac accumsan. <br>Orci varius natoque penatibus et magnis dis
-            parturient montes, nascetur ridiculus mus.<br> Donec eget venenatis dui, non
-            facilisis turpis. lorem
+            gravida erat ac accumsan. <br />Orci varius natoque penatibus et magnis dis
+            parturient montes, nascetur ridiculus mus.<br />
+            Donec eget venenatis dui, non facilisis turpis. lorem
           </p>
           <!-- <div class="flex">
             <div class="flex space-x-3">
@@ -64,89 +86,97 @@
           </div>
         </div>
         <div class="bg-white py-8 border-2 border-black flex justify-around">
-            <div class="flex items-center space-x-2">
-                <div>
-                    <img src="../../assets/icon/level.png" alt="">
-                </div>
-                <div>
-                    <p class="text-sm font-light">ระดับความสามารถ</p>
-                    <p class="text-2xl">เริ่มต้น</p>
-                </div>
+          <div class="flex items-center space-x-2">
+            <div>
+              <img src="../../assets/icon/level.png" alt="" />
             </div>
-            <div class="flex items-center space-x-2">
-                <div>
-                    <img src="../../assets/icon/certificate.png" alt="">
-                </div>
-                <div>
-                    <p class="text-sm font-light">ระยะเวลา</p>
-                    <p class="text-2xl">10 ชั่วโมง</p>
-                </div>
+            <div>
+              <p class="text-sm font-light">ระดับความสามารถ</p>
+              <p class="text-2xl">เริ่มต้น</p>
             </div>
-            <div class="flex items-center space-x-2">
-                <div>
-                    <img src="../../assets/icon/recieve.png" alt="">
-                </div>
-                <div>
-                    <p class="text-sm font-light">สิ่งที่ได้รับ</p>
-                    <p class="text-2xl">ประกาศนียบัตร</p>
-                </div>
+          </div>
+          <div class="flex items-center space-x-2">
+            <div>
+              <img src="../../assets/icon/certificate.png" alt="" />
             </div>
-            <div class="flex items-center space-x-2">
-                <div>
-                    <img src="../../assets/icon/price.png" alt="">
-                </div>
-                <div>
-                    <p class="text-sm font-light">ราคา</p>
-                    <p class="text-2xl text-[#467A55]">1200 บาท</p>
-                </div>
+            <div>
+              <p class="text-sm font-light">ระยะเวลา</p>
+              <p class="text-2xl">10 ชั่วโมง</p>
             </div>
+          </div>
+          <div class="flex items-center space-x-2">
+            <div>
+              <img src="../../assets/icon/recieve.png" alt="" />
+            </div>
+            <div>
+              <p class="text-sm font-light">สิ่งที่ได้รับ</p>
+              <p class="text-2xl">ประกาศนียบัตร</p>
+            </div>
+          </div>
+          <div class="flex items-center space-x-2">
+            <div>
+              <img src="../../assets/icon/price.png" alt="" />
+            </div>
+            <div>
+              <p class="text-sm font-light">ราคา</p>
+              <p class="text-2xl text-[#467A55]">1200 บาท</p>
+            </div>
+          </div>
         </div>
       </div>
       <div class="mt-20">
         <div class="flex">
           <div class="basis-[70%]">
-            <div class="flex space-x-8 border-b-2 border-black mr-16">
-              <div class="text-[#726FE5] text-xl border-b-4 px-2 border-[#2B26D8]">
-                <p>เกี่ยวกับคอร์ส</p>
+            <div class="flex space-x-4 border-b-2 border-black mr-16">
+              <div class="text-xl px-2" :class="{'text-[#726FE5] border-b-4 border-[#2B26D8]': showComponent}">
+                <button @click="showComponent = true">เกี่ยวกับคอร์ส</button>
               </div>
-              <div class="text-xl">
-                <p>รีวิว</p>
+              <div class="text-xl px-2" :class="{'text-[#726FE5] border-b-4 border-[#2B26D8]': !showComponent}">
+                <button @click="showComponent = false">รีวิว</button>
               </div>
             </div>
             <div class="py-4 mr-16">
-              <CourseReview/>
+              <div v-if="showComponent">
+                <CourseDescription />
+              </div>
+              <div v-else><CourseReview /></div>
             </div>
           </div>
 
           <div class="basis-[30%]">
-            <p class="text-[#2B26D8] text-xl border-b-2 border-black px-2 pb-1">
-                ผู้สอน
-            </p>
+            <p class="text-[#2B26D8] text-xl border-b-2 border-black px-2 pb-1">ผู้สอน</p>
             <div class="flex py-4">
-                <div class="basis-2/6 ">
-                    <img src="../../assets/person.png" alt="">
+              <div class="basis-2/6">
+                <img src="../../assets/person.png" alt="" />
+              </div>
+              <div class="basis-4/6 pr-2 space-y-1">
+                <p class="">ศาสตราจารย์ ธนกร ศรีวรรณวิทย์</p>
+                <div class="flex items-center space-x-2">
+                  <img src="../../assets/icon/star.png" alt="" />
+                  <p class="text-sm">4.8 คะแนนเฉลี่ย</p>
                 </div>
-                <div class="basis-4/6 pr-2 space-y-1">
-                    <p class="">ศาสตราจารย์ ธนกร ศรีวรรณวิทย์</p>
-                    <div class="flex items-center space-x-2">
-                        <img src="../../assets/icon/star.png" alt="">
-                        <p class="text-sm">4.8 คะแนนเฉลี่ย</p>
-                    </div>
-                    <div class="flex items-center space-x-3">
-                        <img src="../../assets/icon/verified.png" class="ml-[0.125rem]" alt="">
-                        <p class="text-sm"> Verified</p>
-                    </div>
+                <div class="flex items-center space-x-3">
+                  <img
+                    src="../../assets/icon/verified.png"
+                    class="ml-[0.125rem]"
+                    alt=""
+                  />
+                  <p class="text-sm">Verified</p>
                 </div>
+              </div>
             </div>
             <div class="pl-8">
-                <ul class="list-disc">
-                    <li>ผู้เชี่ยวชาญด้านประดิษฐ์ระเบิดขวด</li>
-                    <li>ได้รับดีกรีจากสถาบัน Hogwarts ในด้านเวทมนต์ศาสตร์ 2077</li>
-                </ul>
+              <ul class="list-disc">
+                <li>ผู้เชี่ยวชาญด้านประดิษฐ์ระเบิดขวด</li>
+                <li>ได้รับดีกรีจากสถาบัน Hogwarts ในด้านเวทมนต์ศาสตร์ 2077</li>
+              </ul>
             </div>
           </div>
         </div>
-        <!-- <CourseTable/> -->
+        <div v-if="showComponent">
+          <CourseTable />
+        </div>
+
         <!-- <div class="border-2 border-black p-72 mt-16"></div> -->
       </div>
     </div>
