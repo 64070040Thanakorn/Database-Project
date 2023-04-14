@@ -8,9 +8,9 @@
       alt="course_img"
     />
     <div class="basis-7/12 p-4 gap-y-1 flex flex-col">
-      <p class="text-xl">คณิตศาสตร์ PAT 1 ง่ายๆ</p>
+      <p class="text-xl">{{title}}</p>
       <div class="flex justify-between items-center">
-        <p class="text-[#4C47DE] text-sm">ผู้เริ่มต้น, ประกาศนียบัตร</p>
+        <p class="text-[#4C47DE] text-sm">{{level}}, {{received}}</p>
         <!-- <div class="flex space-x-1 items-center">
             <svg
               width="20"
@@ -35,10 +35,9 @@
           </div> -->
       </div>
       <hr class="border-[1.2px]" />
-      <p class="font-light text-[12px]">ศาสตราจารย์ ธนกร ศรีวรรณวิทย์</p>
+      <p class="font-light text-[12px]">{{first_name}} {{ last_name }}</p>
       <p class="text-[#9F9F9F] font-light text-[10px] textOver">
-        ผู้เชี่ยวชาญด้านประดิษฐ์ระเบิดขวด, ได้รับดีกรีจากสถาบัน Hogwarts
-        ในด้านเวทมนต์ศาสตร์ 2077
+        {{info}}
       </p>
       <div class="flex justify-between mx-2 mt-12">
         <a
@@ -58,7 +57,46 @@
   </div>
 </template>
 <script>
-export default {};
+import axios from "axios";
+
+export default {
+  props: {
+    // eslint-disable-next-line vue/prop-name-casing
+    course_id: {
+      type: String,
+      required: true,
+    },
+  },
+  data() {
+    return {
+      item: null,
+      title: null,
+      level: null,
+      received: null,
+      first_name: null,
+      last_name: null,
+      info: null,
+      price: null,
+    }
+  },
+  mounted() {
+    axios
+      .get("http://localhost:5000/api/course/")
+      .then((response) => {
+        this.item = response.data.find(data => data.course_id === this.course_id);
+        this.title = this.item.title
+        this.level = this.item.level
+        this.received = this.item.received
+        this.price = this.item.price
+        this.info = this.item.professor.info
+        this.first_name = this.item.professor.user.first_name
+        this.last_name = this.item.professor.user.last_name
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },
+};
 </script>
 <style>
 .textOver {

@@ -1,5 +1,5 @@
 import express from "express";
-import { getCourse, createCourse } from "../controllers/CourseController.js";
+import { getCourse, createCourse, getCourseById } from "../controllers/CourseController.js";
 import jwt from 'jsonwebtoken'
 
 const router = express.Router();
@@ -16,7 +16,7 @@ function authenticateToken(req, res, next) {
 }
 
 router.get("/", getCourse);
-
+router.get("/course/:course_id", getCourseById)
 router.post("/createCourse", authenticateToken, createCourse);
 
 export default router;
