@@ -26,18 +26,20 @@ model Students {
   student_id       String            @id @default(uuid())
   user_id          String            @unique
   job              String?
-  course_rating    CourseRating[]
   user             Users             @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
   enroll           StudentsEnroll[]  @relation("StudentEnrollments")
+  course_rating    CourseRating[]
+  professor_rating ProfessorRating[]
 }
 
 model Professors {
-  professor_id String   @id @default(uuid())
-  user_id      String   @unique
-  info         String?
-  course       Course[]
+  professor_id     String            @id @default(uuid())
+  user_id          String            @unique
+  info             String?
+  course           Course[]
   // professor_course ProfessorCourse? @relation("ProfessorCourses")
-  user         Users    @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
+  user             Users             @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
+  professor_rating ProfessorRating[]
 }
 
 model Course {
@@ -74,6 +76,14 @@ model CourseRating {
   student_id       String
   course           Course   @relation(fields: [course_id], references: [course_id], onDelete: Cascade)
   student          Students @relation(fields: [student_id], references: [student_id], onDelete: Cascade)
+}
+
+model ProfessorRating {
+  professor_rating_id String     @id @default(uuid())
+  professor_id        String
+  student_id          String
+  professor           Professors @relation(fields: [professor_id], references: [professor_id], onDelete: Cascade)
+  student             Students   @relation(fields: [student_id], references: [student_id], onDelete: Cascade)
 }
 
 model StudentsEnroll {
