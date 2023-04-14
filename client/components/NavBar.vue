@@ -1,12 +1,8 @@
 <template>
   <div>
-    <nav
-      class="w-full h-20 bg-white items-center flex justify-between md:px-[10rem]"
-    >
+    <nav class="w-full h-20 bg-white items-center flex justify-between md:px-[10rem]">
       <div class="flex items-center p-3 ml-10 py-8">
-        <img
-          src="https://media.discordapp.net/attachments/1067453596351856650/1095639187895635968/image.png"
-          class="h-[40px] w-[150px]"
+        <img src="https://media.discordapp.net/attachments/1067453596351856650/1095639187895635968/image.png" class="h-[40px] w-[150px]"
         />
         <div class="space-x-4 ml-9 px-4 font-semibold">
           <NuxtLink to="/">คอร์สการเรียน</NuxtLink>
@@ -23,21 +19,21 @@
           </div>
 
           <img :src="$auth.user.image" class="h-14 w-14 rounded-full" />
-          <button
-            @click="logout"
-            class="px-5 text-white rounded-md py-2 text-[13px] bg-[#2b26d8]"
-          >
-            Logout
+          <button @click="logout" class="px-5 text-white rounded-xl font-semibold py-2 text-[13px] bg-[#2b26d8] shadow-xl">
+            ลงชื่อออก
           </button>
         </div>
       </div>
 
       <div v-else>
         <NuxtLink to="/auth/login">
-          <button
-            class="px-5 text-white rounded-md py-2 text-[13px] bg-[#2b26d8]"
-          >
-            Login
+          <button class="px-5 text-black py-2 text-[13px] font-semibold bg-transparent">
+            เข้าสู่ระบบ
+          </button>
+        </NuxtLink>
+        <NuxtLink to="/auth/register">
+          <button class="px-3 text-white rounded-xl py-2 text-[13px] font-semibold bg-[#2b26d8] shadow-xl">
+            สมัครสมาชิก
           </button>
         </NuxtLink>
       </div>
