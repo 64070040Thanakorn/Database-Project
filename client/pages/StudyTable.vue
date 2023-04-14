@@ -10,7 +10,6 @@
                 </template>
             </FullCalendar>
         </div>
-        <Footer></Footer>
     </div>
 </template>
   
@@ -21,8 +20,6 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import bootstrap5Plugin from '@fullcalendar/bootstrap5';
 
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap-icons/font/bootstrap-icons.css'; // needs additional webpack config!
 
 
 export default {
