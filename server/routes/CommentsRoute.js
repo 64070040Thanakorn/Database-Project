@@ -1,19 +1,20 @@
 import express from 'express';
 import {
-    GetCommentByCourseId,
-    createComment,
-    deleteComment,
+  GetCommentByCourseId,
+  createComment,
+  deleteComment,
   updateComment
 } from '../controllers/CommentsController.js';
 
- const router = express.Router();
+const router = express.Router();
 
-router.get('/comment/:course_id',GetCommentByCourseId)
+router.get('/comment/:course_id', GetCommentByCourseId)
 
-router.post('/comment',createComment)
+router.post('/comment', createComment)
 
-router.patch('/comment/:course_id',updateComment)
+router.patch('/comment/:course_id', updateComment)
 
-router.delete('/comment/:course_id',deleteComment)
+router.delete('/comment/:course_id', deleteComment)
 
- export default router;
+export default router;
+

@@ -15,7 +15,11 @@ function authenticateToken(req, res, next) {
   });
 }
 
-router.get("/", getCourse);
+
+
+router.get("/:type", getCourse);
+
 router.post("/createCourse", authenticateToken, createCourse);
+
 
 export default router;
