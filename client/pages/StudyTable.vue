@@ -1,14 +1,17 @@
 <template>
-    <div class=" bg-[#AFAFFF]">
-        <caption class="flex justify-center p-5 font-normal text-center text-5xl mt-8 text-gray-900 bg-white">
-            ตารางเรียน
-        </caption>
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg mx-24 my-24">
-            <FullCalendar :options="calendarOptions" class="bg-white">
-                <template v-slot:eventContent='arg'>
-                    <b>{{ arg.event.title }}</b>
-                </template>
-            </FullCalendar>
+    <div>
+        <div class=" bg-[#AFAFFF]">
+            <caption class="flex justify-center p-5 font-normal text-center text-5xl mt-8 text-gray-900 bg-white">
+                ตารางเรียน
+            </caption>
+            <div class="relative overflow-x-auto shadow-md sm:rounded-lg mx-24 my-24">
+                <FullCalendar :options="calendarOptions" class="bg-white">
+                    <template v-slot:eventContent='arg'>
+                        <b>{{ arg.event.title }}</b>
+                    </template>
+                </FullCalendar>
+            </div>
+            <Footer></Footer>
         </div>
     </div>
 </template>
@@ -24,7 +27,7 @@ import bootstrap5Plugin from '@fullcalendar/bootstrap5';
 
 export default {
     components: {
-        FullCalendar
+        FullCalendar,
     },
     name: 'StudyTable',
     data() {
@@ -45,6 +48,7 @@ export default {
         }
     },
 }
+// ไปขี้เด้อ
 </script>
 
 <style>
