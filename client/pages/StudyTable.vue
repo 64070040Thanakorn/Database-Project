@@ -50,6 +50,7 @@ export default {
         }
     },
 }
+// ไปขี้เด้อ
 </script>
 
 <style>
