@@ -5,7 +5,7 @@
       <p class="text-xl">คณิตศาสตร์ PAT 1 ง่ายๆ</p>
       <div class="flex justify-between items-center">
         <p class="text-[#4C47DE] text-sm">ผู้เริ่มต้น, ประกาศนียบัตร</p>
-        <div class="flex space-x-1 items-center">
+        <!-- <div class="flex space-x-1 items-center">
           <svg
             width="20"
             height="20"
@@ -26,7 +26,7 @@
             </defs>
           </svg>
           <p>9/25</p>
-        </div>
+        </div> -->
       </div>
       <hr class="border-[1.2px]">
       <p class="font-light text-[12px]">ศาสตราจารย์ ธนกร ศรีวรรณวิทย์ </p>
