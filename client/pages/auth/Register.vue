@@ -123,7 +123,6 @@
   </div>
 </template>
 <script>
-import axios from 'axios'
 export default {
   name: 'RegisterView',
   data() {
@@ -142,7 +141,7 @@ export default {
     submit() {
       console.log(this.role);
       if (this.password === this.checkPassword) {
-        axios
+        this.$axios
         .post('http://localhost:5000/api/user/users', { first_name: this.first_name, last_name: this.last_name, email: this.email, username: this.username, password: this.password, image: this.imag, role: this.role }, {
           headers: {
             'Content-Type': 'application/json',

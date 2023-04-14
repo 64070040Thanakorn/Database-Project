@@ -1,8 +1,11 @@
 <script>
-import axios from 'axios';
 
 export default {
   name: "Search",
+  async asyncData({$axios}) {
+    const data = await $axios.get('http://localhost:5000/api/course/')
+    return {items: data.data}
+  },
   data() {
     return {
       isActiveCate: true,
@@ -25,7 +28,6 @@ export default {
       recTest: null,
       recFile: null,
       test: null,
-      items: null,
     };
   },
 
@@ -35,14 +37,6 @@ export default {
       return 10;
     },
   },
-  created(){
-        axios.get('http://localhost:5000/api/course/').then((response) =>{
-            this.items = response.data
-            console.log(this.items);
-        }).catch((err) => {
-          console.log(err)
-        })
-    },
   methods: {
     clearFilter() {
       this.beginner = null;
@@ -107,7 +101,6 @@ export default {
 
 <template>
   <section>
-    <!-- <div class="bg-[#F5F4F8] absolute w-full h-[520px] -z-10 rounded-br-[300px]"></div> -->
     <div class="px-52 bg-[#F5F4F8] py-20 space-y-10 rounded-br-[300px]">
       <div class="flex justify-between">
         <div class="space-y-4 justify-center flex flex-col basis-3/5">
@@ -346,9 +339,9 @@ export default {
         <p class="font-light">จำนวน 30 ผลลัพธ์</p>
         <hr class="border-[1.2px] mt-1 mb-4" />
         <div class="grid grid-cols-3 gap-4 justify-items-center">
-          <div v-for="(item, index) in items" :key="index">
-            <MainCard :course_id="item.course_id"/>
-          </div>
+          <Nuxt-link v-for="(item, index) in items" :key="index" :to="{path: `course/${item.course_id}`}">
+            <MainCard :item="item"/>
+          </Nuxt-link>
         </div>
         <div class="flex justify-center gap-4 my-12">
           <div v-for="(value, index) in pageAmount" :key="index">
