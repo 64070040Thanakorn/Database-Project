@@ -85,10 +85,12 @@ model CourseRating {
 
 model StudentsEnroll {
   student_id  String
-  course_id   String @unique
+  course_id   String 
   enroll_date DateTime
   course      Course   @relation("CourseEnrollments", fields: [course_id], references: [course_id], onDelete: Cascade)
   student     Students @relation("StudentEnrollments", fields: [student_id], references: [student_id], onDelete: Cascade)
+
+  @@id([student_id, course_id])
 }
 
 enum Role {
