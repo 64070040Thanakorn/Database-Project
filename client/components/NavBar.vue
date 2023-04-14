@@ -2,8 +2,13 @@
   <div>
     <nav class="w-full h-20 bg-white items-center flex justify-between md:px-[10rem]">
       <div class="flex items-center p-3 ml-10 py-8">
-        <img src="https://media.discordapp.net/attachments/1067453596351856650/1095639187895635968/image.png" class="h-[40px] w-[150px]"
-        />
+        <div class="flex shadowfew items-center">
+          <img src="../assets/icon/web_icon.png" class="w-[50px] h-auto" />
+          <p class="text-[#2B26D8] font-bold ml-2 text-3xl">
+            DEAD<span class="text-black">Line</span>
+          </p>
+        </div>
+
         <div class="space-x-4 ml-9 px-4 font-semibold">
           <NuxtLink to="/">คอร์สการเรียน</NuxtLink>
           <NuxtLink to="">อาจารย์ทั้งหมด</NuxtLink>
@@ -15,11 +20,14 @@
         <div class="flex items-center space-x-4 pr-10">
           <div>
             <h1>{{ $auth.user.username }}</h1>
-            <h1>{{ $auth.user.first_name + ' ' + $auth.user.last_name }}</h1>
+            <h1>{{ $auth.user.first_name + " " + $auth.user.last_name }}</h1>
           </div>
 
           <img :src="$auth.user.image" class="h-14 w-14 rounded-full" />
-          <button @click="logout" class="px-5 text-white rounded-xl font-semibold py-2 text-[13px] bg-[#2b26d8] shadow-xl">
+          <button
+            @click="logout"
+            class="px-5 text-white rounded-xl font-semibold py-2 text-[13px] bg-[#2b26d8] shadow-xl"
+          >
             ลงชื่อออก
           </button>
         </div>
@@ -32,7 +40,9 @@
           </button>
         </NuxtLink>
         <NuxtLink to="/auth/register">
-          <button class="px-3 text-white rounded-xl py-2 text-[13px] font-semibold bg-[#2b26d8] shadow-xl">
+          <button
+            class="px-3 text-white rounded-xl py-2 text-[13px] font-semibold bg-[#2b26d8] shadow-xl"
+          >
             สมัครสมาชิก
           </button>
         </NuxtLink>
@@ -43,19 +53,18 @@
 
 <script>
 export default {
-  name: 'NavBar',
+  name: "NavBar",
   methods: {
     async logout() {
       try {
-        await this.$auth.logout()
-        this.$router.push('/auth/login')
+        await this.$auth.logout();
+        this.$router.push("/auth/login");
       } catch (error) {
-        console.error(error)
+        console.error(error);
       }
     },
   },
-}
+};
 </script>
 
-<style>
-</style>
+<style></style>
