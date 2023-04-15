@@ -76,8 +76,8 @@
 
           <div class="flex items-center mb-4">
             <input
-            v-model="role"
-              id="default-radio-1"
+            id="default-radio-1"
+              v-model="role"
               type="radio"
               value="Professor"
               name="role"
@@ -91,8 +91,8 @@
           </div>
           <div class="flex items-center">
             <input
-            v-model="role"
-              id="default-radio-2"
+            id="default-radio-2"
+              v-model="role"
               type="radio"
               value="Student"
               name="role"
@@ -127,14 +127,14 @@ export default {
   name: 'RegisterView',
   data() {
     return {
-      first_name: '',
-      last_name: '',
-      email: '',
-      username: '',
-      password: '',
-      checkPassword: '',
-      imag: 'https://cdn.myanimelist.net/images/characters/12/450359.jpg',
-      role: '',
+      first_name: null,
+      last_name: null,
+      email: null,
+      username: null,
+      password: null,
+      checkPassword: null,
+      imag: "https://media.discordapp.net/attachments/1067453596351856650/1096914677780451378/Portrait_Placeholder.png",
+      role: null,
     }
   },
   methods: {

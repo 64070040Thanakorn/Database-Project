@@ -92,7 +92,6 @@
 
 <script>
 import "flowbite";
-import ModalCreateCourse from "~/components/ModalCreateCourse.vue";
 export default {
   name: "ManageCourse",
   async asyncData({ $auth, redirect}) {
@@ -105,6 +104,5 @@ export default {
     }
   },
   methods: {},
-  components: { ModalCreateCourse },
 };
 </script>

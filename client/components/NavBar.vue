@@ -4,27 +4,27 @@
       <div class="flex items-center p-3 ml-10 py-8">
         <div class="flex shadowfew items-center">
           <img src="../assets/icon/web_icon.png" class="w-[50px] h-auto" />
-          <p class="text-[#2B26D8] font-bold ml-2 text-3xl">
+          <Nuxt-link to="/" class="text-[#2B26D8] font-bold ml-2 text-3xl">
             DEAD<span class="text-black">Line</span>
-          </p>
+          </Nuxt-link>
         </div>
-
         <div class="space-x-4 ml-9 px-4 font-semibold">
-          <NuxtLink to="/">คอร์สการเรียน</NuxtLink>
+          <NuxtLink to="/search">คอร์สการเรียน</NuxtLink>
           <NuxtLink to="">อาจารย์ทั้งหมด</NuxtLink>
           <NuxtLink to="">วิธีการสมัครเรียน</NuxtLink>
         </div>
       </div>
 
-      <div class="flex items-center" v-if="$auth.loggedIn">
-        <NuxtLink to="/search"><img src="../assets/icon/search-icon.png" class="w-[25px] mx-5" alt=""></NuxtLink>
+      <div v-if="$auth.loggedIn" class="flex items-center">
+        <!-- <NuxtLink to="/search"><img src="../assets/icon/search-icon.png" class="w-[25px] mx-5" alt=""></NuxtLink> -->
         <div class="flex items-center space-x-4 pr-10">
           <div>
             <h1>{{ $auth.user.username }}</h1>
             <h1>{{ $auth.user.first_name + " " + $auth.user.last_name }}</h1>
           </div>
-
-          <img :src="$auth.user.image" class="h-14 w-14 rounded-full" />
+          <Nuxt-link to="/dashboard/profile">
+            <img :src="$auth.user.image" class="h-14 w-14 rounded-full" />
+          </Nuxt-link>
           <button
             class="px-5 text-white rounded-xl font-semibold py-2 text-[13px] bg-[#2b26d8] shadow-xl"
             @click="logout"
@@ -34,7 +34,7 @@
         </div>
       </div>
 
-      <div class="flex items-center" v-else>
+      <div v-else class="flex items-center">
         <NuxtLink to="/search"><img src="../assets/icon/search-icon.png" class="w-[25px] mx-5" alt=""></NuxtLink>
         <NuxtLink to="/auth/login">
           <button class="px-5 text-black py-2 text-[13px] font-semibold bg-transparent">

@@ -35,6 +35,7 @@ export const AuthMe = async (req, res) => {
                 username: true,
                 role: true,
                 image: true,
+                password: true,
             },
         });
         res.json({ user });

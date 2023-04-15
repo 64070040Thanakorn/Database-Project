@@ -9,6 +9,16 @@ export const GetCommentByCourseId = async (req, res) => {
       where: {
         course_id: req.params.course_id,
       },
+      include: {
+        user: {
+          select: {
+            first_name: true,
+            last_name: true,
+            username: true,
+            role: true,
+          }
+        }
+      }
     });
     res.status(200).json(response);
   } catch (err) {

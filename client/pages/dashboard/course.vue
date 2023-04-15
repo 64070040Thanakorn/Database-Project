@@ -51,10 +51,14 @@
               </div>
             </div>
           </div>
-          <div class="grid grid-cols-5 gap-4 mt-4">
+
+          <div v-if="false" class="grid grid-cols-5 gap-4 mt-4">
             <div v-for="n in 6" :key="n">
-              <MainCard></MainCard>
+              <!-- <MainCard></MainCard> -->
             </div>
+          </div>
+          <div v-else class="flex justify-center items-center p-60 text-xl">
+              <p>คุณยังไม่มีคอร์สที่เรียน <Nuxt-link to="/search" class="text-purple-700">ลงคอร์สเรียนที่สนใจตอนนี้!</Nuxt-link></p>
           </div>
         </div>
       </div>

@@ -3,8 +3,8 @@
 export default {
   name: "Search",
   async asyncData({$axios}) {
-    const data = await $axios.get('http://localhost:5000/api/course/all')
-    return {items: data.data}
+    const course = await $axios.get(`http://localhost:5000/api/course/`)
+    return {courses: course.data}
   },
   data() {
     return {
@@ -336,10 +336,10 @@ export default {
         </div>
       </div>
       <div class="w-full py-8 px-28">
-        <p class="font-light">จำนวน 30 ผลลัพธ์</p>
+        <p class="font-light">จำนวน {{courses.length}} ผลลัพธ์</p>
         <hr class="border-[1.2px] mt-1 mb-4" />
         <div class="grid grid-cols-3 gap-4 justify-items-center">
-          <Nuxt-link v-for="(item, index) in items" :key="index" :to="{path: `course/${item.course_id}`}">
+          <Nuxt-link v-for="(item, index) in courses" :key="index" :to="{path: `course/${item.course_id}`}">
             <MainCard :item="item"/>
           </Nuxt-link>
         </div>

@@ -2,14 +2,14 @@
 
 export default {
   name: "Course",
-  async asyncData({$axios}) {
-    const data = await $axios.get('http://localhost:5000/api/course/3')
-    const comment = await $axios.get(`http://localhost:5000/api/comment/0663cdbb-43fc-4813-9da7-fecd2e4b5724`)
-    return {items: data.data, comments: comment.data}
+  async asyncData({$axios, params}) {
+    const random = await $axios.get('http://localhost:5000/api/course/randomCourse/3')
+    const course = await $axios.get(`http://localhost:5000/api/course/${params.id}`)
+    const comment = await $axios.get(`http://localhost:5000/api/comment/${params.id}`)
+    return {randoms: random.data, comments: comment.data, courses: course.data}
   },
   data() {
     return {
-      
       showComponent: true,
     };
   },
@@ -25,9 +25,9 @@ export default {
   <section>
     <div class="absolute z-[-1] w-full h-[510px] flex">
       <img
-        src="../../assets/example_img.png"
+        :src="courses[0].thumbnail"
         class="w-full h-auto relative object-cover"
-        alt=""
+        alt="course_image"
       />
     </div>
 
@@ -41,9 +41,9 @@ export default {
             <img src="../../assets/icon/star-full.png" class="w-[20px] h-[20px]" alt="" />
             <img src="../../assets/icon/star-tran.png" class="w-[20px] h-[20px]" alt="" />
             <p>4.4</p>
-            <p>(54 คอมเมนต์)</p>
+            <p>({{comments.length}} คอมเมนต์)</p>
           </div>
-          <h1 class="text-[36px]">คณิตศาสตร์ PAT 1 ง่ายๆ</h1>
+          <h1 class="text-[36px]">{{ courses[0].title }}</h1>
           <p class="text-[14px] font-light text-gray-01 limit2Line">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique
             gravida erat ac accumsan. <br />Orci varius natoque penatibus et magnis dis
@@ -97,7 +97,7 @@ export default {
             </div>
             <div>
               <p class="text-sm font-light">ระดับความสามารถ</p>
-              <p class="text-2xl">เริ่มต้น</p>
+              <p class="text-2xl">{{courses[0].level}}</p>
             </div>
           </div>
           <div class="flex items-center space-x-2">
@@ -105,7 +105,7 @@ export default {
               <img src="../../assets/icon/certificate.png" alt="" />
             </div>
             <div>
-              <p class="text-sm font-light">ระยะเวลา</p>
+              <p class="text-sm font-light">ระยะเวลาคงเหลือ</p>
               <p class="text-2xl">10 ชั่วโมง</p>
             </div>
           </div>
@@ -115,7 +115,7 @@ export default {
             </div>
             <div>
               <p class="text-sm font-light">สิ่งที่ได้รับ</p>
-              <p class="text-2xl">ประกาศนียบัตร</p>
+              <p class="text-2xl">{{courses[0].received}}</p>
             </div>
           </div>
           <div class="flex items-center space-x-2">
@@ -124,7 +124,7 @@ export default {
             </div>
             <div>
               <p class="text-sm font-light">ราคา</p>
-              <p class="text-2xl text-[#467A55]">1200 บาท</p>
+              <p class="text-2xl text-[#467A55]">{{courses[0].price}} บาท</p>
             </div>
           </div>
         </div>
@@ -142,7 +142,7 @@ export default {
             </div>
             <div class="py-4 mr-16">
               <div v-if="showComponent">
-                <CourseDescription />
+                <CourseDescription :description="courses[0].description"/>
               </div>
               <div v-else><CourseReview :comments="comments"/></div>
             </div>
@@ -152,10 +152,10 @@ export default {
             <p class="text-[#2B26D8] text-xl border-b-2 border-black px-2 pb-1">ผู้สอน</p>
             <div class="flex py-4">
               <div class="basis-2/6">
-                <img src="../../assets/person.png" alt="" />
+                <img :src="courses[0].professor.user.image" class="w-[110px] h-[115px] object-cover" alt="" />
               </div>
               <div class="basis-4/6 pr-2 space-y-1">
-                <p class="">ศาสตราจารย์ ธนกร ศรีวรรณวิทย์</p>
+                <p class="">{{courses[0].professor.user.first_name}} {{courses[0].professor.user.last_name}}</p>
                 <div class="flex items-center space-x-2">
                   <img src="../../assets/icon/star.png" alt="" />
                   <p class="text-sm">4.8 คะแนนเฉลี่ย</p>
@@ -171,9 +171,8 @@ export default {
               </div>
             </div>
             <div class="pl-8">
-              <ul class="list-disc">
-                <li>ผู้เชี่ยวชาญด้านประดิษฐ์ระเบิดขวด</li>
-                <li>ได้รับดีกรีจากสถาบัน Hogwarts ในด้านเวทมนต์ศาสตร์ 2077</li>
+              <ul v-for="(item, index) in courses[0].professor.info.split(', ')" :key="index" class="list-disc">
+                <li>{{ item }}</li>
               </ul>
             </div>
           </div>
@@ -188,9 +187,9 @@ export default {
     <div class="py-20 bg-[#FAFAFA] mb-8">
       <p class="flex justify-center text-[48px]">ต้องการอะไรอย่างอื่นอีกไหม?</p>
       <div class="flex gap-x-7 justify-center mt-8">
-        <div v-for="(item, index) in items" :key="index">
+        <Nuxt-link v-for="(item, index) in randoms" :key="index" :to="{path: `/course/${item.course_id}`}">
           <MainCard :item="item"/>
-        </div>
+        </Nuxt-link>
       </div>
     </div>
   </section>

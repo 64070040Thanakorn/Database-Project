@@ -6,7 +6,7 @@ export default {
       comments: {
         type: Array,
         required: true,
-      }
+      },
     },
     data() {
       return {
@@ -23,7 +23,8 @@ export default {
           },
         })
         .then((res) => {
-          console.log(res);
+          // console.log(res);
+          window.location.reload();
         })
         .catch((err) => {
           console.log(err);
@@ -92,15 +93,15 @@ export default {
         </div>
         <div class="flex mt-8">
           <div class="rounded-full bg-[#D9D9D9] mr-4 p-3 h-[2.5rem] w-[2.5rem] flex justify-center items-center">
-              <p>N</p>
+              <p>{{$auth.user.first_name.charAt(0).toUpperCase()}}</p>
           </div>
           <div class="flex flex-col grow">
             <textarea id="" v-model="comment" name="" class="flex justify-center border rounded-[10px] border-[#9F9F9F] mb-4 w-full h-40 px-6 py-3 grow" placeholder="เพิ่มคอมเมนต์..." ></textarea>
             <button class="w-full bg-[#7E82E6] hover:bg-[#6065E1] text-white text-lg p-1 rounded-[5px]" @click="submit">โพสต์</button>
           </div>
         </div>
-        <div v-for="(comment, index) in comments" :key="index">
-          <CourseComment :comment="comment"/>
+        <div v-for="(item, index) in comments" :key="index">
+          <CourseComment :comment="item"/>
         </div>
       </div>
 </template>

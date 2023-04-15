@@ -3,7 +3,7 @@
     class="w-[280px] h-[380px] shadow-lg shadow-black-500/50 rounded-[15px] flex flex-col"
   >
     <img
-      src="../assets/example_img.png"
+      :src="item.thumbnail"
       class="basis-5/12 rounded-t-[15px]"
       alt="course_img"
     />

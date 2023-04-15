@@ -4,13 +4,13 @@
       <div
         class="rounded-full bg-[#D9D9D9] p-3 h-[2.5rem] w-[2.5rem] flex justify-center items-center"
       >
-        <p>N</p>
+        <p>{{ comment.user.first_name.charAt(0).toUpperCase() }}</p>
       </div>
-      <p class="text-[13px] text-[#9F9F9F]">{{ $auth.user.role }}</p>
+      <p class="text-[13px]" :class="{'text-[#726FE5] font-medium': checkRole,  'text-[#9F9F9F]': !checkRole}">{{ comment.user.role }}</p>
     </div>
     <div class="space-y-1">
       <div class="flex gap-x-4 items-center">
-        <p class="text-[18px]">{{ `${$auth.user.first_name} ${$auth.user.last_name}` }}</p>
+        <p class="text-[18px]">{{ `${comment.user.first_name} ${comment.user.last_name}` }}</p>
         <p class="text-[#D9D9D9] text-[13px]">เมื่อ 2022-04-22 10:34:23</p>
       </div>
       <p class="text-[#9F9F9F] text-[16px]">
@@ -29,5 +29,10 @@ export default {
         required: true,
       }
     },
+    computed: {
+      checkRole() {
+        return this.comment.user.role === 'Professor';
+      }
+    }
 }
 </script>

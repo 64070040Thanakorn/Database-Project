@@ -2,11 +2,10 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
+// get All Course
 export const getCourse = async (req, res) => {
   try {
-    let course = []
-    if (req.params.type === "all") {
-      course = await prisma.course.findMany({
+      const course = await prisma.course.findMany({
         include: {
           professor: {
             include: {
@@ -15,8 +14,48 @@ export const getCourse = async (req, res) => {
           },
         }
       });
-    } else {
-      const randomf = (values) => {
+    res.status(200).json(course);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+// get Course by id
+
+export const getCourseById = async (req, res) => {
+  try {
+      const course = await prisma.course.findMany({
+        where: {
+          course_id: req.params.course_id,
+        },
+        include: {
+          professor: {
+            include: {
+              user: {
+                select: {
+                  first_name: true,
+                  last_name: true,
+                  username: true,
+                  image: true,
+                }
+              }
+            }
+          },
+        }
+      });
+    res.status(200).json(course);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+
+// get Random Course
+export const randomizeCourse = async (req, res) => {
+
+  try {
+    let course = []
+    const randomf = (values) => {
         const index = Math.floor(Math.random() * values.length);
         return values[index];
       }
@@ -33,15 +72,12 @@ export const getCourse = async (req, res) => {
         },
         orderBy: { [orderBy]: orderDir },
       });
-    }
     res.status(200).json(course);
-  } catch (err) {
+  }
+  catch(err) {
     res.status(500).json({ message: err.message });
   }
-};
-
-// get Course by id
-
+}
 
 export const createCourse = async (req, res) => {
   const { title, description, price, level, received, thumbnail, start_date, end_date } = req.body;

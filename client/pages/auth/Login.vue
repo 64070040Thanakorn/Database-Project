@@ -8,15 +8,16 @@
           <div>
             <p class="text-sm">email</p>
             <input
-              class="border rounded-md py-1 px-1 w-full"
               v-model="email"
+              class="border rounded-md py-1 px-1 w-full"
             />
           </div>
           <div>
             <p class="text-sm">password</p>
             <input
-              class="border rounded-md py-1 px-1 w-full"
               v-model="password"
+              type="password"
+              class="border rounded-md py-1 px-1 w-full"
             />
             <p class="text-sm text-[#AAAAAA]">forget password?</p>
           </div>
@@ -42,8 +43,8 @@ export default {
   name: 'LoginView',
   data() {
     return {
-      email: '',
-      password: '',
+      email: null,
+      password: null,
     }
   },
   methods: {
