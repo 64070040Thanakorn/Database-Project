@@ -2,10 +2,32 @@
 
 export default {
     name: "CourseReview",
+    props:{
+      comments: {
+        type: Array,
+        required: true,
+      }
+    },
     data() {
       return {
-        items: [1, 2, 3],
         test: "test",
+        comment: '',
+      }
+    },
+    methods: {
+      submit() {
+        this.$axios
+        .post('http://localhost:5000/api/comment', { content: this.comment, user_id: this.$auth.user.user_id, course_id: this.$route.params.id }, {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
       }
     },
 }
@@ -73,12 +95,12 @@ export default {
               <p>N</p>
           </div>
           <div class="flex flex-col grow">
-            <textarea id="" name="" class="flex justify-center border rounded-[10px] border-[#9F9F9F] mb-4 w-full h-40 px-6 py-3 grow" placeholder="เพิ่มคอมเมนต์..."></textarea>
-            <button class="w-full bg-[#7E82E6] hover:bg-[#6065E1] text-white text-lg p-1 rounded-[5px]">โพสต์</button>
+            <textarea id="" v-model="comment" name="" class="flex justify-center border rounded-[10px] border-[#9F9F9F] mb-4 w-full h-40 px-6 py-3 grow" placeholder="เพิ่มคอมเมนต์..." ></textarea>
+            <button class="w-full bg-[#7E82E6] hover:bg-[#6065E1] text-white text-lg p-1 rounded-[5px]" @click="submit">โพสต์</button>
           </div>
         </div>
-        <div v-for="(item, index) in items" :key="index">
-          <CourseComment/>
+        <div v-for="(comment, index) in comments" :key="index">
+          <CourseComment :comment="comment"/>
         </div>
       </div>
 </template>

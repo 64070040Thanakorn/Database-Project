@@ -4,7 +4,8 @@ export default {
   name: "Course",
   async asyncData({$axios}) {
     const data = await $axios.get('http://localhost:5000/api/course/3')
-    return {items: data.data}
+    const comment = await $axios.get(`http://localhost:5000/api/comment/0663cdbb-43fc-4813-9da7-fecd2e4b5724`)
+    return {items: data.data, comments: comment.data}
   },
   data() {
     return {
@@ -143,7 +144,7 @@ export default {
               <div v-if="showComponent">
                 <CourseDescription />
               </div>
-              <div v-else><CourseReview /></div>
+              <div v-else><CourseReview :comments="comments"/></div>
             </div>
           </div>
 

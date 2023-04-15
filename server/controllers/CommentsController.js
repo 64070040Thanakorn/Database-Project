@@ -5,14 +5,14 @@ const prisma = new PrismaClient();
 // get all Comment in Post
 export const GetCommentByCourseId = async (req, res) => {
   try {
-    const response = await prisma.comments.findUnique({
+    const response = await prisma.comments.findMany({
       where: {
         course_id: req.params.course_id,
       },
     });
     res.status(200).json(response);
   } catch (err) {
-    res.status(404).json({ message: err.message });
+    res.status(404).send({ message: err.message });
   }
 };
 
@@ -30,14 +30,14 @@ export const createComment = async (req, res) => {
   const { content, user_id, course_id } = req.body;
 
   try {
-    const user = await prisma.comments.create({
+    const comment = await prisma.comments.create({
       data: {
         content: content,
         user_id: user_id,
         course_id: course_id,
       },
     });
-    res.status(200).json(user);
+    res.status(200).json(comment);
   } catch (err) {
     res.status(400).json({ message: err.message });
   }

@@ -6,19 +6,28 @@
       >
         <p>N</p>
       </div>
-      <p class="text-[13px] text-[#9F9F9F]">student</p>
+      <p class="text-[13px] text-[#9F9F9F]">{{ $auth.user.role }}</p>
     </div>
     <div class="space-y-1">
       <div class="flex gap-x-4 items-center">
-        <p class="text-[18px]">Thanakorn Sriwannawit</p>
+        <p class="text-[18px]">{{ `${$auth.user.first_name} ${$auth.user.last_name}` }}</p>
         <p class="text-[#D9D9D9] text-[13px]">เมื่อ 2022-04-22 10:34:23</p>
       </div>
       <p class="text-[#9F9F9F] text-[16px]">
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-        Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-        unknown printer took a galley of type and scrambled it to make a type specimen
-        book
+        {{ comment.content }}
       </p>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+    name: "CourseComment",
+    props:{
+      comment: {
+        type: Object,
+        required: true,
+      }
+    },
+}
+</script>
