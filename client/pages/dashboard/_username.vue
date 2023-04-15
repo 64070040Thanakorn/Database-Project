@@ -12,6 +12,9 @@
             <NuxtLink to="/dashboard/course">
               <li class="px-4 py-2 rounded">คอร์สเรียน</li>
             </NuxtLink>
+            <NuxtLink to="/dashboard/managecourse">
+              <li class="px-4 py-2 rounded">จัดการคอร์สเรียน</li>
+            </NuxtLink>
           </ul>
         </div>
         <div class="w-[90%]">

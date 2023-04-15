@@ -4,7 +4,7 @@
     <button
       data-modal-target="createCourse"
       data-modal-toggle="createCourse"
-      class="block text-white bg-[#2B26D8] hover:hover:bg-[#130ec7] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+      class="block text-white bg-[#2B26D8] hover:hover:bg-[#130ec7] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-28 mx-2 py-2.5 px-5 text-center"
       type="button"
     >
       สร้างคอร์ส
