@@ -16,7 +16,8 @@
         </div>
       </div>
 
-      <div v-if="$auth.loggedIn">
+      <div class="flex items-center" v-if="$auth.loggedIn">
+        <NuxtLink to="/search"><img src="../assets/icon/search-icon.png" class="w-[25px] mx-5" alt=""></NuxtLink>
         <div class="flex items-center space-x-4 pr-10">
           <div>
             <h1>{{ $auth.user.username }}</h1>
@@ -25,15 +26,16 @@
 
           <img :src="$auth.user.image" class="h-14 w-14 rounded-full" />
           <button
-            @click="logout"
             class="px-5 text-white rounded-xl font-semibold py-2 text-[13px] bg-[#2b26d8] shadow-xl"
+            @click="logout"
           >
             ลงชื่อออก
           </button>
         </div>
       </div>
 
-      <div v-else>
+      <div class="flex items-center" v-else>
+        <NuxtLink to="/search"><img src="../assets/icon/search-icon.png" class="w-[25px] mx-5" alt=""></NuxtLink>
         <NuxtLink to="/auth/login">
           <button class="px-5 text-black py-2 text-[13px] font-semibold bg-transparent">
             เข้าสู่ระบบ
@@ -47,6 +49,7 @@
           </button>
         </NuxtLink>
       </div>
+
     </nav>
   </div>
 </template>
