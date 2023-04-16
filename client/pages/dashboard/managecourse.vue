@@ -83,9 +83,9 @@
               </div>
             </div>
           </div>
-          <div v-if="false" class="grid grid-cols-5 gap-4 mt-4">
+          <div v-if="true" class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 mt-4 mb-20 mx-7 justify-items-center">
             <div v-for="n in 6" :key="n">
-              <CardItem></CardItem>
+              <EditCard></EditCard>
             </div>
           </div>
           <div v-else class="flex justify-center items-center p-60 text-xl">

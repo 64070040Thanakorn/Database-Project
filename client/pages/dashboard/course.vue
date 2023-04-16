@@ -52,7 +52,7 @@
             </div>
           </div>
 
-          <div v-if="false" class="grid grid-cols-5 gap-4 mt-4">
+          <div v-if="false" class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 mt-4 mb-12 mx-7 justify-items-center">
             <div v-for="n in 6" :key="n">
               <!-- <MainCard></MainCard> -->
             </div>

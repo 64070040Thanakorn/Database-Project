@@ -103,7 +103,7 @@ export default {
   <section>
     <div class="px-52 bg-[#F5F4F8] py-20 space-y-10 rounded-br-[300px]">
       <div class="flex justify-between">
-        <div class="space-y-4 justify-center flex flex-col basis-3/5">
+        <div class="space-y-4 justify-center flex flex-col xl:basis-3/5">
           <p class="font-medium text-7xl">หาคอร์สเรียนที่เหมาะกับคุณ</p>
           <p class="text-4xl text-[#2B26D8]">เว็บไซด์จัดหาคอร์สเรียนที่ดีที่สุด</p>
           <p class="text-[#9F9F9F] text-lg">
@@ -111,7 +111,7 @@ export default {
             Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
           </p>
         </div>
-        <div class="flex justify-center basis-2/5">
+        <div class="hidden xl:flex justify-center xl:basis-2/5">
           <img class="w-[300px] h-auto" src="../assets/search/search_01.png" alt="" />
         </div>
       </div>
@@ -338,8 +338,8 @@ export default {
       <div class="w-full py-8 px-28">
         <p class="font-light">จำนวน {{courses.length}} ผลลัพธ์</p>
         <hr class="border-[1.2px] mt-1 mb-4" />
-        <div class="grid grid-cols-3 gap-4 justify-items-center">
-          <Nuxt-link v-for="(item, index) in courses" :key="index" :to="{path: `course/${item.course_id}`}">
+        <div class="grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4 justify-items-center px-5">
+          <Nuxt-link v-for="(item, index) in courses" :key="index" :to="{path: `course/${item.course_id}`}" class="inline-block">
             <MainCard :item="item"/>
           </Nuxt-link>
         </div>
