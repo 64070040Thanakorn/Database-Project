@@ -49,7 +49,7 @@ model Course {
   price         Int
   level         String
   received      String
-  create_date   DateTime         @default(now())
+  create_date   DateTime         //@default(now())
   end_date      DateTime
   professor_id  String
   start_date    DateTime
