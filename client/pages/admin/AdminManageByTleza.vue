@@ -76,14 +76,13 @@
                     </li>
                   </ul>
                 </div>
-                <ModalCreateCourse />
               </div>
             </div>
           </div>
-          <div>
-            <table>
+          <div class="w-full">
+            <table class="w-full">
               <thead class="bg-[#F8F8F8] rounded-lg">
-                <tr>
+                <tr class="">
                   <td class="px-4 py-3 font-semibold">ID</td>
                   <td class="px-4 py-3 font-semibold">First_name</td>
                   <td class="px-4 py-3 font-semibold">Last_name</td>
@@ -95,7 +94,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="(user, index) in data" :key="index">
+                <tr v-for="(user, index) in data" :key="index" class="text-sm">
                   <td class="border-b border-[#F4F4F4] px-4 py-3">{{ user.user_id }}</td>
                   <td class="border-b border-[#F4F4F4] px-4 py-3">{{ user.first_name }}</td>
                   <td class="border-b border-[#F4F4F4] px-4 py-3">{{ user.last_name }}</td>

@@ -45,7 +45,7 @@ model Professors {
 model Course {
   course_id     String           @id @default(uuid())
   title         String
-  description   String?
+  description   String?          @db.VarChar(255)
   price         Int
   level         String
   received      String

@@ -1,3 +1,14 @@
+<script>
+export default {
+  async asyncData({$axios}) {
+    const random = await $axios.get("http://localhost:5000/api/course/randomCourse/7");
+    return {courses: random.data}
+  },
+}
+
+</script>
+
+
 <template>
   <div class="flex justify-center">
     <div class="flex flex-col my-10 mx-20 w-[90%]">
@@ -51,10 +62,9 @@
               </div>
             </div>
           </div>
-
-          <div v-if="false" class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 mt-4 mb-12 mx-7 justify-items-center">
-            <div v-for="n in 6" :key="n">
-              <!-- <MainCard></MainCard> -->
+          <div v-if="true" class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 mt-4 mb-12 mx-7 justify-items-center">
+            <div v-for="(item, index) in courses" :key="index">
+              <MainCard :item="item"></MainCard>
             </div>
           </div>
           <div v-else class="flex justify-center items-center p-60 text-xl">

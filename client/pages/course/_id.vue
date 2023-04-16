@@ -189,9 +189,9 @@ export default {
             </div>
           </div>
         </div>
-        <div v-if="showComponent">
+        <!-- <div v-if="showComponent">
           <CourseTable />
-        </div>
+        </div> -->
 
         <!-- <div class="border-2 border-black p-72 mt-16"></div> -->
       </div>

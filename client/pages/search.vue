@@ -133,12 +133,12 @@ export default {
     <div class="container mx-auto flex">
       <div class="w-[30%]">
         <div class="flex flex-col p-8 overflow-y-auto h-full w-full">
-          <div class="flex flex-col">
+          <!-- <div class="flex flex-col">
             <div class="flex items-center">
               <h3 class="text-2xl font-medium text-[#2B26D8]">คณิตศาสตร์</h3>
             </div>
-          </div>
-          <div class="flex flex-col gap-4 mt-4">
+          </div> -->
+          <div class="flex flex-col gap-4">
             <div class="flex justify-between items-center">
               <div class="flex gap-2 items-center">
                 <!-- icon filter -->
