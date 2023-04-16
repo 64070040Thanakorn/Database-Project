@@ -6,40 +6,31 @@
             </caption>
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg mx-24 my-24">
                 <FullCalendar :options="calendarOptions" class="bg-white">
-                    <template v-slot:eventContent='arg'>
-                        <b>{{ arg.event.title }}</b>
-                    </template>
                 </FullCalendar>
             </div>
-            <Footer></Footer>
         </div>
     </div>
 </template>
   
 <script>
-import 'flowbite';
-import FullCalendar from '@fullcalendar/vue'
-import dayGridPlugin from '@fullcalendar/daygrid'
-import interactionPlugin from '@fullcalendar/interaction'
-import bootstrap5Plugin from '@fullcalendar/bootstrap5';
-
-
+import dayGridPlugin from '@fullcalendar/daygrid';
+import interactionPlugin from '@fullcalendar/interaction';
+import FullCalendar from '@fullcalendar/vue';
 
 export default {
+    name: 'StudyTable',
     components: {
         FullCalendar,
     },
-    name: 'StudyTable',
     data() {
         return {
             calendarOptions: {
-                plugins: [dayGridPlugin, interactionPlugin, bootstrap5Plugin],
+                plugins: [dayGridPlugin, interactionPlugin],
                 initialView: 'dayGridMonth',
                 events: [
-                    { title: 'event 1', date: '2023-04-10' },
-                    { title: 'event 2', date: '2023-04-02' }
+                    { title: 'PAT1', start: '2023-04-10', end: '2023-04-15' },
+                    { title: 'PAT2', date: '2023-04-02' }
                 ],
-                themeSystem: 'bootstrap5',
                 locale: 'th',
                 buttonText: {
                     today: 'กลับไปที่วันนี้'
