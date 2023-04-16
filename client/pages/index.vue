@@ -46,7 +46,7 @@
         <div class="col-span-7">
           <div class="font-semibold py-16 ml-4">
             <p class="text-[25px]">
-              <span class="text-[#2B26D8]">On</span>Demand คอร์สติวเข้ม
+              <span class="text-[#2B26D8]">DEAD</span>Line คอร์สติวเข้ม
               เรียนพิเศษออนไลน์
             </p>
             <p class="mt-2 text-[18px] text-[#7C7C7C] ml-5 w-8/12">
