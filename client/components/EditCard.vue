@@ -26,7 +26,7 @@
           href="#"
           class="inline-flex items-center justify-center w-28 px-3 py-2 text-sm font-normal text-center text-green-600 bg-transparent hover:text-green-800"
         >
-      e   แก้ไขคอร์ส
+          แก้ไขคอร์ส
         </a>
         <a
           href="#"

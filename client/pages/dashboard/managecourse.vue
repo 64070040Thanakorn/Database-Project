@@ -102,7 +102,7 @@
             class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 mt-4 mb-20 mx-7 justify-items-center"
           >
             <div v-for="(item, index) in courses" :key="index">
-              <MainCard :item="item"></MainCard>
+              <EditCard :item="item"></EditCard>
             </div>
           </div>
           <div v-else class="flex justify-center items-center p-60 text-xl">
