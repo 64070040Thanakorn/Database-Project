@@ -37,11 +37,13 @@ CREATE TABLE `Professors` (
 CREATE TABLE `Course` (
     `course_id` VARCHAR(191) NOT NULL,
     `title` VARCHAR(191) NOT NULL,
-    `description` VARCHAR(255) NULL,
+    `category` VARCHAR(191) NULL,
+    `description` VARCHAR(191) NULL,
+    `info` VARCHAR(191) NULL,
     `price` INTEGER NOT NULL,
     `level` VARCHAR(191) NOT NULL,
     `received` VARCHAR(191) NOT NULL,
-    `create_date` DATETIME(3) NOT NULL,
+    `create_date` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `end_date` DATETIME(3) NOT NULL,
     `professor_id` VARCHAR(191) NOT NULL,
     `start_date` DATETIME(3) NOT NULL,
@@ -66,6 +68,7 @@ CREATE TABLE `CourseRating` (
     `course_rating_id` VARCHAR(191) NOT NULL,
     `course_id` VARCHAR(191) NOT NULL,
     `student_id` VARCHAR(191) NOT NULL,
+    `course_rating` DOUBLE NULL DEFAULT 0,
 
     PRIMARY KEY (`course_rating_id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -75,6 +78,7 @@ CREATE TABLE `ProfessorRating` (
     `professor_rating_id` VARCHAR(191) NOT NULL,
     `professor_id` VARCHAR(191) NOT NULL,
     `student_id` VARCHAR(191) NOT NULL,
+    `professor_rating` DOUBLE NULL DEFAULT 0,
 
     PRIMARY KEY (`professor_rating_id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -120,6 +124,7 @@ ALTER TABLE `StudentsEnroll` ADD CONSTRAINT `StudentsEnroll_course_id_fkey` FORE
 
 -- AddForeignKey
 ALTER TABLE `StudentsEnroll` ADD CONSTRAINT `StudentsEnroll_student_id_fkey` FOREIGN KEY (`student_id`) REFERENCES `Students`(`student_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
 
 
 -- DATA
