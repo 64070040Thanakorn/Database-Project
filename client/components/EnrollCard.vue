@@ -9,7 +9,7 @@
     />
     <div class="basis-7/12 p-4 gap-y-1 flex flex-col justify-between">
       <div>
-        <p class="text-xl">{{ item.course.title }}</p>
+        <p class="text-xl">{{ item.course.title }} {{item.course.status? "จบแล้ว": "ยังไม่จบ"}}</p>
         <div class="flex justify-between item.courses-center">
           <p class="text-[#4C47DE] text-sm">
             {{ item.course.level }}, {{ item.course.received }}
