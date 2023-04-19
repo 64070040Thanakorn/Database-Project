@@ -6,7 +6,8 @@ import {
   deleteUser,
   AuthMe,
   AuthLogin,
-  updateUser
+  updateUser,
+  professorRating
 } from '../controllers/UsersController.js';
 
 import jwt from 'jsonwebtoken'
@@ -34,6 +35,8 @@ router.post('/users', createUser)
 router.post('/login', AuthLogin)
 
 router.get('/me', authenticateToken, AuthMe)
+
+router.post('/professorRating/:professor_id', authenticateToken, professorRating)
 
 router.patch('/users/:id', updateUser)
 

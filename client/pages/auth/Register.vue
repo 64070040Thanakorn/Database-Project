@@ -152,7 +152,6 @@ export default {
           console.log(respones)
         })
         .catch((err) => {
-          alert("This email is already exists!")
           console.log(err)
         })
       }
