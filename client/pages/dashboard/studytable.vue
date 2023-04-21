@@ -12,7 +12,7 @@
             <NuxtLink to="/dashboard/course">
               <li class="px-4 py-2 rounded">คอร์สเรียน</li>
             </NuxtLink>
-            <NuxtLink to="/dashboard/managecourse">
+            <NuxtLink v-if="$auth.user.role === 'Professor'" to="/dashboard/managecourse">
               <li class="px-4 py-2 rounded">จัดการคอร์สเรียน</li>
             </NuxtLink>
             <NuxtLink to="/dashboard/studytable">
@@ -27,9 +27,7 @@
                       📅 ตารางเรียนของฉัน
                   </caption>
                   <div>
-                    <FullCalendar :options="calendarOptions" class="bg-white">
-                      
-                    </FullCalendar>
+                    <FullCalendar :options="calendarOptions" class="bg-white" />
                   </div>
               </div>
           </div>
@@ -79,7 +77,6 @@ export default {
 
         this.calendarOptions.events.push(course)
       });
-      console.log(this.calendarOptions.events);
     }
 }
 </script>

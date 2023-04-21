@@ -23,7 +23,7 @@ export default {
             <NuxtLink to="/dashboard/course">
               <li class="bg-gray-100 font-bold px-4 py-2 rounded">คอร์สเรียน</li>
             </NuxtLink>
-            <NuxtLink to="/dashboard/managecourse">
+            <NuxtLink v-if="$auth.user.role === 'Professor'" to="/dashboard/managecourse">
               <li class="px-4 py-2 rounded">จัดการคอร์สเรียน</li>
             </NuxtLink>
             <NuxtLink to="/dashboard/studytable">
