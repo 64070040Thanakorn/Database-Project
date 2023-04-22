@@ -20,13 +20,13 @@ export default {
             <NuxtLink  to="/dashboard/username">
               <li class="px-4 py-2 rounded">รายละเอียดของฉัน</li>
             </NuxtLink>
-            <NuxtLink to="/dashboard/course">
+            <NuxtLink v-if="$auth.user.role === 'Student'" to="/dashboard/course">
               <li class="bg-gray-100 font-bold px-4 py-2 rounded">คอร์สเรียน</li>
             </NuxtLink>
             <NuxtLink v-if="$auth.user.role === 'Professor'" to="/dashboard/managecourse">
               <li class="px-4 py-2 rounded">จัดการคอร์สเรียน</li>
             </NuxtLink>
-            <NuxtLink to="/dashboard/studytable">
+            <NuxtLink v-if="$auth.user.role === 'Student'" to="/dashboard/studytable">
               <li class="px-4 py-2 rounded">ตารางเรียน</li>
             </NuxtLink>
           </ul>
