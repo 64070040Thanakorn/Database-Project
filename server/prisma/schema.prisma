@@ -45,7 +45,7 @@ model Professors {
 model Course {
   course_id     String           @id @default(uuid())
   title         String
-  category      String? //แก้ not null
+  category      String
   description   String?
   info          String?
   price         Int
@@ -64,19 +64,20 @@ model Course {
 }
 
 model Comments {
-  comment_id String @id @default(uuid())
-  content    String
-  user_id    String
-  course_id  String
-  course     Course @relation(fields: [course_id], references: [course_id], onDelete: Cascade)
-  user       Users  @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
+  comment_id   String   @id @default(uuid())
+  content      String
+  user_id      String
+  course_id    String
+  comment_date DateTime @default(now())
+  course       Course   @relation(fields: [course_id], references: [course_id], onDelete: Cascade)
+  user         Users    @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
 }
 
 model CourseRating {
   course_rating_id String   @id @default(uuid())
   course_id        String
   student_id       String
-  course_rating    Float?   @default(0) //แก้ not null
+  course_rating    Float    @default(0)
   course           Course   @relation(fields: [course_id], references: [course_id], onDelete: Cascade)
   student          Students @relation(fields: [student_id], references: [student_id], onDelete: Cascade)
 }
@@ -85,7 +86,7 @@ model ProfessorRating {
   professor_rating_id String     @id @default(uuid())
   professor_id        String
   student_id          String
-  professor_rating    Float?     @default(0) //แก้ not null
+  professor_rating    Float      @default(0)
   professor           Professors @relation(fields: [professor_id], references: [professor_id], onDelete: Cascade)
   student             Students   @relation(fields: [student_id], references: [student_id], onDelete: Cascade)
 }
@@ -93,7 +94,7 @@ model ProfessorRating {
 model StudentsEnroll {
   student_id  String
   course_id   String
-  enroll_date DateTime
+  enroll_date DateTime @default(now())
   course      Course   @relation("CourseEnrollments", fields: [course_id], references: [course_id], onDelete: Cascade)
   student     Students @relation("StudentEnrollments", fields: [student_id], references: [student_id], onDelete: Cascade)
 

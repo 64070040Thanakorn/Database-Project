@@ -1,8 +1,8 @@
 <script>
 export default {
   async asyncData({$axios}) {
-    const random = await $axios.get("http://localhost:5000/api/course/randomCourse/7");
-    return {courses: random.data}
+    const items = await $axios.post("http://localhost:5000/api/course/getCourseEnroll");
+    return {courses: items.data}
   },
 }
 
@@ -23,7 +23,7 @@ export default {
             <NuxtLink to="/dashboard/course">
               <li class="bg-gray-100 font-bold px-4 py-2 rounded">คอร์สเรียน</li>
             </NuxtLink>
-            <NuxtLink to="/dashboard/managecourse">
+            <NuxtLink v-if="$auth.user.role === 'Professor'" to="/dashboard/managecourse">
               <li class="px-4 py-2 rounded">จัดการคอร์สเรียน</li>
             </NuxtLink>
             <NuxtLink to="/dashboard/studytable">
@@ -66,9 +66,9 @@ export default {
             </div>
           </div>
           <div v-if="true" class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 mt-4 mb-12 mx-7 justify-items-center">
-            <div v-for="(item, index) in courses" :key="index">
-              <MainCard :item="item"></MainCard>
-            </div>
+            <NuxtLink v-for="(item, index) in courses" :key="index" :to="{ path: `/course/${item.course.course_id}`}">
+              <EnrollCard :item="item"></EnrollCard>
+            </NuxtLink>
           </div>
           <div v-else class="flex justify-center items-center p-60 text-xl">
               <p>คุณยังไม่มีคอร์สที่เรียน <Nuxt-link to="/search" class="text-purple-700">ลงคอร์สเรียนที่สนใจตอนนี้!</Nuxt-link></p>

@@ -12,7 +12,7 @@
             <NuxtLink to="/dashboard/course">
               <li class="px-4 py-2 rounded">คอร์สเรียน</li>
             </NuxtLink>
-            <NuxtLink to="/dashboard/managecourse">
+            <NuxtLink v-if="$auth.user.role === 'Professor'" to="/dashboard/managecourse">
               <li class="px-4 py-2 rounded">จัดการคอร์สเรียน</li>
             </NuxtLink>
             <NuxtLink to="/dashboard/studytable">
@@ -27,9 +27,7 @@
                       📅 ตารางเรียนของฉัน
                   </caption>
                   <div>
-                    <FullCalendar :options="calendarOptions" class="bg-white">
-                      
-                    </FullCalendar>
+                    <FullCalendar :options="calendarOptions" class="bg-white" />
                   </div>
               </div>
           </div>
@@ -49,24 +47,38 @@ export default {
     components: {
         FullCalendar,
     },
+    async asyncData({$axios}){
+      const items = await $axios.post("http://localhost:5000/api/course/getCourseEnroll");
+    return { courses: items.data }
+    },
     data() {
         return {
             calendarOptions: {
                 plugins: [dayGridPlugin, interactionPlugin],
                 initialView: 'dayGridMonth',
-                events: [
-                    { title: 'PAT1', start: '2023-04-10', end: '2023-04-15' },
-                    { title: 'PAT2', date: '2023-04-02' }
-                ],
+                events: [],
+                // events: [
+                //     { title: 'PAT1', start: '2023-04-10', end: '2023-04-15' },
+                // ],
                 locale: 'th',
                 buttonText: {
                     today: 'กลับไปที่วันนี้'
                 }
-            }
+            },
         }
     },
+    mounted(){
+      this.courses.forEach(index => {
+        const course = {
+          title: index.course.title,
+          start: index.course.start_date.split('T')[0],
+          end: index.course.end_date.split('T')[0]
+        }
+
+        this.calendarOptions.events.push(course)
+      });
+    }
 }
-// ไปขี้เด้อ
 </script>
 
 <style>

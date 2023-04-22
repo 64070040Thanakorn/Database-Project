@@ -16,6 +16,11 @@ export default {
     toggleComponent() {
       this.showComponent = !this.showComponent;
     },
+    enroll() {
+      this.$axios
+      .post(`http://localhost:5000/api/course/courseEnroll/${this.$route.params.id}`)
+      .then(this.$nuxt.$router.push("/dashboard/course"))
+    }
   },
 };
 </script>
@@ -71,9 +76,7 @@ export default {
             </div>
             <div>
               <div class="flex">
-                <RouterLink to="">
-                  <div class="rounded bg-[#2B26D8] text-white px-12 py-2">ลงคอร์สเรียน</div>
-                </RouterLink>
+                  <a href="" class="rounded bg-[#2B26D8] text-white px-12 py-2" @click="enroll()">ลงคอร์สเรียน</a>
               </div>
             </div>
             

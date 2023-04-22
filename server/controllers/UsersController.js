@@ -82,18 +82,7 @@ export const GetUserById = async (req, res) => {
 
 }
 
-
-
-// create User 
-// postman => {
-//   firstName String
-//   lastName String
-//   userName String
-// password String
-//   email String
-//   image String
-// }
-
+// create user
 export const createUser = async (req, res) => {
   const { first_name, last_name, username, password, email, image, role } = req.body;
   const hash = await bcrypt.hash(password, 13);
@@ -148,6 +137,25 @@ export const createUser = async (req, res) => {
     res.status(400).json({ message: err.message });
   }
 };
+
+// professor rating
+export const professorRating = async (req, res) => {
+    const { professor_rating} = req.body
+    const data = await prisma.users.findUnique({ where: { user_id: req.user.sub }, include: {students: true} })
+    const student_id = data.students.student_id
+    try {
+      const rating = await prisma.professorRating.create({
+        data: {
+          student_id: student_id,
+          professor_id: req.params.professor_id,
+          professor_rating: professor_rating
+        },
+      });
+      res.status(200).json(rating)
+    } catch (error) {
+      res.status(400).json({ message: error.message})
+    }
+  }
 
 // update someone user
 export const updateUser = async (req, res) => {
