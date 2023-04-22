@@ -1,0 +1,17 @@
+{
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "mariadb.cluster.moonrhythm.io",
+            "port": 3306,
+            "driver": "MariaDB",
+            "name": "Database FEWW",
+            "database": "db_jkj8",
+            "username": "db_jkj8",
+            "password": "fv9BEKGkWsJTJvGsWDMzO8LQdOQz2J4Y"
+        }
+    ]
+}
