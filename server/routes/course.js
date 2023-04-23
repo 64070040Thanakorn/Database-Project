@@ -1,5 +1,5 @@
 import express from "express";
-import { getCourse, createCourse, randomizeCourse, getCourseById, courseEnroll, courseRating, getCourseEnroll } from "../controllers/CourseController.js";
+import { getCourse, createCourse, randomizeCourse, getCourseById, courseEnroll, getCourseEnroll, getManageCourse, createCourseRating } from "../controllers/CourseController.js";
 import jwt from 'jsonwebtoken'
 
 const router = express.Router();
@@ -25,11 +25,13 @@ router.get("/randomCourse/:type", randomizeCourse);
 
 router.post("/getCourseEnroll/", authenticateToken, getCourseEnroll)
 
+router.post("/getManageCourse/", authenticateToken, getManageCourse)
+
 router.post("/createCourse", authenticateToken, createCourse);
 
 router.post("/courseEnroll/:course_id", authenticateToken, courseEnroll);
 
-router.post("/courseRating/:course_id", authenticateToken, courseRating);
+router.post("/createCourseRating/:course_id", authenticateToken, createCourseRating);
 
 
 

@@ -11,7 +11,7 @@
     <div class="space-y-1">
       <div class="flex gap-x-4 items-center">
         <p class="text-[18px]">{{ `${comment.user.first_name} ${comment.user.last_name}` }}</p>
-        <p class="text-[#D9D9D9] text-[13px]">เมื่อ 2022-04-22 10:34:23</p>
+        <p class="text-[#D9D9D9] text-[13px]">เมื่อ {{comment.comment_date}}</p>
       </div>
       <p class="text-[#9F9F9F] text-[16px]">
         {{ comment.content }}

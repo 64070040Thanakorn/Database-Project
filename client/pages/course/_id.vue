@@ -190,6 +190,11 @@ export default {
                 <li>{{ item }}</li>
               </ul>
             </div>
+            <div v-if="$auth.user.role === 'Student' && courses[0].status" class="mt-7 space-y-2">
+              <p class="text-[20px]">ให้คะแนน </p>
+              <Nuxt-link to="" class="flex bg-[#44ABD4] justify-center rounded-[5px] text-white p-1">คอร์ส</Nuxt-link>
+              <Nuxt-link to="" class="flex bg-[#7E82E6] justify-center rounded-[5px] text-white p-1">อาจารย์</Nuxt-link>
+            </div>
           </div>
         </div>
         <!-- <div v-if="showComponent">

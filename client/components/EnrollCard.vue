@@ -9,7 +9,9 @@
     />
     <div class="basis-7/12 p-4 gap-y-1 flex flex-col justify-between">
       <div>
-        <p class="text-xl">{{ item.course.title }} {{item.course.status? "จบแล้ว": "ยังไม่จบ"}}</p>
+        <div class="flex justify-between">
+          <p class="text-xl">{{ item.course.title }}</p>
+          <p :class="{'text-red-500': item.course.status, 'text-green-700': !item.course.status}">{{item.course.status? "จบแล้ว": "ยังไม่จบ"}}</p></div>
         <div class="flex justify-between item.courses-center">
           <p class="text-[#4C47DE] text-sm">
             {{ item.course.level }}, {{ item.course.received }}
@@ -25,9 +27,13 @@
         </p>
       </div>
 
-      <div class="flex justify-between items-center">
-        <p class="text-[#9F9F9F] font-light text-[10px]">เมื่อ {{ item.enroll_date }}</p>
-        <p class="text-[#467A55]">{{ item.course.price }} บาท</p>
+      <div>
+        <div class="text-sm text-green-900">เริ่มเมื่อ: {{ item.course.start_date }}</div>
+        <div class="text-sm text-red-800">จบเมื่อ: {{ item.course.end_date }}</div>
+        <div class="flex justify-between items-center">
+          <p class="text-[#9F9F9F] font-light text-[10px]">วันที่ลง {{ item.enroll_date }}</p>
+          <p class="text-[#467A55]">{{ item.course.price }} บาท</p>
+        </div>
       </div>
     </div>
     <!-- <div class="flex justify-between mx-2 mt-12">

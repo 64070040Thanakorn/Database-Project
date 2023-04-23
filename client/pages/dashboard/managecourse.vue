@@ -1,14 +1,3 @@
-//
-<script>
-// export default {
-//   async asyncData({ $axios }) {
-//     const random = await $axios.get("http://localhost:5000/api/course/randomCourse/7");
-//     return { courses: random.data };
-//   },
-// };
-//
-</script>
-
 <template>
   <div class="flex justify-center">
     <div class="flex flex-col my-10 mx-20 w-[90%]">
@@ -101,9 +90,9 @@
             v-if="true"
             class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 mt-4 mb-20 mx-7 justify-items-center"
           >
-            <div v-for="(item, index) in courses" :key="index">
+            <Nuxt-link v-for="(item, index) in courses" :key="index" :to="{ path:`/course/${item.course_id}` }">
               <EditCard :item="item"></EditCard>
-            </div>
+            </Nuxt-link>
           </div>
           <div v-else class="flex justify-center items-center p-60 text-xl">
             <p>
@@ -127,8 +116,8 @@ export default {
     } else if ($auth.user.role !== "Professor") {
       redirect("/");
     }
-    const random = await $axios.get("http://localhost:5000/api/course/randomCourse/3");
-    return { courses: random.data };
+    const course = await $axios.post("http://localhost:5000/api/course/getManageCourse");
+    return { courses: course.data };
   },
   methods: {},
 };

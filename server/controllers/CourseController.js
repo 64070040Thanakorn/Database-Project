@@ -167,8 +167,31 @@ export const getCourseEnroll = async (req, res) => {
   }
 };
 
-// course rating
-export const courseRating = async (req, res) => {
+export const getManageCourse = async (req, res) => {
+  const data = await prisma.users.findUnique({ where: { user_id: req.user.sub }, include: { professors: true } });
+  const professor_id = data.professors.professor_id;
+  try {
+    const getCourse = await prisma.course.findMany({
+      where: {
+        professor_id: professor_id
+      },
+      include: {
+        professor: {
+          include: {
+            user: true,
+          },
+        },
+      },
+    });
+    res.status(200).json(getCourse);
+  } catch (error) {
+    res.status(400).json({message: error.message})
+  }
+}
+
+
+// create course rating
+export const createCourseRating = async (req, res) => {
   const { course_rating } = req.body;
   const data = await prisma.users.findUnique({ where: { user_id: req.user.sub }, include: { students: true } });
   const student_id = data.students.student_id;
@@ -185,3 +208,5 @@ export const courseRating = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
+
+
