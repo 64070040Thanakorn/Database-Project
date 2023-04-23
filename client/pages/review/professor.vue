@@ -1,11 +1,8 @@
 <template>
     <div>
-        <NavBar />
-        
         <div class="mx-auto pb-20" style="width: 75%;">
             <div>
                 <div class="text-xl mt-5">
-                    <h1>วิชาที่เรียน: ฝึกเนตรวงแหวน</h1>
                     <h1>ชื่อผู้สอน: &nbsp;&nbsp;พลจัตวา ธนาธิป สิงหานนท์</h1>
                 </div>
 
@@ -54,7 +51,7 @@
                                     <p>คู่มือในการเรียนอ่านเข้าใจง่ายและสามารถนำไปใช้ได้จริง</p>
                                 </td>
                                 <td colspan="5" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                    <input id="steps-range" type="range" min="0" max="5" value="0" step="1" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointe">
+                                    <input id="steps-range" type="range" min="1" max="5" value="0" step="1" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointe">
                                 </td>
                             </tr>
 
@@ -63,7 +60,7 @@
                                     <p>เนื้อหาวิชามีความสอดคล้องกับวัตถุประสงค์</p>
                                 </td>
                                 <td colspan="5" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                    <input id="steps-range" type="range" min="0" max="5" value="0" step="1" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointe">
+                                    <input id="steps-range" type="range" min="1" max="5" value="0" step="1" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointe">
                                 </td>
                             </tr>
 
@@ -72,7 +69,7 @@
                                     <p>เนื้อหาวิชามีความน่าสนใจ</p>
                                 </td>
                                 <td colspan="5" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                    <input id="steps-range" type="range" min="0" max="5" value="0" step="1" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointe">
+                                    <input id="steps-range" type="range" min="1" max="5" value="0" step="1" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointe">
                                 </td>
                             </tr>
 
@@ -81,7 +78,7 @@
                                     <p>ได้รับความรู้เพิ่มหลังจากการเรียน</p>
                                 </td>
                                 <td colspan="5" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                    <input id="steps-range" type="range" min="0" max="5" value="0" step="1" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointe">
+                                    <input id="steps-range" type="range" min="1" max="5" value="0" step="1" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointe">
                                 </td>
                             </tr>
 
@@ -99,7 +96,7 @@
                                     <p>ผู้สอนมีความตั้งใจสอน</p>
                                 </td>
                                 <td colspan="5" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                    <input id="steps-range" type="range" min="0" max="5" value="0" step="1" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointe">
+                                    <input id="steps-range" type="range" min="1" max="5" value="0" step="1" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointe">
                                 </td>
                             </tr>
 
@@ -108,7 +105,7 @@
                                     <p>มีการใช้สื่อและอุปกรณ์การสอนเหมาะสมกับเนื้อหาวิชา</p>
                                 </td>
                                 <td colspan="5" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                    <input id="steps-range" type="range" min="0" max="5" value="0" step="1" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointe">
+                                    <input id="steps-range" type="range" min="1" max="5" value="0" step="1" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointe">
                                 </td>
                             </tr>
 
@@ -117,7 +114,7 @@
                                     <p>การบรรยายใช้เสียงชัดเจน ถูกต้องและใช้ภาษาที่เหมาะสมเข้าใจง่าย</p>
                                 </td>
                                 <td colspan="5" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                    <input id="steps-range" type="range" min="0" max="5" value="0" step="1" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointe">
+                                    <input id="steps-range" type="range" min="1" max="5" value="0" step="1" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointe">
                                 </td>
                             </tr>
 
@@ -126,7 +123,7 @@
                                     <p>บุคลิกภาพและการแต่งกายของผู้สอน</p>
                                 </td>
                                 <td colspan="5" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                    <input id="steps-range" type="range" min="0" max="5" value="0" step="1" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointe">
+                                    <input id="steps-range" type="range" min="1" max="5" value="0" step="1" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointe">
                                 </td>
                             </tr>
 
@@ -135,7 +132,7 @@
                                     <p>มีวิธีการสอนที่ทำให้นักเรียนเข้าใจบทเรียนได้ง่าย</p>
                                 </td>
                                 <td colspan="5" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                    <input id="steps-range" type="range" min="0" max="5" value="0" step="1" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointe">
+                                    <input id="steps-range" type="range" min="1" max="5" value="0" step="1" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointe">
                                 </td>
                             </tr>
 
@@ -144,7 +141,7 @@
                                     <p>มีการสรุปและวิเคราะห์ผลให้นักศึกษาเกิดการเรียนรู้มากขึ้น</p>
                                 </td>
                                 <td colspan="5" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                    <input id="steps-range" type="range" min="0" max="5" value="0" step="1" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointe">
+                                    <input id="steps-range" type="range" min="1" max="5" value="0" step="1" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointe">
                                 </td>
                             </tr>
 
@@ -153,7 +150,7 @@
                                     <p>มีการแนะนำหนังสือและแหล่งค้นคว้าเพิ่มเติมนอกเหนือจากตำรา หรือเอกสารประกอบการสอนที่ใช้อยู่</p>
                                 </td>
                                 <td colspan="5" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                    <input id="steps-range" type="range" min="0" max="5" value="0" step="1" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointe">
+                                    <input id="steps-range" type="range" min="1" max="5" value="0" step="1" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointe">
                                 </td>
                             </tr>
 
@@ -171,7 +168,7 @@
                                     <p>มีการกระตุ้นให้นักเรียนค้นคว้าด้วยตนเองพร้อมแนวทางและแหล่งค้นคว้า</p>
                                 </td>
                                 <td colspan="5" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                    <input id="steps-range" type="range" min="0" max="5" value="0" step="1" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointe">
+                                    <input id="steps-range" type="range" min="1" max="5" value="0" step="1" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointe">
                                 </td>
                             </tr>
 
@@ -180,7 +177,7 @@
                                     <p>มีการกระตุ้นให้เกิดกระบวนการคิด การตั้งปัญหา และการวิเคราะห์</p>
                                 </td>
                                 <td colspan="5" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                    <input id="steps-range" type="range" min="0" max="5" value="0" step="1" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointe">
+                                    <input id="steps-range" type="range" min="1" max="5" value="0" step="1" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointe">
                                 </td>
                             </tr>
 
@@ -189,7 +186,7 @@
                                     <p>การวัดผลครอบคลุมเนื้อหาที่เรียน</p>
                                 </td>
                                 <td colspan="5" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                    <input id="steps-range" type="range" min="0" max="5" value="0" step="1" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointe">
+                                    <input id="steps-range" type="range" min="1" max="5" value="0" step="1" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointe">
                                 </td>
                             </tr>
 

@@ -7,16 +7,16 @@
         <div class="mr-20 w-[15%]">
           <ul>
             <NuxtLink to="/admin/ManageUser">
-              <li class="bg-gray-100 font-semibold px-4 py-2 rounded">จัดการผู้ใช้</li>
+              <li class="px-4 py-2 rounded">จัดการผู้ใช้</li>
             </NuxtLink>
             <NuxtLink to="/admin/ManageCourse">
-              <li class="px-4 py-2 rounded">จัดการคอร์สเรียน</li>
+              <li class="bg-gray-100 font-semibold px-4 py-2 rounded">จัดการคอร์สเรียน</li>
             </NuxtLink>
           </ul>
         </div>
         <div class="w-[85%] space-y-10">
           <div class="flex justify-between">
-            <label for="" class="text-4xl mx-4">จัดการผู้ใช้</label>
+            <label for="" class="text-4xl mx-4">จัดการคอร์สเรียน</label>
             <div class="flex w-[50%]">
               <form class="w-full">
                 <input
