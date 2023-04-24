@@ -20,6 +20,54 @@ export const getCourse = async (req, res) => {
   }
 };
 
+
+export const GetCourse = async (req, res) => {
+  try {
+    const response = await prisma.course.findMany()
+    res.status(200).json(response)
+  } catch (err) {
+    res.status(500).json({ message: err.message })
+  }
+}
+
+//DeleteCourse
+export const DeleteCourse = async (req, res) => {
+  try {
+    const data = req.params
+    const id = data.id
+    const deletedUser = await prisma.course.delete({
+      where: {
+        course_id: id,
+      },
+    })
+    res.status(200).json(deletedUser)
+  } catch (err) {
+    res.status(500).json({ message: err.message })
+  }
+}
+
+export const UpdateCourse = async (req, res) => {
+  try {
+    const data = req.body
+
+    const id = data.course_id
+
+    data["start_date"] = new Date(data["start_date"])
+    data["end_date"] = new Date(data["end_date"])
+
+    const updatedUser = await prisma.course.update({
+      where: {
+        course_id: id,
+      },
+      data: data,
+    })
+    res.status(200).json(updatedUser)
+  } catch (err) {
+    res.status(500).json({ message: err.message })
+  }
+}
+
+
 // get Course by id
 
 export const getCourseById = async (req, res) => {
@@ -163,7 +211,7 @@ export const getCourseEnroll = async (req, res) => {
     });
     res.status(200).json(getCourse);
   } catch (error) {
-    res.status(400).json({message: error.message})
+    res.status(400).json({ message: error.message })
   }
 };
 
@@ -185,7 +233,7 @@ export const getManageCourse = async (req, res) => {
     });
     res.status(200).json(getCourse);
   } catch (error) {
-    res.status(400).json({message: error.message})
+    res.status(400).json({ message: error.message })
   }
 }
 

@@ -7,7 +7,9 @@
         <div class="mr-20 w-[15%]">
           <ul>
             <NuxtLink to="/admin/ManageUser">
-              <li class="bg-gray-100 font-semibold px-4 py-2 rounded">จัดการผู้ใช้</li>
+              <li class="bg-gray-100 font-semibold px-4 py-2 rounded">
+                จัดการผู้ใช้
+              </li>
             </NuxtLink>
             <NuxtLink to="/admin/ManageCourse">
               <li class="px-4 py-2 rounded">จัดการคอร์สเรียน</li>
@@ -59,10 +61,14 @@
                     aria-labelledby="dropdownDefaultButton"
                   >
                     <li>
-                      <a href="#" class="block px-4 py-2 hover:bg-gray-100">A - Z</a>
+                      <a href="#" class="block px-4 py-2 hover:bg-gray-100"
+                        >A - Z</a
+                      >
                     </li>
                     <li>
-                      <a href="#" class="block px-4 py-2 hover:bg-gray-100">Z - A</a>
+                      <a href="#" class="block px-4 py-2 hover:bg-gray-100"
+                        >Z - A</a
+                      >
                     </li>
                     <li>
                       <a href="#" class="block px-4 py-2 hover:bg-gray-100"
@@ -95,15 +101,21 @@
               </thead>
               <tbody>
                 <tr v-for="(user, index) in data" :key="index" class="text-sm">
-                  <td class="border-b border-[#F4F4F4] px-4 py-3">{{ user.user_id }}</td>
+                  <td class="border-b border-[#F4F4F4] px-4 py-3">
+                    {{ user.user_id }}
+                  </td>
                   <td class="border-b border-[#F4F4F4] px-4 py-3">
                     {{ user.first_name }}
                   </td>
                   <td class="border-b border-[#F4F4F4] px-4 py-3">
                     {{ user.last_name }}
                   </td>
-                  <td class="border-b border-[#F4F4F4] px-4 py-3">{{ user.username }}</td>
-                  <td class="border-b border-[#F4F4F4] px-4 py-3">{{ user.email }}</td>
+                  <td class="border-b border-[#F4F4F4] px-4 py-3">
+                    {{ user.username }}
+                  </td>
+                  <td class="border-b border-[#F4F4F4] px-4 py-3">
+                    {{ user.email }}
+                  </td>
                   <td class="border-b border-[#F4F4F4] px-4 py-3">
                     <img
                       class="h-[30px] w-[30px] rounded-full"
@@ -111,7 +123,9 @@
                       alt=""
                     />
                   </td>
-                  <td class="border-b border-[#F4F4F4] px-4 py-3">{{ user.role }}</td>
+                  <td class="border-b border-[#F4F4F4] px-4 py-3">
+                    {{ user.role }}
+                  </td>
                   <td class="border-b border-[#F4F4F4] px-4 py-3">
                     <button
                       class="bg-[#F8F8F8] py-2 px-5 rounded-lg text-[#FF0000] font-semibold"
@@ -130,30 +144,30 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from 'axios'
 export default {
-  name: "AdminMangement",
+  name: 'AdminMangement',
 
   async asyncData({ $auth, $axios }) {
     try {
-      await $auth.fetchUser();
-      const result = await $axios.get("http://localhost:5000/api/user/users");
-      return { data: result.data };
+      await $auth.fetchUser()
+      const result = await $axios.get('http://localhost:5000/api/user/users')
+      return { data: result.data }
     } catch (error) {}
   },
   data() {
     return {
       data: this.asyncData,
-      emailUser: "",
-    };
+      emailUser: '',
+    }
   },
   methods: {
     async fetchData() {
       try {
-        const result = await axios.get("http://localhost:5000/api/user/users");
-        this.data = result.data;
+        const result = await axios.get('http://localhost:5000/api/user/users')
+        this.data = result.data
       } catch (error) {}
     },
   },
-};
+}
 </script>
