@@ -1,4 +1,6 @@
-const multer = require('multer')
+
+import multer from 'multer'
+import path from 'path'
 
 var storage = multer.diskStorage({
     destination: function (req, file, callback) {
@@ -9,5 +11,5 @@ var storage = multer.diskStorage({
     }
 })
 
-
-export default multer({ storage: storage })
+const few = multer({ storage: storage })
+export default few
