@@ -1,7 +1,7 @@
 <template>
   <div class="flex justify-center">
     <ModalFewza
-      :myProp="check"
+      :myprop="check"
       @updateProp="
         check.check = false
         fetchData()

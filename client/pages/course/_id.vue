@@ -69,7 +69,7 @@ export default {
                 class="w-[20px] h-[20px]"
                 alt=""
               />
-              <p>{{ courses.avg_rating }}</p>
+              <p>{{ courses.avg_course_rating }}</p>
               <p>({{ comments.length }} คอมเมนต์)</p>
             </div>
             <h1 class="text-[36px]">{{ courses.title }}</h1>
