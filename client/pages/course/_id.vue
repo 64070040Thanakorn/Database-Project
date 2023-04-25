@@ -44,31 +44,21 @@ export default {
           <div class="basis-3/4 flex flex-col justify-between">
             <div>
               <div class="flex space-x-2 text-[#717171]">
-              <img
-                src="../../assets/icon/star-full.png"
-                class="w-[20px] h-[20px]"
-                alt=""
-              />
-              <img
-                src="../../assets/icon/star-full.png"
-                class="w-[20px] h-[20px]"
-                alt=""
-              />
-              <img
-                src="../../assets/icon/star-full.png"
-                class="w-[20px] h-[20px]"
-                alt=""
-              />
-              <img
-                src="../../assets/icon/star-full.png"
-                class="w-[20px] h-[20px]"
-                alt=""
-              />
-              <img
-                src="../../assets/icon/star-tran.png"
-                class="w-[20px] h-[20px]"
-                alt=""
-              />
+                <div v-for="(item, index) in parseInt(courses.avg_course_rating)" :key="index">
+                  <img
+                    src="../../assets/icon/star-full.png"
+                    class="w-[20px] h-[20px]"
+                    alt=""
+                  />
+                </div>
+                <div v-for="(item, index) in 5 - parseInt(courses.avg_course_rating)" :key="index">
+                  <img
+                    src="../../assets/icon/star-tran.png"
+                    class="w-[20px] h-[20px]"
+                    alt=""
+                  />
+                </div>
+              
               <p>{{ courses.avg_course_rating }}</p>
               <p>({{ comments.length }} คอมเมนต์)</p>
             </div>

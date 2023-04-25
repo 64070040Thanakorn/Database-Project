@@ -34,7 +34,7 @@ export default {
           console.log(err);
         })
       },
-    },
+    }
 }
 </script>
 
@@ -51,42 +51,45 @@ export default {
                   </div>
                 </div>
             </div>
-
+            <!-- <div v-for="(item, index) in courses.course_rating" :key="index">
+              {{ item.course_rating }} {{ index }}
+            </div> -->
+            <!-- {{ courses.course_rating }} -->
             <div class="flex flex-col basis-3/4">
                 <div class="flex flex-col justify-center items-center">
                   <label for="" class="flex flex-column text-lg">รายละเอียด</label>
                 </div>
                 <div class="flex flex-col">
                   <div class="flex justify-center items-center mt-4 ">
-                    <span class="text-sm font-medium text-[#717171]">5 ดาว</span>
+                    <span class="text-sm font-medium text-[#717171]">5 คะแนน</span>
                     <div class="w-2/3 h-5 mx-4 bg-[#F5F4F8] rounded drop-shadow-md">
                         <div class="h-5 bg-[#4C47DE] rounded" style="width: 70%"></div>
                     </div>
                     <span class="text-sm font-medium text-[#717171]">70%</span>
                   </div>
                   <div class="flex justify-center items-center mt-4">
-                    <span class="text-sm font-medium text-[#717171]">4 ดาว</span>
+                    <span class="text-sm font-medium text-[#717171]">4 คะแนน</span>
                     <div class="w-2/3 h-5 mx-4 bg-[#F5F4F8] rounded drop-shadow-md">
                         <div class="h-5 bg-[#4C47DE] rounded" style="width: 17%"></div>
                     </div>
                     <span class="text-sm font-medium text-[#717171]">17%</span>
                   </div>
                   <div class="flex justify-center items-center mt-4">
-                    <span class="text-sm font-medium text-[#717171]">3 ดาว</span>
+                    <span class="text-sm font-medium text-[#717171]">3 คะแนน</span>
                     <div class="w-2/3 h-5 mx-4 bg-[#F5F4F8] rounded drop-shadow-md">
                         <div class="h-5 bg-[#4C47DE] rounded" style="width: 8%"></div>
                     </div>
                     <span class="text-sm font-medium text-[#717171]">8%</span>
                   </div>
                   <div class="flex justify-center items-center mt-4">
-                    <span class="text-sm font-medium text-[#717171]">2 ดาว</span>
+                    <span class="text-sm font-medium text-[#717171]">2 คะแนน</span>
                     <div class="w-2/3 h-5 mx-4 bg-[#F5F4F8] rounded drop-shadow-md">
                         <div class="h-5 bg-[#4C47DE] rounded" style="width: 4%"></div>
                     </div>
                     <span class="text-sm font-medium text-[#717171]">4%</span>
                   </div>
                   <div class="flex justify-center items-center mt-4">
-                    <span class="text-sm font-medium text-[#717171]">1 ดาว</span>
+                    <span class="text-sm font-medium text-[#717171]">1 คะแนน</span>
                     <div class="w-2/3 h-5 mx-4 bg-[#F5F4F8] rounded drop-shadow-md">
                         <div class="h-5 bg-[#4C47DE] rounded" style="width: 1%"></div>
                     </div>
