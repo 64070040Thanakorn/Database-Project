@@ -250,7 +250,7 @@ export default {
         professor_id: this.data.professor_id,
         professor_rating: x
       })
-      // .then(this.$nuxt.$router.push("/"))
+      .then(this.$nuxt.$router.push("/"))
     },
     storage(){
       const data = JSON.parse(localStorage.getItem('eiei'))

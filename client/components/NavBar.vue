@@ -24,7 +24,7 @@
             <h1>{{ $auth.user.first_name + " " + $auth.user.last_name }}</h1>
           </div>
           <Nuxt-link to="/dashboard/profile">
-            <img :src="'http://localhost:5000/images/' + $auth.user.image" class="h-14 w-14 rounded-full" />
+            <img :src="$auth.user.image ? 'http://localhost:5000/images/' + $auth.user.image : 'https://media.discordapp.net/attachments/1067453596351856650/1096914677780451378/Portrait_Placeholder.png'" class="h-14 w-14 rounded-full object-cover" />
           </Nuxt-link>
           <button
             class="px-5 text-white rounded-xl font-semibold py-2 text-[13px] bg-[#2b26d8] shadow-xl"

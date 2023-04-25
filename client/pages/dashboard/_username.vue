@@ -24,7 +24,7 @@
           <div class="flex justify-between">
             <div class="flex justify-center items-center space-x-10">
               <div class="w-[200px] h-[200px] border-white border-[5px] rounded-full overflow-hidden drop-shadow-md">
-                <img :src="'http://localhost:5000/images/' + $auth.user.image" alt="" class="w-full">
+                <img :src="$auth.user.image ? 'http://localhost:5000/images/' + $auth.user.image : 'https://media.discordapp.net/attachments/1067453596351856650/1096914677780451378/Portrait_Placeholder.png'" alt="" class="w-full h-full object-cover">
               </div>
               <div class="flex flex-col">
                 <h5 class="text-2xl font-bold">จัดการแก้ไขโปรไฟล์</h5>
@@ -56,11 +56,11 @@
               <input v-model="user.email"  class="border rounded px-3 py-1 w-[30%]" type="email">
             </div>
             <div class="h-[2px] w-full bg-[#F6F6F6] rounded"></div>
-            <div class="flex">
+            <div v-if="$auth.user.role === 'Student'" class="flex">
               <label class="w-[20%] font-bold" for="">อาชีพ</label>
               <input v-model="user.role"  class="border rounded px-3 py-1 w-[30%]" type="text">
             </div>
-            <div class="h-[2px] w-full bg-[#F6F6F6] rounded"></div>
+            <div v-if="$auth.user.role === 'Student'" class="h-[2px] w-full bg-[#F6F6F6] rounded"></div>
             <div v-if="$auth.user.role === 'Professor'">
               <div class="flex">
                 <label class="w-[20%] font-bold" for="">ข้อมูลเพิ่มเติม</label>
@@ -75,10 +75,10 @@
               <div class="flex flex-col">
                 <div class="flex justify-between">
                   <div class="w-[100px] h-[100px] overflow-hidden rounded-full">
-                    <img :src="file ? imageUrl : 'http://localhost:5000/images/' + $auth.user.image" alt="" with="100" height="100">
+                    <img :src="file ? imageUrl : $auth.user.image ? 'http://localhost:5000/images/' + $auth.user.image : 'https://media.discordapp.net/attachments/1067453596351856650/1096914677780451378/Portrait_Placeholder.png'" alt="" class="w-full h-full object-cover">
                   </div>
                   <div class="space-x-3">
-                    <button  class="" @click="change()">อัพเดท</button>
+                    <button  class="text-red-700 font-medium hover:text-red-900" @click="change()">อัพเดท</button>
                   </div>
                 </div>
                 <div>

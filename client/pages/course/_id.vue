@@ -189,7 +189,7 @@ export default {
                   <p class="flex bg-[#44ABD4] justify-center rounded-[5px] text-white p-1" @click="localData({course_id: courses.course_id, course_name: courses.title,professor_id: courses.professor.professor_id, professor_name : `${courses.professor.user.first_name} ${courses.professor.user.last_name}`})" >คอร์ส</p>
                 </Nuxt-link>
                 <Nuxt-link to="/review/professor" >
-                  <p class="flex bg-[#7E82E6] justify-center rounded-[5px] text-white p-1 mt-2" @click="localData({course_id: courses.course_id, professor_id: courses.professor.professor_id, professor_name: `${courses.professor.user.first_name} ${courses.professor.user.last_name}`})">อาจาร์ย</p>
+                  <p class="flex bg-[#7E82E6] justify-center rounded-[5px] text-white p-1 mt-2" @click="localData({course_id: courses.course_id, professor_id: courses.professor.professor_id, professor_name: `${courses.professor.user.first_name} ${courses.professor.user.last_name}`})">อาจารย์</p>
                 </Nuxt-link>
             </div>
           </div>

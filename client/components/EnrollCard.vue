@@ -3,7 +3,11 @@
     class="w-[280px] h-[380px] shadow-lg shadow-black-500/50 rounded-[15px] flex flex-col"
   >
     <img
-      :src="item.course.thumbnail"
+      :src="
+        item.course.thumbnail
+          ? 'http://localhost:5000/images/' + item.course.thumbnail
+          : 'https://media.discordapp.net/attachments/1067453596351856650/1096913733281927369/no-picture-available-placeholder-thumbnail-icon-illustration-design.png'
+      "
       class="basis-5/12 rounded-t-[15px] w-auto h-0 object-cover"
       alt="course_img"
     />
@@ -11,7 +15,15 @@
       <div>
         <div class="flex justify-between">
           <p class="text-xl">{{ item.course.title }}</p>
-          <p :class="{'text-red-500': item.course.status, 'text-green-700': !item.course.status}">{{item.course.status? "จบแล้ว": "ยังไม่จบ"}}</p></div>
+          <p
+            :class="{
+              'text-red-500': item.course.status,
+              'text-green-700': !item.course.status,
+            }"
+          >
+            {{ item.course.status ? "จบแล้ว" : "ยังไม่จบ" }}
+          </p>
+        </div>
         <div class="flex justify-between item.courses-center">
           <p class="text-[#4C47DE] text-sm">
             {{ item.course.level }}, {{ item.course.received }}
@@ -28,10 +40,12 @@
       </div>
 
       <div>
-        <div class="text-sm text-green-900">เริ่มเมื่อ: {{ item.course.start_date }}</div>
-        <div class="text-sm text-red-800">จบเมื่อ: {{ item.course.end_date }}</div>
+        <div class="text-sm text-green-900">เริ่มเมื่อ: {{ item.course.start_date.split("T")[0] }}</div>
+        <div class="text-sm text-red-800">จบเมื่อ: {{ item.course.end_date.split("T")[0] }}</div>
         <div class="flex justify-between items-center">
-          <p class="text-[#9F9F9F] font-light text-[10px]">วันที่ลง {{ item.enroll_date }}</p>
+          <p class="text-[#9F9F9F] font-light text-[10px]">
+            วันที่ลง {{ item.enroll_date.split("T")[0] }}
+          </p>
           <p class="text-[#467A55]">{{ item.course.price }} บาท</p>
         </div>
       </div>

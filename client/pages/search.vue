@@ -344,9 +344,9 @@ export default {
           </Nuxt-link>
         </div>
         <div class="flex justify-center gap-4 my-12">
-          <div v-for="(value, index) in pageAmount" :key="index">
+          <!-- <div v-for="(value, index) in pageAmount" :key="index">
             <span class="font-light hover:font-normal">{{ value }}</span>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
