@@ -17,7 +17,7 @@ app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json());
 app.use(bodyParser.raw());
-
+app.use('/images', express.static('static/uploads'));
 app.use("/api",
  router.use("/user", UersRoute),
  router.use("/course", course),
