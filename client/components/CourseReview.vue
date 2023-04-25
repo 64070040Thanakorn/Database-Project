@@ -80,9 +80,9 @@ export default {
           >
             <span class="text-sm font-medium text-[#717171]">{{ 5 - i }} คะแนน</span>
             <div class="w-2/3 h-5 mx-4 bg-[#F5F4F8] rounded drop-shadow-md">
-              <div class="h-5 bg-[#4C47DE] rounded" :style="`width: ${item}%`"></div>
+              <div class="h-5 bg-[#4C47DE] rounded" :style="`width: ${item ? item : 0}%`"></div>
             </div>
-            <span class="text-sm font-medium text-[#717171]">{{ item }} %</span>
+            <span class="text-sm font-medium text-[#717171]">{{ item ? item : 0 }} %</span>
           </div>
          
         </div>

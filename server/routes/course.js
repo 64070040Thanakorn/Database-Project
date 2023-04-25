@@ -19,7 +19,7 @@ function authenticateToken(req, res, next) {
 
 router.get('/admin/course', authenticateToken, GetCourse)
 router.delete('/admin/course', authenticateToken, DeleteCourse)
-router.put('/admin/course', authenticateToken, UpdateCourse)
+router.put('/admin/course', authenticateToken, upload.single('fileupload'), UpdateCourse)
 router.delete('/admin/course/:id', authenticateToken, DeleteCourse)
 
 router.get("/", getCourse);

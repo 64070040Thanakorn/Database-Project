@@ -99,7 +99,9 @@
                   <tr class="">
                     <td class="px-4 py-3 font-semibold">course_id</td>
                     <td class="px-4 py-3 font-semibold">title</td>
+                    <td class="px-4 py-3 font-semibold">category</td>
                     <td class="px-4 py-3 font-semibold">description</td>
+                    <td class="px-4 py-3 font-semibold">info</td>
                     <td class="px-4 py-3 font-semibold">price</td>
                     <td class="px-4 py-3 font-semibold">level</td>
                     <td class="px-4 py-3 font-semibold">received</td>

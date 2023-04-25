@@ -23,7 +23,7 @@
         <div class="w-[90%]">
           <div class="flex justify-between">
             <div class="flex justify-center items-center space-x-10">
-              <div class="w-[200px] h-[200px] border border-white border-[5px] rounded-full overflow-hidden drop-shadow-md">
+              <div class="w-[200px] h-[200px] border-white border-[5px] rounded-full overflow-hidden drop-shadow-md">
                 <img :src="$auth.user.image" alt="">
               </div>
               <div class="flex flex-col">
@@ -33,39 +33,39 @@
             </div>
             <div class="space-x-1">
               <button class="border rounded px-4 py-2">ยกเลิก</button>
-              <button @click="updateData()" class="border bg-[#2B26D8] rounded text-white px-4 py-2">บันทึกโปรไฟล์</button>
+              <button class="bg-[#2B26D8] rounded text-white px-4 py-2" @click="updateData()">บันทึกโปรไฟล์</button>
             </div>
           </div>
           <div class="space-y-5 mt-16">
             <div class="flex">
               <label class="w-[20%] font-bold" for="">ชื่อ</label>
-              <input class="border rounded px-3 py-1 w-[30%]"  v-model="user.first_name" type="text">
+              <input v-model="user.first_name"  class="border rounded px-3 py-1 w-[30%]" type="text">
             </div>
             <div class="h-[2px] w-full bg-[#F6F6F6] rounded"></div>
             <div class="flex">
               <label class="w-[20%] font-bold" for="">นามสกุล</label>
-              <input class="border rounded px-3 py-1 w-[30%]"  v-model="user.last_name" type="text">
+              <input v-model="user.last_name"  class="border rounded px-3 py-1 w-[30%]" type="text">
             </div>
             <div class="h-[2px] w-full bg-[#F6F6F6] rounded"></div>
             <div class="flex">
               <label class="w-[20%] font-bold" for="">ชื่อผู้ใช้</label>
-              <input class="border rounded px-3 py-1 w-[30%]"  v-model="user.username" type="text">
+              <input v-model="user.username"  class="border rounded px-3 py-1 w-[30%]" type="text">
             </div>
             <div class="h-[2px] w-full bg-[#F6F6F6] rounded"></div>
             <div class="flex">
               <label class="w-[20%] font-bold" for="">อีเมล</label>
-              <input class="border rounded px-3 py-1 w-[30%]"  v-model="user.email" type="email">
+              <input v-model="user.email"  class="border rounded px-3 py-1 w-[30%]" type="email">
             </div>
             <div class="h-[2px] w-full bg-[#F6F6F6] rounded"></div>
             <div class="flex">
               <label class="w-[20%] font-bold" for="">อาชีพ</label>
-              <input class="border rounded px-3 py-1 w-[30%]"  v-model="user.role" type="text">
+              <input v-model="user.role"  class="border rounded px-3 py-1 w-[30%]" type="text">
             </div>
             <div class="h-[2px] w-full bg-[#F6F6F6] rounded"></div>
             <div v-if="$auth.user.role === 'Professor'">
               <div class="flex">
                 <label class="w-[20%] font-bold" for="">ข้อมูลเพิ่มเติม</label>
-                <textarea id="" name="" cols="30" rows="10" class="border p-2 w-[30%]" v-model="user.professors.info"></textarea>
+                <textarea id="" v-model="user.professors.info" name="" cols="30" rows="10" class="border p-2 w-[30%]"></textarea>
               </div>
               <div class="h-[2px] w-full bg-[#F6F6F6] rounded"></div>
             </div>
