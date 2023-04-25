@@ -25,6 +25,8 @@
             <div class="flex justify-center items-center space-x-10">
               <div class="w-[200px] h-[200px] border-white border-[5px] rounded-full overflow-hidden drop-shadow-md">
                 <img :src="$auth.user.image" alt="">
+              <div class="w-[200px] h-[200px] border-white border-[5px] rounded-full overflow-hidden drop-shadow-md">
+                <img :src="'http://localhost:5000/images/' + $auth.user.image" alt="">
               </div>
               <div class="flex flex-col">
                 <h5 class="text-2xl font-bold">จัดการแก้ไขโปรไฟล์</h5>
@@ -32,7 +34,6 @@
               </div>
             </div>
             <div class="space-x-1">
-              <button class="border rounded px-4 py-2">ยกเลิก</button>
               <button class="bg-[#2B26D8] rounded text-white px-4 py-2" @click="updateData()">บันทึกโปรไฟล์</button>
             </div>
           </div>
@@ -73,13 +74,23 @@
               <label class="w-[20%] font-bold" for="">โปรไฟล์
                 <p class="font-medium">แก้ไขรูปภาพของคุณ</p>
               </label>
-              <div class="flex justify-between w-[30%]">
-                <div class="w-[100px] h-[100px] overflow-hidden rounded-full">
-                  <img :src="$auth.user.image" alt="">
+              <div class="flex flex-col">
+                <div class="flex justify-between">
+                  <div class="w-[100px] h-[100px] overflow-hidden rounded-full">
+                    <img :src="file ? imageUrl : 'http://localhost:5000/images/' + $auth.user.image" alt="" with="100" height="100">
+                  </div>
+                  <div class="space-x-3">
+                    <button  @click="change()">อัพเดท</button>
+                  </div>
                 </div>
-                <div class="space-x-3">
-                  <button class="">ลบรูปภาพ</button>
-                  <button class="">อัพเดท</button>
+                <div>
+                  <input
+                    id="image-upload"
+                    class="block w-full text-sm text-gray-900 border border-gray-300 cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none mt-8"
+                    type="file"
+                    accept="image/*"
+                    @change="onFileSelected"
+                  />
                 </div>
               </div>
             </div>
@@ -98,7 +109,12 @@ export default{
     console.log(user);
     return { user: user.data }
   },
-
+  data(){
+    return{
+      file: null,
+      imageUrl: null,
+    }
+  },
   methods: {
     updateData() {
       this.$axios.put(`http://localhost:5000/api/user/users/${this.$auth.user.user_id}`, this.user, {
@@ -113,6 +129,30 @@ export default{
           console.log(err)
         })
     },
+    onFileSelected(event) {
+      const selectedFile = event.target.files[0];
+      console.log(selectedFile);
+      this.file = selectedFile;
+      this.imageUrl = URL.createObjectURL(selectedFile);
+      console.log(this.file);
+    },
+    change(){
+      const x = new FormData()
+      x.append('user_id', this.$auth.user.user_id)
+      x.append('fileupload', this.file)
+      console.log(x);
+      this.$axios.put(`http://localhost:5000/api/user/updateImage`, x,{
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      .then((respones) => {
+        console.log(respones)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+    }
   }
  
 }

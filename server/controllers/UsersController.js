@@ -205,3 +205,26 @@ export const deleteUser = async (req, res) => {
     }
 
 }
+
+//updateImage
+export const updateImage = async (req, res) => {
+  try {
+      const file = req.file
+      console.log(req.body);
+      console.log(file);
+      const user = await prisma.users.update({
+          where: {
+              user_id: req.body.user_id
+          },
+          data:{
+            image: file ? file.filename : "https://media.discordapp.net/attachments/1067453596351856650/1096914677780451378/Portrait_Placeholder.png?width=1200&height=1200",
+          },
+      })
+      res.status(200).json({user: user})
+      // res.status(200).send('done')
+
+  } catch (err) {
+      res.status(400).json({ message: err.message })
+  }
+
+}

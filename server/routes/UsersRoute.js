@@ -7,10 +7,12 @@ import {
   createUser,
   deleteUser,
   professorRating,
+  updateImage,
   updateUser
 } from '../controllers/UsersController.js';
 
 import jwt from 'jsonwebtoken';
+import upload from '../multer.js';
 
 function authenticateToken(req, res, next) {
   const authHeader = req.headers['authorization'];
@@ -41,5 +43,7 @@ router.post('/professorRating', authenticateToken, professorRating)
 router.put('/users/:id', updateUser)
 
 router.delete('/users/:id', deleteUser)
+
+router.put('/updateImage', authenticateToken, upload.single('fileupload'),updateImage)
 
 export default router;
