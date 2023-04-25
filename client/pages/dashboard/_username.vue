@@ -24,7 +24,7 @@
           <div class="flex justify-between">
             <div class="flex justify-center items-center space-x-10">
               <div class="w-[200px] h-[200px] border-white border-[5px] rounded-full overflow-hidden drop-shadow-md">
-                <img :src="'http://localhost:5000/images/' + $auth.user.image" alt="">
+                <img :src="'http://localhost:5000/images/' + $auth.user.image" alt="" class="w-full">
               </div>
               <div class="flex flex-col">
                 <h5 class="text-2xl font-bold">จัดการแก้ไขโปรไฟล์</h5>
