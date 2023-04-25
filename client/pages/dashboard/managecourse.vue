@@ -9,24 +9,13 @@
             <NuxtLink to="/dashboard/username">
               <li class="px-4 py-2 rounded">รายละเอียดของฉัน</li>
             </NuxtLink>
-            <NuxtLink
-              v-if="$auth.user.role === 'Student'"
-              to="/dashboard/course"
-            >
+            <NuxtLink v-if="$auth.user.role === 'Student'" to="/dashboard/course">
               <li class="px-4 py-2 rounded">คอร์สเรียน</li>
             </NuxtLink>
-            <NuxtLink
-              v-if="$auth.user.role === 'Professor'"
-              to="/dashboard/managecourse"
-            >
-              <li class="bg-gray-100 font-bold px-4 py-2 rounded">
-                จัดการคอร์สเรียน
-              </li>
+            <NuxtLink v-if="$auth.user.role === 'Professor'" to="/dashboard/managecourse">
+              <li class="bg-gray-100 font-bold px-4 py-2 rounded">จัดการคอร์สเรียน</li>
             </NuxtLink>
-            <NuxtLink
-              v-if="$auth.user.role === 'Student'"
-              to="/dashboard/studytable"
-            >
+            <NuxtLink v-if="$auth.user.role === 'Student'" to="/dashboard/studytable">
               <li class="px-4 py-2 rounded">ตารางเรียน</li>
             </NuxtLink>
           </ul>
@@ -76,14 +65,10 @@
                     aria-labelledby="dropdownDefaultButton"
                   >
                     <li>
-                      <a href="#" class="block px-4 py-2 hover:bg-gray-100"
-                        >A - Z</a
-                      >
+                      <a href="#" class="block px-4 py-2 hover:bg-gray-100">A - Z</a>
                     </li>
                     <li>
-                      <a href="#" class="block px-4 py-2 hover:bg-gray-100"
-                        >Z - A</a
-                      >
+                      <a href="#" class="block px-4 py-2 hover:bg-gray-100">Z - A</a>
                     </li>
                     <li>
                       <a href="#" class="block px-4 py-2 hover:bg-gray-100"
@@ -108,8 +93,8 @@
             <ModalFewza
               :myprop="check"
               @updateProp="
-                check.check = false
-                fetchData()
+                check.check = false;
+                fetchData();
               "
             />
             <div
@@ -130,9 +115,7 @@
                     class="basis-5/12 rounded-t-[15px] w-auto h-0 object-cover"
                     alt="course_img"
                   />
-                  <div
-                    class="basis-7/12 p-4 gap-y-1 flex flex-col justify-between"
-                  >
+                  <div class="basis-7/12 p-4 gap-y-1 flex flex-col justify-between">
                     <div>
                       <p class="text-xl">{{ item.title }}</p>
                       <div class="flex justify-between items-center">
@@ -152,24 +135,19 @@
                     <div class="flex justify-between mx-2 mt-12">
                       <button
                         @click="openmodal(item)"
-                        class="inline-flex items-center justify-center w-28 px-3 py-2 text-sm font-normal text-center text-green-600 bg-transparent hover:text-green-800"
+                        class="inline-flex items-center justify-center w-28 px-3 py-2 text-sm font-normal text-center bg-transparent text-red-700 hover:text-red-800"
                       >
                         แก้ไขคอร์ส
                       </button>
 
-
-  <Nuxt-link :to="`/course/${item.course_id}`" >
-
-
-                      <a
-                        href="#"
-                        class="inline-flex items-center justify-center w-28 px-3 py-2 text-sm font-normal text-center text-red-700 bg-transparent hover:text-red-800"
-                      >
-                                    ไปหน้าคอร์ส
-
-                      </a>
-  </Nuxt-link>
-
+                      <Nuxt-link :to="`/course/${item.course_id}`">
+                        <a
+                          href="#"
+                          class="inline-flex items-center justify-center w-28 px-3 py-2 text-sm font-normal text-center bg-transparent text-green-600 hover:text-green-800"
+                        >
+                          ไปหน้าคอร์ส
+                        </a>
+                      </Nuxt-link>
                     </div>
                   </div>
                 </div>
@@ -188,46 +166,43 @@
   </div>
 </template>
 <script>
-import 'flowbite'
+import "flowbite";
 export default {
-  name: 'ManageCourse',
+  name: "ManageCourse",
   async asyncData({ $auth, redirect, $axios }) {
-    await $auth.fetchUser()
+    await $auth.fetchUser();
     if (!$auth.loggedIn) {
-      redirect('/')
-    } else if ($auth.user.role !== 'Professor') {
-      redirect('/')
+      redirect("/");
+    } else if ($auth.user.role !== "Professor") {
+      redirect("/");
     }
-    const course = await $axios.post(
-      'http://localhost:5000/api/course/getManageCourse'
-    )
-    return { courses: course.data }
+    const course = await $axios.post("http://localhost:5000/api/course/getManageCourse");
+    return { courses: course.data };
   },
   data() {
     return {
-      emailUser: '',
+      emailUser: "",
       check: { check: false, data: {} },
-    }
+    };
   },
   methods: {
     async fetchData() {
       const course = await this.$axios.post(
-        'http://localhost:5000/api/course/getManageCourse'
-      )
+        "http://localhost:5000/api/course/getManageCourse"
+      );
 
-      this.courses = course.data
+      this.courses = course.data;
     },
 
     openmodal(dataff) {
       try {
-        this.check.data = dataff
-        this.check.check = true
+        this.check.data = dataff;
+        this.check.check = true;
       } catch (error) {}
     },
   },
-}
+};
 </script>
-
 
 <style>
 .textOver {
@@ -238,4 +213,3 @@ export default {
   -webkit-box-orient: vertical;
 }
 </style>
-

@@ -48,13 +48,18 @@ export const DeleteCourse = async (req, res) => {
 export const UpdateCourse = async (req, res) => {
   try {
     const data = req.body;
+    const file = req.file;
 
     const id = data.course_id;
 
     data["start_date"] = new Date(data["start_date"]);
     data["end_date"] = new Date(data["end_date"]);
+    data["price"] = parseInt(data["price"]);
 
-
+    if (file) {
+      data["thumbnail"] = file.filename;
+    }
+  
     delete data["professor"];
 
 

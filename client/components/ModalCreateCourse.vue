@@ -133,9 +133,9 @@
               <!-- รูปจำลอง -->
               <div>
                 <img :src="imageUrl" class="w-full rounded" />
-                <div class="w-full rounded" style="background: #b1b1bc">
+                <!-- <div class="w-full rounded" style="background: #b1b1bc">
                   <div class="m-auto h-32" style="width: 70%; background: #d9d9d9"></div>
-                </div>
+                </div> -->
 
                 <!-- <label
                 class="block mb-2 text-sm font-medium mt-10"
@@ -205,18 +205,6 @@ export default {
 
     },
     createCourse() {
-
-
-      // {
-      //       title: this.title,
-      //       description: this.description,
-      //       price: Number(this.price),
-      //       level: this.level,
-      //       received: this.received,
-      //       start_date: this.start_date,
-      //       end_date: this.end_date,
-      //       thumbnail: this.fileupload,
-      //     },
 
       const formData = new FormData()
       formData.append('fileupload', this.file)

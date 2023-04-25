@@ -40,11 +40,9 @@
         </div>
         <!-- Modal body -->
         <div class="p-6 space-y-6">
-          <div class="m-2 p-5 rounded pb-20 pt-10" style="background: #fcfcfc">
+          <div class="m-2 p-5 rounded pb-12 pt-10" style="background: #fcfcfc">
             <div>
-              <label
-                for="title"
-                class="block mb-2 text-sm font-medium text-gray-900"
+              <label for="title" class="block mb-2 text-sm font-medium text-gray-900"
                 >ชื่อคอร์ส</label
               >
               <input
@@ -59,9 +57,7 @@
 
             <div class="grid gap-6 mb-6 md:grid-cols-2 mt-2">
               <div>
-                <label
-                  for="price"
-                  class="block mb-2 text-sm font-medium text-gray-900"
+                <label for="price" class="block mb-2 text-sm font-medium text-gray-900"
                   >ราคาคอร์ส</label
                 >
                 <input
@@ -74,9 +70,7 @@
                 />
               </div>
               <div>
-                <label
-                  for="received"
-                  class="block mb-2 text-sm font-medium text-gray-900"
+                <label for="received" class="block mb-2 text-sm font-medium text-gray-900"
                   >สิ่งที่ได้รับ</label
                 >
                 <select
@@ -95,9 +89,7 @@
               <!-- dropdraw -->
 
               <div>
-                <label
-                  for="level"
-                  class="block mb-2 text-sm font-medium text-gray-900"
+                <label for="level" class="block mb-2 text-sm font-medium text-gray-900"
                   >ระดับความสามารถ</label
                 >
                 <select
@@ -127,9 +119,7 @@
                 />
               </div>
               <div>
-                <label
-                  for="end_date"
-                  class="block mb-2 text-sm font-medium text-gray-900"
+                <label for="end_date" class="block mb-2 text-sm font-medium text-gray-900"
                   >เวลาจบคอร์ส</label
                 >
                 <input
@@ -155,16 +145,13 @@
           </div>
 
           <!-- ส่วนสอง -->
-          <div class="p-3 flex flex-col justify-between">
+          <div class="px-3 flex flex-col justify-between">
             <!-- รูปจำลอง -->
             <div>
-              <img :src="childData.data.thumbnail" class="w-full rounded" />
-              <div class="w-full rounded" style="background: #b1b1bc">
-                <div
-                  class="m-auto h-32"
-                  style="width: 70%; background: #d9d9d9"
-                ></div>
-              </div>
+              <img :src="imageUrl" class="w-full rounded" />
+              <!-- <div class="w-full rounded" style="background: #b1b1bc">
+                <div class="m-auto h-32" style="width: 70%; background: #d9d9d9"></div>
+              </div> -->
 
               <!-- <label
                 class="block mb-2 text-sm font-medium mt-10"
@@ -175,7 +162,8 @@
                 id="file_input"
                 class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none mt-8"
                 type="file"
-                @change="handleFileUpload()"
+                accept="image/*"
+                @change="onFileSelected"
               />
             </div>
           </div>
@@ -208,7 +196,7 @@
 
 <script>
 export default {
-  name: 'Modalfew',
+  name: "Modalfew",
   props: {
     myprop: {
       type: Object,
@@ -225,63 +213,83 @@ export default {
       received: null,
       start_date: null,
       end_date: null,
-      thumbnail:
-        'https://media.discordapp.net/attachments/1067453596351856650/1096913733281927369/no-picture-available-placeholder-thumbnail-icon-illustration-design.png',
-    }
+      imageUrl: null,
+      file: null,
+      // thumbnail:
+      //   'https://media.discordapp.net/attachments/1067453596351856650/1096913733281927369/no-picture-available-placeholder-thumbnail-icon-illustration-design.png',
+    };
   },
   computed: {
     childData: {
       get() {
-        const fewza = this.myprop
-        fewza.data.start_date = fewza.data.start_date.replace('Z', '')
-        fewza.data.end_date = fewza.data.end_date.replace('Z', '')
-        return fewza
+        const fewza = this.myprop;
+        fewza.data.start_date = fewza.data.start_date.replace("Z", "");
+        fewza.data.end_date = fewza.data.end_date.replace("Z", "");
+        return fewza;
       },
       set(newValue) {
-        this.$emit('input', newValue)
+        this.$emit("input", newValue);
       },
     },
   },
   methods: {
+    onFileSelected(event) {
+      const selectedFile = event.target.files[0];
+      this.file = selectedFile;
+      this.imageUrl = URL.createObjectURL(selectedFile);
+
+      console.log(this.file);
+    },
     close() {
-      console.log('few')
-      this.$emit('updateProp', false)
+      console.log("few");
+      this.$emit("updateProp", false);
     },
     updateData() {
+      const formData = new FormData();
+      if (this.file) {
+        formData.append("fileupload", this.file);
+      }
+      formData.append("course_id", this.childData.data.course_id);
+      formData.append("title", this.childData.data.title);
+      formData.append("description", this.childData.data.description);
+      formData.append("price", parseInt(this.childData.data.price));
+      formData.append("level", this.childData.data.level);
+      formData.append("received", this.childData.data.received);
+      formData.append("start_date", this.childData.data.start_date);
+      formData.append("end_date", this.childData.data.end_date);
       this.$axios
-        .put('/course/admin/course', this.childData.data, {
+        .put("/course/admin/course", formData, {
           headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'multipart/form-data'
           },
         })
         .then((respones) => {
-          this.$emit('updateProp', false)
+          this.$emit("updateProp", false);
 
-          console.log(respones)
+          console.log(respones);
         })
         .catch((err) => {
-          console.log(err)
-        })
+          console.log(err);
+        });
     },
 
     deleteData() {
       this.$axios
         .delete(`/course/admin/course/${this.myprop.data.course_id}`, {
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
         })
         .then((respones) => {
-          this.$emit('updateProp', false)
-          console.log(respones)
+          this.$emit("updateProp", false);
+          console.log(respones);
         })
         .catch((err) => {
-          console.log(err)
-        })
+          console.log(err);
+        });
     },
   },
-}
+};
 </script>
 
-<style>
-</style>
+<style></style>
