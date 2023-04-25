@@ -149,7 +149,7 @@ export default {
               <div v-if="showComponent">
                 <CourseDescription :description="courses.description" />
               </div>
-              <div v-else><CourseReview :comments="comments" :rating="courses.avg_rating" /></div>
+              <div v-else><CourseReview :comments="comments" :courses="courses" /></div>
             </div>
           </div>
 
@@ -170,7 +170,7 @@ export default {
                 </p>
                 <div class="flex items-center space-x-2">
                   <img src="../../assets/icon/star.png" alt="" />
-                  <p class="text-sm">4.8 คะแนนเฉลี่ย</p>
+                  <p class="text-sm">{{ courses.avg_professor_rating }} คะแนนเฉลี่ย</p>
                 </div>
                 <div class="flex items-center space-x-3">
                   <img
@@ -195,12 +195,12 @@ export default {
             </div>
             <div v-if="$auth.user.role === 'Student' && courses.status" class="mt-7 space-y-2">
               <p class="text-[20px]" >ให้คะแนน </p>
-              <Nuxt-link to="/review/course">
-                <p class="flex bg-[#44ABD4] justify-center rounded-[5px] text-white p-1" @click="localData({course_id: courses.course_id, course_name: courses.title,professor_id: courses.professor.professor_id, professor_name : `${courses.professor.user.first_name} ${courses.professor.user.last_name}`})" >คอร์ส</p>
-              </Nuxt-link>
-              <Nuxt-link to="/review/professor" >
-                <p class="flex bg-[#7E82E6] justify-center rounded-[5px] text-white p-1" @click="localData({course_id: courses.course_id, professor_id: courses.professor.professor_id, professor_name: `${courses.professor.user.first_name} ${courses.professor.user.last_name}`})">อาจาร์ย</p>
-              </Nuxt-link>
+                <Nuxt-link to="/review/course">
+                  <p class="flex bg-[#44ABD4] justify-center rounded-[5px] text-white p-1" @click="localData({course_id: courses.course_id, course_name: courses.title,professor_id: courses.professor.professor_id, professor_name : `${courses.professor.user.first_name} ${courses.professor.user.last_name}`})" >คอร์ส</p>
+                </Nuxt-link>
+                <Nuxt-link to="/review/professor" >
+                  <p class="flex bg-[#7E82E6] justify-center rounded-[5px] text-white p-1 mt-2" @click="localData({course_id: courses.course_id, professor_id: courses.professor.professor_id, professor_name: `${courses.professor.user.first_name} ${courses.professor.user.last_name}`})">อาจาร์ย</p>
+                </Nuxt-link>
             </div>
           </div>
         </div>

@@ -247,7 +247,7 @@ export default {
       const count = intArr.length
       const x = Math.round((total / count) * 10) / 10
       this.$axios.post("http://localhost:5000/api/user/professorRating", {
-        professor_id: this.data.course_id,
+        professor_id: this.data.professor_id,
         professor_rating: x
       })
       // .then(this.$nuxt.$router.push("/"))
