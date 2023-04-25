@@ -12,7 +12,7 @@
           <NuxtLink to="/search">คอร์สการเรียน</NuxtLink>
           <NuxtLink to="">อาจารย์ทั้งหมด</NuxtLink>
           <NuxtLink to="">วิธีการสมัครเรียน</NuxtLink>
-          <NuxtLink v-if="$auth.user.role === 'Admin'" to="/admin/ManageUser/">แอดมิน</NuxtLink>
+          <NuxtLink v-if="$auth.user && $auth.user.role === 'Admin'" to="/admin/ManageUser/">แอดมิน</NuxtLink>
         </div>
       </div>
 
@@ -20,7 +20,7 @@
         <!-- <NuxtLink to="/search"><img src="../assets/icon/search-icon.png" class="w-[25px] mx-5" alt=""></NuxtLink> -->
         <div class="flex items-center space-x-4 pr-10">
           <div>
-            <h1>{{ $auth.user.username }} {{ $auth.user.role }}</h1>
+            <h1>{{ $auth.user.username }}</h1>
             <h1>{{ $auth.user.first_name + " " + $auth.user.last_name }}</h1>
           </div>
           <Nuxt-link to="/dashboard/profile">
