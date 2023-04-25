@@ -54,6 +54,12 @@ export const UpdateCourse = async (req, res) => {
     data["start_date"] = new Date(data["start_date"]);
     data["end_date"] = new Date(data["end_date"]);
 
+
+    delete data["professor"];
+
+
+
+
     const updatedUser = await prisma.course.update({
       where: {
         course_id: id,
@@ -62,6 +68,10 @@ export const UpdateCourse = async (req, res) => {
     });
     res.status(200).json(updatedUser);
   } catch (err) {
+
+
+    console.log(err.message)
+
     res.status(500).json({ message: err.message });
   }
 };

@@ -2,6 +2,7 @@
   <div
     class="w-[280px] h-[380px] shadow-lg shadow-black-500/50 rounded-[15px] flex flex-col"
   >
+  
     <img
     :src="item.thumbnail ? 'http://localhost:5000/images/' + item.thumbnail : 'https://media.discordapp.net/attachments/1067453596351856650/1096913733281927369/no-picture-available-placeholder-thumbnail-icon-illustration-design.png'"
       class="basis-5/12 rounded-t-[15px] w-auto h-0 object-cover"

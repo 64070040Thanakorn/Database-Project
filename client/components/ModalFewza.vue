@@ -255,6 +255,8 @@ export default {
           },
         })
         .then((respones) => {
+          this.$emit('updateProp', false)
+
           console.log(respones)
         })
         .catch((err) => {
