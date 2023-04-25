@@ -7,8 +7,8 @@ export default {
         type: Array,
         required: true,
       },
-      rating:{
-        type: Number,
+      courses:{
+        type: Object,
         required: true,
       }
     },
@@ -33,7 +33,7 @@ export default {
         .catch((err) => {
           console.log(err);
         })
-      }
+      },
     },
 }
 </script>
@@ -47,7 +47,7 @@ export default {
                     <label for="" class="flex text-lg">คะแนนเฉลี่ย</label>
                   </div>
                   <div class="flex">
-                    <label for="" class="flex text-[36px] mt-8 text-[#2B26D8]">{{ rating }}</label>
+                    <label for="" class="flex text-[36px] mt-8 text-[#2B26D8]">{{ courses.avg_course_rating }}</label>
                   </div>
                 </div>
             </div>

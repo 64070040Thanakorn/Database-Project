@@ -146,9 +146,9 @@ export const professorRating = async (req, res) => {
     try {
       const rating = await prisma.professorRating.create({
         data: {
-          student_id: student_id,
-          professor_id: professor_id,
-          professor_rating: professor_rating
+          student: { connect: { student_id: student_id } },
+          professor: { connect: { professor_id: professor_id } },
+          professor_rating: parseFloat(professor_rating),
         },
       });
       res.status(200).json(rating)

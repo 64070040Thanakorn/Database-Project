@@ -65,7 +65,8 @@ export default {
               </div>
             </div>
           </div>
-          <div v-if="true" class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 mt-4 mb-12 mx-7 justify-items-center">
+
+          <div  v-if="courses.length !== 0" class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 mt-4 mb-12 mx-7 justify-items-center">
             <NuxtLink v-for="(item, index) in courses" :key="index" :to="{ path: `/course/${item.course.course_id}`}">
               <EnrollCard :item="item"></EnrollCard>
             </NuxtLink>

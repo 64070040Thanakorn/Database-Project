@@ -251,7 +251,7 @@ export default {
         course_id: this.data.course_id,
         course_rating: x
       })
-      // .then(this.$nuxt.$router.push("/"))
+      .then(this.$nuxt.$router.push("/"))
     },
     storage(){
       const data = JSON.parse(localStorage.getItem('eiei'))
