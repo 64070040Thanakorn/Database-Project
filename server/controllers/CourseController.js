@@ -99,11 +99,31 @@ export const getCourseById = async (req, res) => {
     course["avg_course_rating"] = course_rating[0]["AVG(course_rating)"] ? course_rating[0]["AVG(course_rating)"].toFixed(1) : (0).toFixed(1);
     course["avg_professor_rating"] = professor_rating[0]["AVG(professor_rating)"] ? professor_rating[0]["AVG(professor_rating)"].toFixed(1) : (0).toFixed(1);
 
+    let sumstar1 = 0, sumstar2 = 0, sumstar3 = 0, sumstar4 = 0, sumstar5 = 0;
+    course["course_rating"].forEach(function (item) {
+      if (Math.round(item.course_rating) === 5) {
+        sumstar5 += 1
+      } else if (Math.round(item.course_rating) === 4) {
+        sumstar4 += 1
+      } else if (Math.round(item.course_rating) === 3) {
+        sumstar3 += 1
+      } else if (Math.round(item.course_rating) === 2) {
+        sumstar2 += 1
+      } else if (Math.round(item.course_rating) === 1) {
+        sumstar1 += 1
+      }
+    });
+    const checklength = course["course_rating"].length;
+    let stars = [sumstar5 / checklength * 100, sumstar4 / checklength * 100, sumstar3 / checklength * 100, sumstar2 / checklength * 100, sumstar1 / checklength * 100]
+
+    course["stars"] = stars;
+  
+  
     res.status(200).json(course);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
-}; 
+};
 
 // get Random Course
 export const randomizeCourse = async (req, res) => {
@@ -257,7 +277,7 @@ export const getManageCourse = async (req, res) => {
 export const createCourseRating = async (req, res) => {
   const { course_id, course_rating } = req.body;
   const data = await prisma.users.findUnique({ where: { user_id: req.user.sub }, include: { students: true } });
-  
+
   const student_id = data.students.student_id;
   try {
 
@@ -272,7 +292,7 @@ export const createCourseRating = async (req, res) => {
         course: { connect: { course_id: course_id } },
         course_rating: parseFloat(course_rating),
       },
-   
+
     });
     res.status(200).json(rating);
   } catch (error) {
