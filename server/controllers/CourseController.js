@@ -257,7 +257,6 @@ export const createCourseRating = async (req, res) => {
         course: { connect: { course_id: course_id } },
         course_rating: parseFloat(course_rating),
       },
-   
     });
     res.status(200).json(rating);
   } catch (error) {

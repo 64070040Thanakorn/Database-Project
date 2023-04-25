@@ -148,13 +148,17 @@
 export default {
   name: 'AdminMangement',
 
-  async asyncData({ $auth, $axios }) {
+  async asyncData({ $auth, $axios, redirect }) {
     try {
       await $auth.fetchUser()
-      const result = await $axios.get(
-        'http://localhost:5000/api/course/admin/course'
-      )
-      return { data: result.data }
+      if ($auth.user.role === 'Admin') {
+        const result = await $axios.get(
+          'http://localhost:5000/api/course/admin/course'
+        )
+        return { data: result.data }
+      } else {
+        redirect('/')
+      }
     } catch (error) {}
   },
   data() {
