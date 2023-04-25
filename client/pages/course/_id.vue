@@ -32,7 +32,7 @@ export default {
   <section>
     <div class="absolute z-[-1] w-full h-[510px] flex">
       <img
-        :src="courses.thumbnail"
+      :src="courses.thumbnail ? 'http://localhost:5000/images/' + courses.thumbnail : 'https://media.discordapp.net/attachments/1067453596351856650/1096913733281927369/no-picture-available-placeholder-thumbnail-icon-illustration-design.png'"
         class="w-full h-auto relative object-cover"
         alt="course_image"
       />

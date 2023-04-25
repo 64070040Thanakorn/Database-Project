@@ -132,10 +132,7 @@
             <div class="p-3 flex flex-col justify-between">
               <!-- รูปจำลอง -->
               <div>
-                <img
-                  src="https://qph.cf2.quoracdn.net/main-qimg-0963a38f29d15f03dd0be9e9391e2a8f-lq"
-                  class="w-full rounded"
-                />
+                <img :src="imageUrl" class="w-full rounded" />
                 <div class="w-full rounded" style="background: #b1b1bc">
                   <div class="m-auto h-32" style="width: 70%; background: #d9d9d9"></div>
                 </div>
@@ -145,11 +142,13 @@
                 for="file_input"
                 >รูปคอร์ส</label
               > -->
+
                 <input
-                  id="file_input"
+                  id="image-upload"
                   class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none mt-8"
                   type="file"
-                  @change="handleFileUpload()"
+                  accept="image/*"
+                  @change="onFileSelected"
                 />
               </div>
 
@@ -189,41 +188,59 @@ export default {
       received: null,
       start_date: null,
       end_date: null,
-      thumbnail:
-        "https://media.discordapp.net/attachments/1067453596351856650/1096913733281927369/no-picture-available-placeholder-thumbnail-icon-illustration-design.png",
+      category: "ไม่มี",
+      imageUrl: null,
+      file: null,
     };
   },
   methods: {
-    handleFileUpload(event) {
-      const file = event.target.files[0];
-      console.log(file);
+
+    onFileSelected(event) {
+      const selectedFile = event.target.files[0];
+      this.file = selectedFile;
+      this.imageUrl = URL.createObjectURL(selectedFile);
+
+
+      console.log(this.file)
+
     },
     createCourse() {
-      this.$axios
-        .post(
-          "http://localhost:5000/api/course/createcourse",
-          {
-            title: this.title,
-            description: this.description,
-            price: Number(this.price),
-            level: this.level,
-            received: this.received,
-            start_date: this.start_date,
-            end_date: this.end_date,
-            thumbnail: this.thumbnail,
-          },
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        )
-        .then((respones) => {
-          console.log(respones);
+
+
+      // {
+      //       title: this.title,
+      //       description: this.description,
+      //       price: Number(this.price),
+      //       level: this.level,
+      //       received: this.received,
+      //       start_date: this.start_date,
+      //       end_date: this.end_date,
+      //       thumbnail: this.fileupload,
+      //     },
+
+      const formData = new FormData()
+      formData.append('fileupload', this.file)
+      formData.append('title', this.title)
+      formData.append('description', this.description)
+      formData.append('price', Number(this.price))
+      formData.append('level', this.level)
+      formData.append('received', this.received)
+      formData.append('start_date', this.start_date)
+      formData.append('end_date', this.end_date)
+      formData.append('category', this.category)
+      this.$axios.post('http://localhost:5000/api/course/createcourse', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      })
+        .then(response => {
+          console.log(response.data)
         })
-        .catch((err) => {
-          console.log(err);
-        });
+        .catch(error => {
+          console.log(error.response.data)
+        })
+
+      
     },
   },
 };
