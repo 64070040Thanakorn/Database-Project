@@ -148,7 +148,7 @@ export default {
             <div class="flex py-4">
               <div class="basis-2/6">
                 <img
-                  :src="courses.professor.user.image"
+                  :src="courses.professor.user.image ? 'http://localhost:5000/images/' + courses.professor.user.image : 'https://media.discordapp.net/attachments/1067453596351856650/1096914677780451378/Portrait_Placeholder.png'"
                   class="w-[110px] h-[115px] object-cover"
                   alt=""
                 />

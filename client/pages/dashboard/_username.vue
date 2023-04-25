@@ -24,8 +24,6 @@
           <div class="flex justify-between">
             <div class="flex justify-center items-center space-x-10">
               <div class="w-[200px] h-[200px] border-white border-[5px] rounded-full overflow-hidden drop-shadow-md">
-                <img :src="$auth.user.image" alt="">
-              <div class="w-[200px] h-[200px] border-white border-[5px] rounded-full overflow-hidden drop-shadow-md">
                 <img :src="'http://localhost:5000/images/' + $auth.user.image" alt="">
               </div>
               <div class="flex flex-col">
@@ -66,7 +64,7 @@
             <div v-if="$auth.user.role === 'Professor'">
               <div class="flex">
                 <label class="w-[20%] font-bold" for="">ข้อมูลเพิ่มเติม</label>
-                <textarea id="" v-model="user.professors.info" name="" cols="30" rows="10" class="border p-2 w-[30%]"></textarea>
+                <textarea id="" v-model="user.professors.info" name="" cols="30" rows="10"  class="border p-2 w-[30%]"></textarea>
               </div>
               <div class="h-[2px] w-full bg-[#F6F6F6] rounded"></div>
             </div>
@@ -80,7 +78,7 @@
                     <img :src="file ? imageUrl : 'http://localhost:5000/images/' + $auth.user.image" alt="" with="100" height="100">
                   </div>
                   <div class="space-x-3">
-                    <button  @click="change()">อัพเดท</button>
+                    <button  class="" @click="change()">อัพเดท</button>
                   </div>
                 </div>
                 <div>
