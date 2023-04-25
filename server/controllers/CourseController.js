@@ -96,8 +96,8 @@ export const getCourseById = async (req, res) => {
     const course_rating = await prisma.$queryRaw`SELECT AVG(course_rating) FROM CourseRating WHERE course_id = ${req.params.course_id}`;
     const professor_rating = await prisma.$queryRaw`SELECT AVG(professor_rating) FROM ProfessorRating WHERE professor_id = ${course.professor.professor_id}`;
 
-    course["avg_course_rating"] = course_rating[0]["AVG(course_rating)"].toFixed(1);
-    course["avg_professor_rating"] = professor_rating[0]["AVG(professor_rating)"].toFixed(1);
+    course["avg_course_rating"] = course_rating[0]["AVG(course_rating)"] ? course_rating[0]["AVG(course_rating)"].toFixed(1) : (0).toFixed(1);
+    course["avg_professor_rating"] = professor_rating[0]["AVG(professor_rating)"] ? professor_rating[0]["AVG(professor_rating)"].toFixed(1) : (0).toFixed(1);
 
     res.status(200).json(course);
   } catch (err) {
