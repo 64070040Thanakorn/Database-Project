@@ -2,6 +2,8 @@ import express from "express";
 import jwt from 'jsonwebtoken';
 import { DeleteCourse, GetCourse, UpdateCourse, courseEnroll, createCourse, createCourseRating, getCourse, getCourseById, getCourseEnroll, getManageCourse, randomizeCourse } from "../controllers/CourseController.js";
 
+import upload from '../multer.js'
+
 const router = express.Router();
 function authenticateToken(req, res, next) {
   const authHeader = req.headers["authorization"];
@@ -30,7 +32,7 @@ router.post("/getCourseEnroll/", authenticateToken, getCourseEnroll)
 
 router.post("/getManageCourse/", authenticateToken, getManageCourse)
 
-router.post("/createCourse", authenticateToken, createCourse);
+router.post("/createCourse", authenticateToken, upload.single('fileupload'), createCourse);
 
 router.post("/courseEnroll/:course_id", authenticateToken, courseEnroll);
 
