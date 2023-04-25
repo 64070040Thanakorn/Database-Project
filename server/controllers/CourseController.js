@@ -158,8 +158,6 @@ export const createCourse = async (req, res) => {
   const datasss = await prisma.users.findUnique({ where: { user_id: req.user.sub }, include: { professors: true } });
   const professor_id = datasss.professors.professor_id;
 
-
-
   try {
     const course = await prisma.course.create({
       data: {
