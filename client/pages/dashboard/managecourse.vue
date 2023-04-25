@@ -87,7 +87,7 @@
             </div>
           </div>
           <div
-            v-if="true"
+            v-if="courses.lenght === 0"
             class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 mt-4 mb-20 mx-7 justify-items-center"
           >
             <Nuxt-link v-for="(item, index) in courses" :key="index" :to="{ path:`/course/${item.course_id}` }">

@@ -7,6 +7,10 @@ export default {
         type: Array,
         required: true,
       },
+      rating:{
+        type: Number,
+        required: true,
+      }
     },
     data() {
       return {
@@ -43,7 +47,7 @@ export default {
                     <label for="" class="flex text-lg">คะแนนเฉลี่ย</label>
                   </div>
                   <div class="flex">
-                    <label for="" class="flex text-[36px] mt-8 text-[#2B26D8]">4.4</label>
+                    <label for="" class="flex text-[36px] mt-8 text-[#2B26D8]">{{ rating }}</label>
                   </div>
                 </div>
             </div>
