@@ -33,35 +33,42 @@
             </div>
             <div class="space-x-1">
               <button class="border rounded px-4 py-2">ยกเลิก</button>
-              <button class="border bg-[#2B26D8] rounded text-white px-4 py-2">บันทึกโปรไฟล์</button>
+              <button @click="updateData()" class="border bg-[#2B26D8] rounded text-white px-4 py-2">บันทึกโปรไฟล์</button>
             </div>
           </div>
           <div class="space-y-5 mt-16">
             <div class="flex">
               <label class="w-[20%] font-bold" for="">ชื่อ</label>
-              <input class="border rounded px-3 py-1 w-[30%]" type="text" :value="$auth.user.first_name" readonly>
+              <input class="border rounded px-3 py-1 w-[30%]"  v-model="user.first_name" type="text">
             </div>
             <div class="h-[2px] w-full bg-[#F6F6F6] rounded"></div>
             <div class="flex">
               <label class="w-[20%] font-bold" for="">นามสกุล</label>
-              <input class="border rounded px-3 py-1 w-[30%]" type="text" :value="$auth.user.last_name" readonly>
+              <input class="border rounded px-3 py-1 w-[30%]"  v-model="user.last_name" type="text">
             </div>
             <div class="h-[2px] w-full bg-[#F6F6F6] rounded"></div>
             <div class="flex">
               <label class="w-[20%] font-bold" for="">ชื่อผู้ใช้</label>
-              <input class="border rounded px-3 py-1 w-[30%]" type="text" :value="$auth.user.username" readonly>
+              <input class="border rounded px-3 py-1 w-[30%]"  v-model="user.username" type="text">
             </div>
             <div class="h-[2px] w-full bg-[#F6F6F6] rounded"></div>
             <div class="flex">
               <label class="w-[20%] font-bold" for="">อีเมล</label>
-              <input class="border rounded px-3 py-1 w-[30%]" type="text" :value="$auth.user.email" readonly>
+              <input class="border rounded px-3 py-1 w-[30%]"  v-model="user.email" type="email">
             </div>
             <div class="h-[2px] w-full bg-[#F6F6F6] rounded"></div>
-            <!-- <div class="flex">
-              <label class="w-[20%] font-bold" for="">รหัสผ่าน</label>
-              <input class="border rounded px-3 py-1 w-[30%]" type="password" :value="$auth.user.password" readonly>
+            <div class="flex">
+              <label class="w-[20%] font-bold" for="">อาชีพ</label>
+              <input class="border rounded px-3 py-1 w-[30%]"  v-model="user.role" type="text">
             </div>
-            <div class="h-[2px] w-full bg-[#F6F6F6] rounded"></div> -->
+            <div class="h-[2px] w-full bg-[#F6F6F6] rounded"></div>
+            <div v-if="$auth.user.role === 'Professor'">
+              <div class="flex">
+                <label class="w-[20%] font-bold" for="">ข้อมูลเพิ่มเติม</label>
+                <textarea id="" name="" cols="30" rows="10" class="border p-2 w-[30%]" v-model="user.professors.info"></textarea>
+              </div>
+              <div class="h-[2px] w-full bg-[#F6F6F6] rounded"></div>
+            </div>
             <div class="flex">
               <label class="w-[20%] font-bold" for="">โปรไฟล์
                 <p class="font-medium">แก้ไขรูปภาพของคุณ</p>
@@ -76,10 +83,37 @@
                 </div>
               </div>
             </div>
-            <!-- <div class="h-[2px] w-full bg-[#F6F6F6] rounded"></div> -->
           </div>
         </div>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+export default{
+  async asyncData({$axios, $auth}){
+    await  $auth.fetchUser();
+    const user = await $axios.get(`http://localhost:5000/api/user/users/${$auth.user.user_id}`);
+    console.log(user);
+    return { user: user.data }
+  },
+
+  methods: {
+    updateData() {
+      this.$axios.put(`http://localhost:5000/api/user/users/${this.$auth.user.user_id}`, this.user, {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+        .then((respones) => {
+          console.log(respones)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+  }
+ 
+}
+</script>

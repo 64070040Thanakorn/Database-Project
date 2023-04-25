@@ -139,7 +139,7 @@ export default {
               <div v-if="showComponent">
                 <CourseDescription :description="courses.description" />
               </div>
-              <div v-else><CourseReview :comments="comments" :courses="courses" /></div>
+              <div v-else><CourseReview :comments="comments" :courses="courses" :stars="courses.stars" /></div>
             </div>
           </div>
 

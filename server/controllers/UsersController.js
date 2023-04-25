@@ -66,20 +66,19 @@ export const AuthLogin = async (req, res) => {
 }
 
 export const GetUserById = async (req, res) => {
-
     try {
-
         const response = await prisma.users.findUnique({
             where: {
-                id: req.params.id
+                user_id: req.params.id
+            },
+            include:{
+              professors: true
             }
         })
         res.status(200).json(response)
-
     } catch (err) {
         res.status(404).json({ message: err.message })
     }
-
 }
 
 // create user
@@ -160,24 +159,30 @@ export const professorRating = async (req, res) => {
 // update someone user
 export const updateUser = async (req, res) => {
     try {
-        const { first_name, last_name, username, password, email, image, role } = req.body;
-
-        const hash = await bcrypt.hash(password, 13);
+        const data = req.body
+      
         const user = await prisma.users.update({
             where: {
-                email: email
+                user_id: data.user_id
             },
-            data: {
-                first_name: first_name,
-                last_name: last_name,
-                username: username,
-                password: hash,
-                email: email,
-                image: image,
-                role: role
-            }
+            data:{
+              first_name: data.first_name,
+              last_name: data.last_name,
+              username: data.username,
+              email: data.email,
+              role: data.role,
+            },
         })
-        res.status(200).json(user)
+        
+      const professor = await prisma.professors.update({
+          where: {
+              professor_id: data.professors.professor_id
+          },
+          data:{
+            info: data.professors.info
+          }
+      })
+        res.status(200).json({user: user, professor: professor})
 
     } catch (err) {
         res.status(400).json({ message: err.message })

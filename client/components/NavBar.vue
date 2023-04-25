@@ -12,7 +12,7 @@
           <NuxtLink to="/search">คอร์สการเรียน</NuxtLink>
           <NuxtLink to="">อาจารย์ทั้งหมด</NuxtLink>
           <NuxtLink to="">วิธีการสมัครเรียน</NuxtLink>
-          <!-- <NuxtLink v-if="$auth.user.role === 'Admin'" to="/admin/ManageUser/">แอดมิน</NuxtLink> -->
+          <NuxtLink v-if="$auth.user && $auth.user.role === 'Admin'" to="/admin/ManageUser/">แอดมิน</NuxtLink>
         </div>
       </div>
 

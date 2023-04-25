@@ -38,7 +38,7 @@ router.get('/me', authenticateToken, AuthMe)
 
 router.post('/professorRating', authenticateToken, professorRating)
 
-router.patch('/users/:id', updateUser)
+router.put('/users/:id', updateUser)
 
 router.delete('/users/:id', deleteUser)
 
