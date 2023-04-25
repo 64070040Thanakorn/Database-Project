@@ -72,7 +72,7 @@ export const UpdateCourse = async (req, res) => {
 
 export const getCourseById = async (req, res) => {
   try {
-    const course = await prisma.course.findMany({
+    const course = await prisma.course.findUnique({
       where: {
         course_id: req.params.course_id,
       },
@@ -89,8 +89,14 @@ export const getCourseById = async (req, res) => {
             },
           },
         },
+        course_rating: true
       },
     });
+
+    const averageRating = await prisma.$queryRaw`SELECT AVG(course_rating) FROM CourseRating WHERE course_id = ${req.params.course_id}`;
+
+    course["avg_rating"] = averageRating[0]["AVG(course_rating)"].toFixed(1);
+
     res.status(200).json(course);
   } catch (err) {
     res.status(500).json({ message: err.message });

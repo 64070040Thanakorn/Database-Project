@@ -32,7 +32,7 @@ export default {
   <section>
     <div class="absolute z-[-1] w-full h-[510px] flex">
       <img
-        :src="courses[0].thumbnail"
+        :src="courses.thumbnail"
         class="w-full h-auto relative object-cover"
         alt="course_image"
       />
@@ -69,12 +69,12 @@ export default {
                 class="w-[20px] h-[20px]"
                 alt=""
               />
-              <p>4.4</p>
+              <p>{{ courses.avg_rating }}</p>
               <p>({{ comments.length }} คอมเมนต์)</p>
             </div>
-            <h1 class="text-[36px]">{{ courses[0] }}</h1>
+            <h1 class="text-[36px]">{{ courses.title }}</h1>
             <p class="text-[14px] font-light text-gray-01 textOver3">
-                {{ courses[0].description }}
+                {{ courses.description }}
             </p>
             </div>
             <div>
@@ -96,7 +96,7 @@ export default {
             </div>
             <div>
               <p class="text-sm font-light">ระดับความสามารถ</p>
-              <p class="text-2xl">{{ courses[0].level }}</p>
+              <p class="text-2xl">{{ courses.level }}</p>
             </div>
           </div>
           <div class="flex items-center space-x-2">
@@ -114,7 +114,7 @@ export default {
             </div>
             <div>
               <p class="text-sm font-light">สิ่งที่ได้รับ</p>
-              <p class="text-2xl">{{ courses[0].received }}</p>
+              <p class="text-2xl">{{ courses.received }}</p>
             </div>
           </div>
           <div class="flex items-center space-x-2">
@@ -123,7 +123,7 @@ export default {
             </div>
             <div>
               <p class="text-sm font-light">ราคา</p>
-              <p class="text-2xl text-[#467A55]">{{ courses[0].price }} บาท</p>
+              <p class="text-2xl text-[#467A55]">{{ courses.price }} บาท</p>
             </div>
           </div>
         </div>
@@ -147,9 +147,9 @@ export default {
             </div>
             <div class="py-4 mr-16">
               <div v-if="showComponent">
-                <CourseDescription :description="courses[0].description" />
+                <CourseDescription :description="courses.description" />
               </div>
-              <div v-else><CourseReview :comments="comments" /></div>
+              <div v-else><CourseReview :comments="comments" :rating="courses.avg_rating" /></div>
             </div>
           </div>
 
@@ -158,15 +158,15 @@ export default {
             <div class="flex py-4">
               <div class="basis-2/6">
                 <img
-                  :src="courses[0].professor.user.image"
+                  :src="courses.professor.user.image"
                   class="w-[110px] h-[115px] object-cover"
                   alt=""
                 />
               </div>
               <div class="basis-4/6 pr-2 space-y-1">
                 <p class="">
-                  {{ courses[0].professor.user.first_name }}
-                  {{ courses[0].professor.user.last_name }}
+                  {{ courses.professor.user.first_name }}
+                  {{ courses.professor.user.last_name }}
                 </p>
                 <div class="flex items-center space-x-2">
                   <img src="../../assets/icon/star.png" alt="" />
@@ -184,8 +184,8 @@ export default {
             </div>
             <div class="pl-8">
               <ul
-                v-for="(item, index) in courses[0].professor.info
-                  ? courses[0].professor.info.split(', ')
+                v-for="(item, index) in courses.professor.info
+                  ? courses.professor.info.split(', ')
                   : 0"
                 :key="index"
                 class="list-disc"
@@ -193,13 +193,13 @@ export default {
                 <li>{{ item }}</li>
               </ul>
             </div>
-            <div v-if="$auth.user.role === 'Student' && courses[0].status" class="mt-7 space-y-2">
+            <div v-if="$auth.user.role === 'Student' && courses.status" class="mt-7 space-y-2">
               <p class="text-[20px]" >ให้คะแนน </p>
               <Nuxt-link to="/review/course">
-                <p class="flex bg-[#44ABD4] justify-center rounded-[5px] text-white p-1" @click="localData({course_id: courses[0].course_id, course_name: courses[0].title,professor_id: courses[0].professor.professor_id, professor_name : `${courses[0].professor.user.first_name} ${courses[0].professor.user.last_name}`})" >คอร์ส</p>
+                <p class="flex bg-[#44ABD4] justify-center rounded-[5px] text-white p-1" @click="localData({course_id: courses.course_id, course_name: courses.title,professor_id: courses.professor.professor_id, professor_name : `${courses.professor.user.first_name} ${courses.professor.user.last_name}`})" >คอร์ส</p>
               </Nuxt-link>
               <Nuxt-link to="/review/professor" >
-                <p class="flex bg-[#7E82E6] justify-center rounded-[5px] text-white p-1" @click="localData({course_id: courses[0].course_id, professor_id: courses[0].professor.professor_id, professor_name: `${courses[0].professor.user.first_name} ${courses[0].professor.user.last_name}`})">อาจาร์ย</p>
+                <p class="flex bg-[#7E82E6] justify-center rounded-[5px] text-white p-1" @click="localData({course_id: courses.course_id, professor_id: courses.professor.professor_id, professor_name: `${courses.professor.user.first_name} ${courses.professor.user.last_name}`})">อาจาร์ย</p>
               </Nuxt-link>
             </div>
           </div>
