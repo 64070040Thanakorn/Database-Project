@@ -20,6 +20,9 @@ export default {
       this.$axios
       .post(`http://localhost:5000/api/course/courseEnroll/${this.$route.params.id}`)
       .then(this.$nuxt.$router.push("/dashboard/course"))
+    },
+    localData(v){
+      localStorage.setItem("eiei", JSON.stringify(v))
     }
   },
 };
@@ -69,7 +72,7 @@ export default {
               <p>4.4</p>
               <p>({{ comments.length }} คอมเมนต์)</p>
             </div>
-            <h1 class="text-[36px]">{{ courses[0].title }}</h1>
+            <h1 class="text-[36px]">{{ courses[0] }}</h1>
             <p class="text-[14px] font-light text-gray-01 textOver3">
                 {{ courses[0].description }}
             </p>
@@ -191,9 +194,13 @@ export default {
               </ul>
             </div>
             <div v-if="$auth.user.role === 'Student' && courses[0].status" class="mt-7 space-y-2">
-              <p class="text-[20px]">ให้คะแนน </p>
-              <Nuxt-link to="" class="flex bg-[#44ABD4] justify-center rounded-[5px] text-white p-1">คอร์ส</Nuxt-link>
-              <Nuxt-link to="" class="flex bg-[#7E82E6] justify-center rounded-[5px] text-white p-1">อาจารย์</Nuxt-link>
+              <p class="text-[20px]" >ให้คะแนน </p>
+              <Nuxt-link to="/review/course">
+                <p class="flex bg-[#44ABD4] justify-center rounded-[5px] text-white p-1" @click="localData({course_id: courses[0].course_id, course_name: courses[0].title,professor_id: courses[0].professor.professor_id, professor_name : `${courses[0].professor.user.first_name} ${courses[0].professor.user.last_name}`})" >คอร์ส</p>
+              </Nuxt-link>
+              <Nuxt-link to="/review/professor" >
+                <p class="flex bg-[#7E82E6] justify-center rounded-[5px] text-white p-1" @click="localData({course_id: courses[0].course_id, professor_id: courses[0].professor.professor_id, professor_name: `${courses[0].professor.user.first_name} ${courses[0].professor.user.last_name}`})">อาจาร์ย</p>
+              </Nuxt-link>
             </div>
           </div>
         </div>

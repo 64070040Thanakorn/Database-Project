@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken'
+import jwt from 'jsonwebtoken';
 const prisma = new PrismaClient();
 // Get all users
 
@@ -140,14 +140,14 @@ export const createUser = async (req, res) => {
 
 // professor rating
 export const professorRating = async (req, res) => {
-    const { professor_rating} = req.body
+    const { professor_rating, professor_id} = req.body
     const data = await prisma.users.findUnique({ where: { user_id: req.user.sub }, include: {students: true} })
     const student_id = data.students.student_id
     try {
       const rating = await prisma.professorRating.create({
         data: {
           student_id: student_id,
-          professor_id: req.params.professor_id,
+          professor_id: professor_id,
           professor_rating: professor_rating
         },
       });

@@ -13,5 +13,6 @@
             "username": "db_jkj8",
             "password": "fv9BEKGkWsJTJvGsWDMzO8LQdOQz2J4Y"
         }
-    ]
+    ],
+    "vue.features.codeActions.enable": false
 }

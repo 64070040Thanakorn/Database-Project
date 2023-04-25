@@ -95,7 +95,7 @@ export const getCourseById = async (req, res) => {
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
-};
+}; 
 
 // get Random Course
 export const randomizeCourse = async (req, res) => {
@@ -240,16 +240,24 @@ export const getManageCourse = async (req, res) => {
 
 // create course rating
 export const createCourseRating = async (req, res) => {
-  const { course_rating } = req.body;
+  const { course_id, course_rating } = req.body;
   const data = await prisma.users.findUnique({ where: { user_id: req.user.sub }, include: { students: true } });
+  
   const student_id = data.students.student_id;
   try {
+
+
+    console.log(student_id)
+    console.log(course_id)
+    console.log(course_rating)
+
     const rating = await prisma.courseRating.create({
       data: {
-        student_id: student_id,
-        course_id: req.params.course_id,
-        course_rating: course_rating,
+        student: { connect: { student_id: student_id } },
+        course: { connect: { course_id: course_id } },
+        course_rating: parseFloat(course_rating),
       },
+   
     });
     res.status(200).json(rating);
   } catch (error) {

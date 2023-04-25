@@ -1,16 +1,16 @@
 import express from 'express';
 import {
+  AuthLogin,
+  AuthMe,
   GetUserById,
   GetUsers,
   createUser,
   deleteUser,
-  AuthMe,
-  AuthLogin,
-  updateUser,
-  professorRating
+  professorRating,
+  updateUser
 } from '../controllers/UsersController.js';
 
-import jwt from 'jsonwebtoken'
+import jwt from 'jsonwebtoken';
 
 function authenticateToken(req, res, next) {
   const authHeader = req.headers['authorization'];
@@ -36,7 +36,7 @@ router.post('/login', AuthLogin)
 
 router.get('/me', authenticateToken, AuthMe)
 
-router.post('/professorRating/:professor_id', authenticateToken, professorRating)
+router.post('/professorRating', authenticateToken, professorRating)
 
 router.patch('/users/:id', updateUser)
 
