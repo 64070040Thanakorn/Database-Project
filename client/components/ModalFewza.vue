@@ -1,11 +1,11 @@
 <template>
   <div
-    v-if="myProp.check"
+    v-if="myprop.check"
     id="defaultModal"
     tabindex="-1"
     aria-hidden="true"
     :class="`${
-      myProp.check ? 'fixed' : 'hidden'
+      myprop.check ? 'fixed' : 'hidden'
     }  top-1/2 flex items-center justify-center left-1/2 z-50 p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] w-full`"
   >
     <div class="relative w-full max-w-2xl max-h-full">
@@ -210,7 +210,7 @@
 export default {
   name: 'Modalfew',
   props: {
-    myProp: {
+    myprop: {
       type: Object,
       required: true,
     },
@@ -232,7 +232,7 @@ export default {
   computed: {
     childData: {
       get() {
-        const fewza = this.myProp
+        const fewza = this.myprop
         fewza.data.start_date = fewza.data.start_date.replace('Z', '')
         fewza.data.end_date = fewza.data.end_date.replace('Z', '')
         return fewza
@@ -264,7 +264,7 @@ export default {
 
     deleteData() {
       this.$axios
-        .delete(`/course/admin/course/${this.myProp.data.course_id}`, {
+        .delete(`/course/admin/course/${this.myprop.data.course_id}`, {
           headers: {
             'Content-Type': 'application/json',
           },
