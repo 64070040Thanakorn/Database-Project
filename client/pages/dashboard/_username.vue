@@ -93,6 +93,7 @@
                 v-model="user.role"
                 class="border rounded px-3 py-1 w-[30%]"
                 type="text"
+                readonly
               />
             </div>
             <div
