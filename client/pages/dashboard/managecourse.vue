@@ -9,13 +9,24 @@
             <NuxtLink to="/dashboard/username">
               <li class="px-4 py-2 rounded">รายละเอียดของฉัน</li>
             </NuxtLink>
-            <NuxtLink v-if="$auth.user.role === 'Student'" to="/dashboard/course">
+            <NuxtLink
+              v-if="$auth.user.role === 'Student'"
+              to="/dashboard/course"
+            >
               <li class="px-4 py-2 rounded">คอร์สเรียน</li>
             </NuxtLink>
-            <NuxtLink v-if="$auth.user.role === 'Professor'" to="/dashboard/managecourse">
-              <li class="bg-gray-100 font-bold px-4 py-2 rounded">จัดการคอร์สเรียน</li>
+            <NuxtLink
+              v-if="$auth.user.role === 'Professor'"
+              to="/dashboard/managecourse"
+            >
+              <li class="bg-gray-100 font-bold px-4 py-2 rounded">
+                จัดการคอร์สเรียน
+              </li>
             </NuxtLink>
-            <NuxtLink v-if="$auth.user.role === 'Student'" to="/dashboard/studytable">
+            <NuxtLink
+              v-if="$auth.user.role === 'Student'"
+              to="/dashboard/studytable"
+            >
               <li class="px-4 py-2 rounded">ตารางเรียน</li>
             </NuxtLink>
           </ul>
@@ -28,6 +39,7 @@
                 <input
                   id=""
                   type="search"
+                  v-model="searchInput"
                   class="block w-full px-4 py-2 text-sm text-gray-900 border border-gray-950 rounded-3xl"
                   placeholder="ค้นหาคอร์สเรียน"
                 />
@@ -65,10 +77,14 @@
                     aria-labelledby="dropdownDefaultButton"
                   >
                     <li>
-                      <a href="#" class="block px-4 py-2 hover:bg-gray-100">A - Z</a>
+                      <a href="#" class="block px-4 py-2 hover:bg-gray-100"
+                        >A - Z</a
+                      >
                     </li>
                     <li>
-                      <a href="#" class="block px-4 py-2 hover:bg-gray-100">Z - A</a>
+                      <a href="#" class="block px-4 py-2 hover:bg-gray-100"
+                        >Z - A</a
+                      >
                     </li>
                     <li>
                       <a href="#" class="block px-4 py-2 hover:bg-gray-100"
@@ -93,12 +109,12 @@
             <ModalFewza
               :myprop="check"
               @updateProp="
-                check.check = false;
-                fetchData();
+                check.check = false
+                fetchData()
               "
             />
             <div
-              v-for="(item, index) in courses"
+              v-for="(item, index) in filteredItems"
               :key="index"
               :to="{ path: `/course/${item.course_id}` }"
             >
@@ -115,7 +131,9 @@
                     class="basis-5/12 rounded-t-[15px] w-auto h-0 object-cover"
                     alt="course_img"
                   />
-                  <div class="basis-7/12 p-4 gap-y-1 flex flex-col justify-between">
+                  <div
+                    class="basis-7/12 p-4 gap-y-1 flex flex-col justify-between"
+                  >
                     <div>
                       <p class="text-xl">{{ item.title }}</p>
                       <div class="flex justify-between items-center">
@@ -166,42 +184,55 @@
   </div>
 </template>
 <script>
-import "flowbite";
+import 'flowbite'
 export default {
-  name: "ManageCourse",
+  name: 'ManageCourse',
   async asyncData({ $auth, redirect, $axios }) {
-    await $auth.fetchUser();
+    await $auth.fetchUser()
     if (!$auth.loggedIn) {
-      redirect("/");
-    } else if ($auth.user.role !== "Professor") {
-      redirect("/");
+      redirect('/')
+    } else if ($auth.user.role !== 'Professor') {
+      redirect('/')
     }
-    const course = await $axios.post("http://localhost:5000/api/course/getManageCourse");
-    return { courses: course.data };
+    const course = await $axios.post(
+      'http://localhost:5000/api/course/getManageCourse'
+    )
+    return { courses: course.data }
   },
   data() {
     return {
-      emailUser: "",
+      emailUser: '',
+      searchInput: '',
       check: { check: false, data: {} },
-    };
+    }
+  },
+
+  computed: {
+    filteredItems() {
+      return this.courses.filter((item) =>
+        item.title
+          .toLocaleLowerCase()
+          .includes(this.searchInput.toLocaleLowerCase())
+      )
+    },
   },
   methods: {
     async fetchData() {
       const course = await this.$axios.post(
-        "http://localhost:5000/api/course/getManageCourse"
-      );
+        'http://localhost:5000/api/course/getManageCourse'
+      )
 
-      this.courses = course.data;
+      this.courses = course.data
     },
 
     openmodal(dataff) {
       try {
-        this.check.data = dataff;
-        this.check.check = true;
+        this.check.data = dataff
+        this.check.check = true
       } catch (error) {}
     },
   },
-};
+}
 </script>
 
 <style>

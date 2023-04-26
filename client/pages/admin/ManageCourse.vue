@@ -32,6 +32,7 @@
                   id=""
                   type="search"
                   class="block w-full px-4 py-2 text-sm text-gray-900 border border-gray-950 rounded-3xl"
+                  v-model="searchInput"
                   placeholder="ค้นหาคอร์สเรียน"
                 />
               </form>
@@ -116,7 +117,7 @@
                 </thead>
                 <tbody>
                   <tr
-                    v-for="(user, index) in data"
+                    v-for="(user, index) in filteredItems"
                     :key="index"
                     class="text-sm"
                   >
@@ -166,8 +167,19 @@ export default {
   data() {
     return {
       emailUser: '',
+      searchInput: '',
       check: { check: false, data: {} },
     }
+  },
+
+  computed: {
+    filteredItems() {
+      return this.data.filter((item) =>
+        item.title
+          .toLocaleLowerCase()
+          .includes(this.searchInput.toLocaleLowerCase())
+      )
+    },
   },
   methods: {
     async fetchData() {
