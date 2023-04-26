@@ -124,8 +124,7 @@
                   <td class="border-b border-[#F4F4F4] px-4 py-3">
                     <img
                       class="h-[30px] w-[30px] rounded-full"
-                      :src="user.image"
-                      alt=""
+                      :src="user.image ? 'http://localhost:5000/images/' + user.image : 'https://media.discordapp.net/attachments/1067453596351856650/1096914677780451378/Portrait_Placeholder.png'" alt=""
                     />
                   </td>
                   <td class="border-b border-[#F4F4F4] px-4 py-3">
