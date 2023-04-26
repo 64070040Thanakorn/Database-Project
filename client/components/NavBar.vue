@@ -10,8 +10,6 @@
         </div>
         <div class="space-x-4 ml-9 px-4 font-semibold">
           <NuxtLink to="/search">คอร์สการเรียน</NuxtLink>
-          <NuxtLink to="">อาจารย์ทั้งหมด</NuxtLink>
-          <NuxtLink to="">วิธีการสมัครเรียน</NuxtLink>
           <NuxtLink v-if="$auth.user && $auth.user.role === 'Admin'" to="/admin/ManageUser/">แอดมิน</NuxtLink>
         </div>
       </div>
